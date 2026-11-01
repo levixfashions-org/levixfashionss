@@ -20,16 +20,30 @@ app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' }
 }));
 
+const cleanFrontendUrl = (env.FRONTEND_URL || '').replace(/\/+$/, '');
+const allowedOrigins = new Set([
+  cleanFrontendUrl,
+  'https://thelevix.shop',
+  'https://www.thelevix.shop',
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'http://localhost'
+]);
+
 app.use(cors({
-  origin: env.NODE_ENV === 'production' 
-    ? [env.FRONTEND_URL, 'https://localhost', 'http://localhost'] 
-    : '*',
+  origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
+    if (!origin) return callback(null, true);
+    if (env.NODE_ENV !== 'production' || allowedOrigins.has(origin)) {
+      return callback(null, true);
+    }
+    return callback(null, true);
+  },
   credentials: true
 }));
 
 app.use(express.json({
   limit: '5mb',
-  verify: (req: any, res, buf) => {
+  verify: (req: any, _res: any, buf: Buffer) => {
     // Preserve raw body for Razorpay webhook HMAC verification
     req.rawBody = buf;
   }
@@ -41,7 +55,7 @@ app.use(express.urlencoded({ extended: true, limit: '5mb' }));
 app.use('/api', apiRateLimiter);
 
 // Health Check Endpoint
-app.get('/api/health', (req, res) => {
+app.get('/api/health', (_req: any, res: any) => {
   res.json({
     status: 'ok',
     service: 'levix-backend',

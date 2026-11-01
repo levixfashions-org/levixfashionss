@@ -8,7 +8,7 @@ async function bootstrap() {
   try {
     // Verify database connectivity
     await prisma.$connect();
-    console.log('✓ Connected to PostgreSQL database via Prisma ORM.');
+    console.log('✓ Connected to MySQL database via Prisma ORM.');
 
     const server = app.listen(PORT, '0.0.0.0', () => {
       console.log(`✓ Levix API server actively listening on http://0.0.0.0:${PORT} [${env.NODE_ENV}]`);
@@ -18,7 +18,7 @@ async function bootstrap() {
       console.log(`Received ${signal}. Gracefully terminating server...`);
       server.close(async () => {
         await prisma.$disconnect();
-        console.log('PostgreSQL connection closed. Exiting process.');
+        console.log('Database connection closed. Exiting process.');
         process.exit(0);
       });
     };
