@@ -19,9 +19,9 @@ export const AboutPage: React.FC = () => {
 
       <div className="aspect-[16/9] w-full overflow-hidden bg-neutral-900 shadow-xl">
         <img
-          src="https://bluorng.com/cdn/shop/files/BLUORNG01009_937f737c-b67e-4bf8-afce-b4a8370a6606.jpg?v=1764343213&width=1600"
-          alt="Levix Atelier Studio"
-          className="w-full h-full object-cover object-top opacity-90"
+          src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=80"
+          alt="Levix Design Studio"
+          className="w-full h-full object-cover object-center opacity-90"
         />
       </div>
 
@@ -46,10 +46,10 @@ export const AboutPage: React.FC = () => {
 
         <div className="space-y-3">
           <h3 className="font-display font-bold text-2xl uppercase tracking-tight text-black">
-            03 / Cultural Collaborations
+            03 / Underground Streetwear Heritage
           </h3>
           <p className="text-xs text-neutral-600 leading-relaxed">
-            From high-octane racing capsules to official licensed Godzilla monster movie drops, Levix curates rare collaborations that celebrate counter-culture movements and rebellious cinematic artistry.
+            From high-density botanical embroidery to industrial motorsport capsules, Levix curates rare limited-edition drops that celebrate contemporary subcultural aesthetics and architectural precision.
           </p>
         </div>
       </div>

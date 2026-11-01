@@ -13,7 +13,7 @@ export const MobileBottomNav: React.FC = () => {
 
   const isExploreActive = location.pathname.includes('/collections') || location.pathname === '/';
   const isAccountActive = location.pathname.startsWith('/account') || location.pathname === '/login';
-  const isStoreActive = location.pathname.startsWith('/pages/store');
+  const isSearchActive = location.pathname.startsWith('/search');
 
   return (
     <nav
@@ -106,42 +106,30 @@ export const MobileBottomNav: React.FC = () => {
           </Link>
         </li>
 
-        {/* Tab 3: Walk-in Stores (Pin SVG) */}
+        {/* Tab 3: Search (Magnifying Glass) */}
         <li
           className={`h-full flex items-center justify-center rounded-full transition-all relative ${
-            isStoreActive ? 'bg-[#efefef]/90 shadow-sm' : ''
+            isSearchActive ? 'bg-[#efefef]/90 shadow-sm' : ''
           }`}
         >
           <Link
-            to="/pages/store"
+            to="/search"
             className="w-full h-full flex items-center justify-center p-2 text-black hover:opacity-75 transition-opacity"
-            aria-label="Walk-in stores"
+            aria-label="Search catalog"
           >
             <span className="flex items-center justify-center w-full h-full">
               <svg
-                className="w-[14px] h-[17px]"
+                className="w-[15px] h-[15px]"
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 14.541 17.876"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke={isSearchActive ? '#000000' : '#4a4a4a'}
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
-                <g transform="translate(-3.4 -2.4)">
-                  <path
-                    d="M17.341,9.67c0,5.559-6.67,10.006-6.67,10.006S4,15.229,4,9.67a6.67,6.67,0,0,1,13.341,0Z"
-                    fill="none"
-                    stroke={isStoreActive ? '#000000' : '#4a4a4a'}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.4"
-                  />
-                  <path
-                    d="M8.936,10.269A2.335,2.335,0,1,0,6.6,7.934,2.335,2.335,0,0,0,8.936,10.269Z"
-                    transform="translate(1.737 1.736)"
-                    fill="none"
-                    stroke={isStoreActive ? '#000000' : '#4a4a4a'}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.4"
-                  />
-                </g>
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
               </svg>
             </span>
           </Link>

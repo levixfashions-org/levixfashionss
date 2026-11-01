@@ -29,43 +29,43 @@ export const HomePage: React.FC = () => {
     {
       name: 'BAGS',
       title: 'Levix Bags & Leather Goods',
-      img: 'https://bluorng.com/cdn/shop/files/dgbetbet-Recovered.jpg?v=1787987969&width=1600',
+      img: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=1200&q=80',
       handle: 'bags'
     },
     {
       name: 'CAPS',
       title: 'Architectural Headwear',
-      img: 'https://bluorng.com/cdn/shop/files/erfscersd.jpg?v=1781695074&width=1600',
+      img: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=1200&q=80',
       handle: 'caps'
     },
     {
       name: 'LEVIX POLO CLUB',
       title: 'Heritage Heavyweight Pique Polos',
-      img: 'https://bluorng.com/cdn/shop/files/UJNLL_JN.jpg?v=1770039557&width=1600',
+      img: 'https://images.unsplash.com/photo-1625910513413-72210c598007?auto=format&fit=crop&w=1200&q=80',
       handle: 'polos'
     },
     {
       name: 'WINTER COLLECTION 2025',
       title: '450 GSM Diagonal French Terry Fleece',
-      img: 'https://bluorng.com/cdn/shop/files/cdwasa.jpg?v=1769161054&width=1600',
+      img: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1200&q=80',
       handle: 'winter-collection'
     },
     {
       name: 'LEVIX RACING CLUB',
       title: 'Motorsport Geometry & Tactical Ripstop',
-      img: 'https://bluorng.com/cdn/shop/files/qewrsceqwdsa.jpg?v=1769161060&width=1600',
+      img: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1200&q=80',
       handle: 'levix-racing-club'
     },
     {
       name: 'LEVIX BASICS',
       title: 'Daily Oversized Combed Cotton Staples',
-      img: 'https://bluorng.com/cdn/shop/files/BLUORNG00111.jpg?v=1764336787&width=1600',
+      img: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1200&q=80',
       handle: 'summer-basics'
     },
     {
       name: 'YACHT COLLECTION',
       title: 'Resort High-Octane Streetwear',
-      img: 'https://bluorng.com/cdn/shop/files/grvfcre.jpg?v=1770966605&width=1600',
+      img: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1200&q=80',
       handle: 'yacht-collection'
     }
   ];
@@ -75,60 +75,60 @@ export const HomePage: React.FC = () => {
       name: 'Jacquard Card Case',
       slug: 'cherry-blossom-polo-t-shirt',
       basePrice: 299000,
-      img: 'https://bluorng.com/cdn/shop/files/DSC08722copy_jpg.jpg?v=1788681078&width=600',
-      hoverImg: 'https://bluorng.com/cdn/shop/files/smallwallet-4.jpg?v=1788595423&width=600'
+      img: 'https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80',
+      hoverImg: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=600&q=80'
     },
     {
       name: 'Crest Mini Backpack Jacquard',
       slug: 'black-ragnarok-t-shirt',
       basePrice: 899000,
-      img: 'https://bluorng.com/cdn/shop/files/smallwallet-4.jpg?v=1788595423&width=600',
-      hoverImg: 'https://bluorng.com/cdn/shop/files/DSC08722copy_jpg.jpg?v=1788681078&width=600'
+      img: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80',
+      hoverImg: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80'
     },
     {
       name: 'Crest Duffle Leather',
       slug: 'thunderstruck-hoodie',
       basePrice: 1499000,
-      img: 'https://bluorng.com/cdn/shop/files/DSC09084_copy_2_jpg.jpg?v=1788681132&width=600',
-      hoverImg: 'https://bluorng.com/cdn/shop/files/DSC09102_copy_jpg.jpg?v=1788681189&width=600'
+      img: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80',
+      hoverImg: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80'
     },
     {
       name: 'Crest Carryall Leather',
       slug: 'mothra-rising-t-shirt',
       basePrice: 1299000,
-      img: 'https://bluorng.com/cdn/shop/files/DSC09102_copy_jpg.jpg?v=1788681189&width=600',
-      hoverImg: 'https://bluorng.com/cdn/shop/files/DSC09084_copy_2_jpg.jpg?v=1788681132&width=600'
+      img: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=600&q=80',
+      hoverImg: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80'
     }
   ];
 
   const winterHoodies = [
     {
-      name: 'Brown Star Studded Hoodie',
+      name: 'Brown Heavyweight Boxy Hoodie',
       slug: 'thunderstruck-hoodie',
       basePrice: 1700000,
-      img: 'https://bluorng.com/cdn/shop/files/BLUORNG00261.jpg?v=1764337091&width=600',
-      hoverImg: 'https://bluorng.com/cdn/shop/files/hjbmhn.jpg?v=1764337091&width=600'
+      img: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80',
+      hoverImg: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=600&q=80'
     },
     {
-      name: 'Grey Star Studded Hoodie',
+      name: 'Charcoal Drop-Shoulder Hoodie',
       slug: 'thunderstruck-hoodie',
       basePrice: 1700000,
-      img: 'https://bluorng.com/cdn/shop/files/hjbmhn.jpg?v=1764337091&width=600',
-      hoverImg: 'https://bluorng.com/cdn/shop/files/BLUORNG00261.jpg?v=1764337091&width=600'
+      img: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=600&q=80',
+      hoverImg: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80'
     },
     {
-      name: 'Brown Embroidered Zip Hoodie',
+      name: 'Black Embroidered Zip Hoodie',
       slug: 'thunderstruck-hoodie',
       basePrice: 1650000,
-      img: 'https://bluorng.com/cdn/shop/files/BLUORNG00276.jpg?v=1764337091&width=600',
-      hoverImg: 'https://bluorng.com/cdn/shop/files/BLUORNG00170.jpg?v=1764337091&width=600'
+      img: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80',
+      hoverImg: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=600&q=80'
     },
     {
       name: 'Levix Racing Club Heavyweight Hoodie',
       slug: 'thunderstruck-hoodie',
       basePrice: 1400000,
-      img: 'https://bluorng.com/cdn/shop/files/BLUORNG00170.jpg?v=1764337091&width=600',
-      hoverImg: 'https://bluorng.com/cdn/shop/files/BLUORNG00276.jpg?v=1764337091&width=600'
+      img: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80',
+      hoverImg: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80'
     }
   ];
 
@@ -136,57 +136,26 @@ export const HomePage: React.FC = () => {
     {
       name: '5 Lakh Case',
       price: 'RS. 1,490',
-      img: 'https://bluorng.com/cdn/shop/files/REDO1.jpg?v=1779904207&width=600',
-      hoverImg: 'https://bluorng.com/cdn/shop/files/REDO2.jpg?v=1779904209&width=600'
+      img: 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=600&q=80',
+      hoverImg: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=600&q=80'
     },
     {
       name: 'Maximum Spend Case',
       price: 'RS. 1,490',
-      img: 'https://bluorng.com/cdn/shop/files/REDO4.jpg?v=1779904243&width=600',
-      hoverImg: 'https://bluorng.com/cdn/shop/files/REDO1.jpg?v=1779904207&width=600'
+      img: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=600&q=80',
+      hoverImg: 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=600&q=80'
     },
     {
       name: 'Levix Favourite Child Case',
       price: 'RS. 1,490',
-      img: 'https://bluorng.com/cdn/shop/files/Orange_Money_1.png?v=1779972887&width=600',
-      hoverImg: 'https://bluorng.com/cdn/shop/files/REDO4.jpg?v=1779904243&width=600'
+      img: 'https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80',
+      hoverImg: 'https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&fit=crop&w=600&q=80'
     },
     {
       name: 'Red Birds Of Paradise Case',
       price: 'RS. 1,490',
-      img: 'https://bluorng.com/cdn/shop/files/REDO2.jpg?v=1779904209&width=600',
-      hoverImg: 'https://bluorng.com/cdn/shop/files/Orange_Money_1.png?v=1779972887&width=600'
-    }
-  ];
-
-  const stores = [
-    {
-      city: 'Delhi (Vasant Kunj)',
-      address: 'Ground Floor, Ambience Mall, Nelson Mandela Marg, Vasant Kunj, New Delhi 110070',
-      phone: '+91 9958958313',
-      img: 'https://bluorng.com/cdn/shop/files/IMG_0689_2_jpg.jpg?v=1791445063&width=800',
-      mapUrl: 'https://maps.app.goo.gl/3XRY1CwTqt2ANt4t5'
-    },
-    {
-      city: 'Gurugram (DLF Summit Plaza)',
-      address: 'Shop 14, DLF Summit Plaza, DLF Phase 5, Sector 54, Gurugram 122002',
-      phone: '+91 9958952988',
-      img: 'https://bluorng.com/cdn/shop/files/image_47.png?v=1786104753&width=800',
-      mapUrl: 'https://maps.app.goo.gl/y3SK4Tu2Bvm6Gwmj6'
-    },
-    {
-      city: 'Delhi (Dhan Mill)',
-      address: 'Shed 12, The Dhan Mill, 100 Feet Road, SSN Marg, Chhatarpur, New Delhi 110074',
-      phone: '+91 9599191998',
-      img: 'https://bluorng.com/cdn/shop/files/delhi_store_9b995cfd-8fe8-41df-a58c-7844e1e8cc49.jpg?v=1734518093&width=800',
-      mapUrl: 'https://goo.gl/maps/Sgr5nZuiSzGA2eT8A'
-    },
-    {
-      city: 'Mumbai (Kala Ghoda)',
-      address: 'Ground Floor, Ropewalk Lane, Behind Jehangir Art Gallery, Kala Ghoda, Fort, Mumbai 400001',
-      phone: '+91 9599199537',
-      img: 'https://bluorng.com/cdn/shop/files/image_5.png?v=1789450926&width=800',
-      mapUrl: 'https://maps.app.goo.gl/dC5mkJ6UrnRqzFv86'
+      img: 'https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&fit=crop&w=600&q=80',
+      hoverImg: 'https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80'
     }
   ];
 
@@ -205,7 +174,7 @@ export const HomePage: React.FC = () => {
     },
     {
       title: 'Explore a Curated Range of Luxury Streetwear Clothing',
-      content: 'From our 450 GSM French terry hoodies and custom pique polos to modular multi-pocket cargo pants and licensed pop-culture collaborations, our atelier continuously redefines high-end contemporary fashion in India.'
+      content: 'From our 450 GSM French terry hoodies and custom pique polos to modular multi-pocket cargo pants and exclusive streetwear capsules, our atelier continuously redefines high-end contemporary fashion in India.'
     },
     {
       title: 'FAQS: Shipping, Returns & Authenticity',
@@ -216,7 +185,7 @@ export const HomePage: React.FC = () => {
   const popularSearches = [
     'Oversized T-shirts', 'Joggers', 'Acid Wash T-shirts', 'Designer Shirts',
     'Casual Jackets', 'Black Hoodies', 'Printed Sweatshirts', 'Cargo Pants',
-    'Winter Drop', 'Godzilla Collaboration', 'Heavyweight Polos'
+    'Winter Drop', 'Heavyweight Polos', 'Limited Streetwear'
   ];
 
   return (
@@ -480,69 +449,7 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 7. Physical Stores Section (Section 6 on levix.com) */}
-      <section className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
-        <div className="flex items-center justify-between border-b border-black/10 pb-3 mb-5 sm:mb-8">
-          <h2 className="text-xs md:text-sm font-semibold uppercase tracking-wider text-black">
-            Stores across India
-          </h2>
-          <Link
-            to="/pages/store"
-            className="px-3.5 py-1 bg-black text-white text-[11px] font-medium rounded-full hover:bg-neutral-800 transition-colors flex items-center gap-1 group"
-          >
-            <span>All Locations</span>
-            <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-          </Link>
-        </div>
-
-        {/* Mobile Swipe / Desktop Grid */}
-        <div className="flex overflow-x-auto snap-x snap-mandatory gap-3.5 pb-3 scrollbar-none sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 sm:pb-0">
-          {stores.map((store) => (
-            <div
-              key={store.city}
-              className="min-w-[280px] w-[80vw] sm:w-auto flex-shrink-0 snap-center rounded-[10px] border border-black/10 bg-white flex flex-col justify-between overflow-hidden group shadow-sm"
-            >
-              <div className="aspect-[4/3] w-full overflow-hidden bg-neutral-200">
-                <img
-                  src={store.img}
-                  alt={store.city}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-              </div>
-              <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
-                <div>
-                  <h3 className="font-bold text-sm uppercase tracking-wide text-black mb-1.5">
-                    {store.city}
-                  </h3>
-                  <p className="text-xs text-neutral-600 leading-relaxed">
-                    {store.address}
-                  </p>
-                </div>
-                <div className="pt-3 border-t border-black/10 flex items-center justify-between text-xs">
-                  <a
-                    href={store.mapUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-bold uppercase tracking-wider text-black hover:text-[#FF5400] flex items-center gap-1 transition-colors"
-                  >
-                    <span>Get Direction</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                  <a
-                    href={`tel:${store.phone}`}
-                    className="text-neutral-500 font-mono hover:text-black transition-colors"
-                  >
-                    {store.phone}
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 7. Brand Story & SEO Accordions (Section 12) */}
+      {/* 7. Brand Story & SEO Accordions */}
       <section className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12 border-t border-black/10 pt-12 pb-8">
         <div className="max-w-4xl mx-auto space-y-4">
           <span className="text-[11px] font-mono text-[#FF5400] font-bold uppercase tracking-widest block text-center mb-6">

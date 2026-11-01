@@ -48,7 +48,7 @@ export const CollectionsPage: React.FC = () => {
               className="group relative aspect-[4/3] overflow-hidden bg-neutral-900 block shadow-md"
             >
               <img
-                src={col.bannerImageUrl || 'https://bluorng.com/cdn/shop/files/BLUORNG01009_937f737c-b67e-4bf8-afce-b4a8370a6606.jpg?v=1764343213&width=800'}
+                src={col.bannerImageUrl || 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80'}
                 alt={col.name}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-85"
               />

@@ -18,7 +18,7 @@ export const MOCK_PRODUCTS: Product[] = [
     id: 'prod_0',
     name: 'Levix X Godzilla Black Thunderstruck T-Shirt',
     slug: 'black-thunderstruck-t-shirt',
-    description: 'Signature dropped-shoulder heavyweight tee with volcanic distressed Godzilla electric lightning graphics, high-density screen print and vintage mineral wash finish.',
+    description: 'Signature dropped-shoulder heavyweight tee with volcanic distressed geometric graphics, high-density screen print and vintage mineral wash finish.',
     details: '280 GSM luxury combed single jersey, seamless ribbed neck band, twin-needle hem finishing.',
     fabricCare: '100% Premium Cotton. Reverse wash cold. Iron on reverse side only.',
     fitGuide: 'Intentionally oversized boxy silhouette. Size down for a regular fit.',
@@ -28,9 +28,9 @@ export const MOCK_PRODUCTS: Product[] = [
     isActive: true,
     category: { id: 'cat_tees', name: 'T-Shirts', slug: 't-shirts' },
     images: [
-      { id: 'img_0_1', url: 'https://bluorng.com/cdn/shop/files/29.jpg?v=1793344714&width=1000', sortOrder: 0, isCover: true },
-      { id: 'img_0_2', url: 'https://bluorng.com/cdn/shop/files/25.jpg?v=1793344714&width=1000', sortOrder: 1, isCover: false },
-      { id: 'img_0_3', url: 'https://bluorng.com/cdn/shop/files/27.jpg?v=1793344714&width=1000', sortOrder: 2, isCover: false }
+      { id: 'img_0_1', url: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=80', sortOrder: 0, isCover: true },
+      { id: 'img_0_2', url: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=1000&q=80', sortOrder: 1, isCover: false },
+      { id: 'img_0_3', url: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=1000&q=80', sortOrder: 2, isCover: false }
     ],
     variants: [
       { id: 'var_0_s', productId: 'prod_0', size: 'S', sku: 'TEE-THUN-S', stockQuantity: 20, priceDelta: 0 },
@@ -41,9 +41,9 @@ export const MOCK_PRODUCTS: Product[] = [
   },
   {
     id: 'prod_1',
-    name: 'Levix X Godzilla Cherry Blossom Polo T-Shirt',
+    name: 'Levix Cherry Blossom Polo T-Shirt',
     slug: 'cherry-blossom-polo-t-shirt',
-    description: 'Crafted from heavyweight custom-milled 260 GSM pique cotton with detailed cherry blossom floral embroidery across the chest and Godzilla cinematic kanji branding.',
+    description: 'Crafted from heavyweight custom-milled 260 GSM pique cotton with detailed cherry blossom floral embroidery across the chest and Levix typographic branding.',
     details: 'Tailored oversized fit, ribbed collar, Mother-of-pearl buttons, split hem with reinforced herringbone tape.',
     fabricCare: '100% Combed Pique Cotton. Cold machine wash inside out. Do not tumble dry. Dry in shade.',
     fitGuide: 'Oversized Streetwear Fit. Model is 6 ft 1 in wearing size L for a relaxed drape.',
@@ -53,9 +53,8 @@ export const MOCK_PRODUCTS: Product[] = [
     isActive: true,
     category: { id: 'cat_polos', name: 'Polos', slug: 'polos' },
     images: [
-      { id: 'img_1_1', url: 'https://bluorng.com/cdn/shop/files/BLUORNG00261.jpg?v=1764337091&width=1000', sortOrder: 0, isCover: true },
-      { id: 'img_1_2', url: 'https://bluorng.com/cdn/shop/files/BLUORNG00263.jpg?v=1764337091&width=1000', sortOrder: 1, isCover: false },
-      { id: 'img_1_3', url: 'https://bluorng.com/cdn/shop/files/BLUORNG00265.jpg?v=1764337091&width=1000', sortOrder: 2, isCover: false }
+      { id: 'img_1_1', url: 'https://images.unsplash.com/photo-1625910513413-72210c598007?auto=format&fit=crop&w=1000&q=80', sortOrder: 0, isCover: true },
+      { id: 'img_1_2', url: 'https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?auto=format&fit=crop&w=1000&q=80', sortOrder: 1, isCover: false }
     ],
     variants: [
       { id: 'var_1_s', productId: 'prod_1', size: 'S', sku: 'POLO-CB-S', stockQuantity: 15, priceDelta: 0 },
@@ -67,9 +66,9 @@ export const MOCK_PRODUCTS: Product[] = [
   },
   {
     id: 'prod_2',
-    name: 'Levix X Godzilla Black Ragnarok T-Shirt',
+    name: 'Levix Black Ragnarok T-Shirt',
     slug: 'black-ragnarok-t-shirt',
-    description: 'Signature dropped-shoulder heavyweight tee with volcanic distressed Godzilla graphics, high-density screen print and vintage mineral wash finish.',
+    description: 'Signature dropped-shoulder heavyweight tee with volcanic distressed Nordic runes, high-density screen print and vintage mineral wash finish.',
     details: '280 GSM luxury combed single jersey, seamless ribbed neck band, twin-needle hem finishing.',
     fabricCare: '100% Premium Cotton. Reverse wash cold. Iron on reverse side only.',
     fitGuide: 'Intentionally oversized boxy silhouette. Size down for a regular fit.',
@@ -79,8 +78,8 @@ export const MOCK_PRODUCTS: Product[] = [
     isActive: true,
     category: { id: 'cat_tees', name: 'T-Shirts', slug: 't-shirts' },
     images: [
-      { id: 'img_2_1', url: 'https://bluorng.com/cdn/shop/files/BLUORNG01009_937f737c-b67e-4bf8-afce-b4a8370a6606.jpg?v=1764343213&width=1000', sortOrder: 0, isCover: true },
-      { id: 'img_2_2', url: 'https://bluorng.com/cdn/shop/files/BLUORNG01011.jpg?v=1764343213&width=1000', sortOrder: 1, isCover: false }
+      { id: 'img_2_1', url: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1000&q=80', sortOrder: 0, isCover: true },
+      { id: 'img_2_2', url: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=80', sortOrder: 1, isCover: false }
     ],
     variants: [
       { id: 'var_2_s', productId: 'prod_2', size: 'S', sku: 'TEE-RAG-S', stockQuantity: 20, priceDelta: 0 },
@@ -91,7 +90,7 @@ export const MOCK_PRODUCTS: Product[] = [
   },
   {
     id: 'prod_3',
-    name: 'Levix X Godzilla Thunderstruck Hoodie',
+    name: 'Levix Thunderstruck Heavyweight Hoodie',
     slug: 'thunderstruck-hoodie',
     description: 'Ultra-heavy 450 GSM diagonal fleece hoodie engineered for winter drape. High-definition screen print with electric atmospheric artwork.',
     details: 'Double-layered substantial hood without drawstrings for clean minimalist aesthetic. Concealed kangaroo pocket seams, heavyweight 2x2 ribbed cuffs.',
@@ -103,8 +102,8 @@ export const MOCK_PRODUCTS: Product[] = [
     isActive: true,
     category: { id: 'cat_hoodies', name: 'Hoodies', slug: 'hoodies' },
     images: [
-      { id: 'img_3_1', url: 'https://bluorng.com/cdn/shop/files/BLUORNG00111.jpg?v=1764336787&width=1000', sortOrder: 0, isCover: true },
-      { id: 'img_3_2', url: 'https://bluorng.com/cdn/shop/files/BLUORNG00113.jpg?v=1764336787&width=1000', sortOrder: 1, isCover: false }
+      { id: 'img_3_1', url: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1000&q=80', sortOrder: 0, isCover: true },
+      { id: 'img_3_2', url: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=1000&q=80', sortOrder: 1, isCover: false }
     ],
     variants: [
       { id: 'var_3_m', productId: 'prod_3', size: 'M', sku: 'HD-THUN-M', stockQuantity: 15, priceDelta: 0 },
@@ -115,9 +114,9 @@ export const MOCK_PRODUCTS: Product[] = [
   },
   {
     id: 'prod_4',
-    name: 'Levix X Godzilla Mothra Rising T-Shirt',
+    name: 'Levix Mothra Botanical T-Shirt',
     slug: 'mothra-rising-t-shirt',
-    description: 'Vintage-white heavyweight tee showcasing intricate Mothra wing illustrations with soft puff-print textural dimensions.',
+    description: 'Vintage-white heavyweight tee showcasing intricate botanical wing illustrations with soft puff-print textural dimensions.',
     details: '260 GSM single jersey cotton, bio-washed and pre-shrunk.',
     fabricCare: '100% Combed Cotton. Hand or delicate cycle wash cold.',
     fitGuide: 'Relaxed true-to-size oversized drape.',
@@ -127,7 +126,7 @@ export const MOCK_PRODUCTS: Product[] = [
     isActive: true,
     category: { id: 'cat_tees', name: 'T-Shirts', slug: 't-shirts' },
     images: [
-      { id: 'img_4_1', url: 'https://bluorng.com/cdn/shop/files/BLUORNG01323.jpg?v=1764337851&width=1000', sortOrder: 0, isCover: true }
+      { id: 'img_4_1', url: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=1000&q=80', sortOrder: 0, isCover: true }
     ],
     variants: [
       { id: 'var_4_s', productId: 'prod_4', size: 'S', sku: 'TEE-MOTH-S', stockQuantity: 14, priceDelta: 0 },
@@ -150,7 +149,7 @@ export const MOCK_PRODUCTS: Product[] = [
     isActive: true,
     category: { id: 'cat_bottoms', name: 'Bottoms', slug: 'bottoms' },
     images: [
-      { id: 'img_5_1', url: 'https://bluorng.com/cdn/shop/files/BLUORNG01190.jpg?v=1764342775&width=1000', sortOrder: 0, isCover: true }
+      { id: 'img_5_1', url: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=1000&q=80', sortOrder: 0, isCover: true }
     ],
     variants: [
       { id: 'var_5_30', productId: 'prod_5', size: '30', sku: 'CRG-30', stockQuantity: 10, priceDelta: 0 },
@@ -173,8 +172,8 @@ export const MOCK_PRODUCTS: Product[] = [
     isActive: true,
     category: { id: 'cat_bags', name: 'Bags & Accessories', slug: 'bags' },
     images: [
-      { id: 'img_b1_1', url: 'https://bluorng.com/cdn/shop/files/DSC08722copy_jpg.jpg?v=1788681078&width=1000', sortOrder: 0, isCover: true },
-      { id: 'img_b1_2', url: 'https://bluorng.com/cdn/shop/files/smallwallet-4.jpg?v=1788595423&width=1000', sortOrder: 1, isCover: false }
+      { id: 'img_b1_1', url: 'https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=1000&q=80', sortOrder: 0, isCover: true },
+      { id: 'img_b1_2', url: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=1000&q=80', sortOrder: 1, isCover: false }
     ],
     variants: [
       { id: 'var_b1_os', productId: 'prod_bag_1', size: 'ONE SIZE', sku: 'WAL-JAC-OS', stockQuantity: 25, priceDelta: 0 }
@@ -194,8 +193,8 @@ export const MOCK_PRODUCTS: Product[] = [
     isActive: true,
     category: { id: 'cat_bags', name: 'Bags & Accessories', slug: 'bags' },
     images: [
-      { id: 'img_b2_1', url: 'https://bluorng.com/cdn/shop/files/smallwallet-4.jpg?v=1788595423&width=1000', sortOrder: 0, isCover: true },
-      { id: 'img_b2_2', url: 'https://bluorng.com/cdn/shop/files/DSC08722copy_jpg.jpg?v=1788681078&width=1000', sortOrder: 1, isCover: false }
+      { id: 'img_b2_1', url: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1000&q=80', sortOrder: 0, isCover: true },
+      { id: 'img_b2_2', url: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=1000&q=80', sortOrder: 1, isCover: false }
     ],
     variants: [
       { id: 'var_b2_os', productId: 'prod_bag_2', size: 'ONE SIZE', sku: 'BPK-MINI-OS', stockQuantity: 15, priceDelta: 0 }
@@ -215,8 +214,8 @@ export const MOCK_PRODUCTS: Product[] = [
     isActive: true,
     category: { id: 'cat_bags', name: 'Bags & Accessories', slug: 'bags' },
     images: [
-      { id: 'img_b3_1', url: 'https://bluorng.com/cdn/shop/files/DSC09084_copy_2_jpg.jpg?v=1788681132&width=1000', sortOrder: 0, isCover: true },
-      { id: 'img_b3_2', url: 'https://bluorng.com/cdn/shop/files/DSC09102_copy_jpg.jpg?v=1788681189&width=1000', sortOrder: 1, isCover: false }
+      { id: 'img_b3_1', url: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=1000&q=80', sortOrder: 0, isCover: true },
+      { id: 'img_b3_2', url: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=1000&q=80', sortOrder: 1, isCover: false }
     ],
     variants: [
       { id: 'var_b3_os', productId: 'prod_bag_3', size: 'ONE SIZE', sku: 'DUF-LTH-OS', stockQuantity: 8, priceDelta: 0 }
@@ -236,8 +235,8 @@ export const MOCK_PRODUCTS: Product[] = [
     isActive: true,
     category: { id: 'cat_bags', name: 'Bags & Accessories', slug: 'bags' },
     images: [
-      { id: 'img_b4_1', url: 'https://bluorng.com/cdn/shop/files/DSC09102_copy_jpg.jpg?v=1788681189&width=1000', sortOrder: 0, isCover: true },
-      { id: 'img_b4_2', url: 'https://bluorng.com/cdn/shop/files/DSC09084_copy_2_jpg.jpg?v=1788681132&width=1000', sortOrder: 1, isCover: false }
+      { id: 'img_b4_1', url: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=1000&q=80', sortOrder: 0, isCover: true },
+      { id: 'img_b4_2', url: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=1000&q=80', sortOrder: 1, isCover: false }
     ],
     variants: [
       { id: 'var_b4_os', productId: 'prod_bag_4', size: 'ONE SIZE', sku: 'TOT-LTH-OS', stockQuantity: 12, priceDelta: 0 }
@@ -248,52 +247,52 @@ export const MOCK_PRODUCTS: Product[] = [
 export const MOCK_COLLECTIONS: Collection[] = [
   {
     id: 'col_1',
-    name: 'LEVIX X GODZILLA',
-    slug: 'levix-x-godzilla',
-    description: 'Exclusive authorized collaboration featuring Japanese cinematic monsters.',
-    bannerImageUrl: 'https://bluorng.com/cdn/shop/files/BLUORNG01009_937f737c-b67e-4bf8-afce-b4a8370a6606.jpg?v=1764343213&width=1400'
+    name: 'LEVIX ATELIER CAPSULE',
+    slug: 'levix-atelier-capsule',
+    description: 'Exclusive limited-edition drops featuring signature architectural silhouettes.',
+    bannerImageUrl: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1400&q=80'
   },
   {
     id: 'col_2',
     name: 'Levix Racing Club',
     slug: 'levix-racing-club',
     description: 'Motorsport heritage cut in signature boxy aesthetics.',
-    bannerImageUrl: 'https://bluorng.com/cdn/shop/files/BLUORNG00261.jpg?v=1764337091&width=1400'
+    bannerImageUrl: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1400&q=80'
   },
   {
     id: 'col_3',
     name: 'Winter Collection 2025',
     slug: 'winter-collection',
     description: 'Thermal heavyweight hoodies, knitwear and cargos.',
-    bannerImageUrl: 'https://bluorng.com/cdn/shop/files/BLUORNG00111.jpg?v=1764336787&width=1400'
+    bannerImageUrl: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1400&q=80'
   },
   {
     id: 'col_4',
     name: 'Bags & Leather Goods',
     slug: 'bags',
     description: 'Custom woven jacquards and pebble grain bovine leather accessories.',
-    bannerImageUrl: 'https://bluorng.com/cdn/shop/files/dgbetbet-Recovered.jpg?v=1787987969&width=1400'
+    bannerImageUrl: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=1400&q=80'
   },
   {
     id: 'col_5',
     name: 'Architectural Headwear & Caps',
     slug: 'caps',
     description: 'Structured 6-panel streetwear caps with high-density 3D embroidery.',
-    bannerImageUrl: 'https://bluorng.com/cdn/shop/files/erfscersd.jpg?v=1781695074&width=1400'
+    bannerImageUrl: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=1400&q=80'
   },
   {
     id: 'col_6',
     name: 'Yacht Collection',
     slug: 'yacht-collection',
     description: 'High-octane coastal streetwear and resort tailoring.',
-    bannerImageUrl: 'https://bluorng.com/cdn/shop/files/grvfcre.jpg?v=1770966605&width=1400'
+    bannerImageUrl: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1400&q=80'
   },
   {
     id: 'col_7',
     name: 'Levix Basics',
     slug: 'summer-basics',
     description: 'Daily custom combed cotton staples with architectural proportions.',
-    bannerImageUrl: 'https://bluorng.com/cdn/shop/files/UJNLL_JN.jpg?v=1770039557&width=1400'
+    bannerImageUrl: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1400&q=80'
   }
 ];
 
@@ -406,7 +405,7 @@ export const apiClient = {
 
     if (path.startsWith('/collections/')) {
       const slug = path.replace('/collections/', '');
-      const col = MOCK_COLLECTIONS.find(c => c.slug === slug || (slug === 'bluorng-x-godzilla' && c.slug === 'levix-x-godzilla') || (slug === 'bluorng-racing-club' && c.slug === 'levix-racing-club')) || {
+      const col = MOCK_COLLECTIONS.find(c => c.slug === slug) || {
         id: slug,
         name: slug.toUpperCase(),
         slug: slug,

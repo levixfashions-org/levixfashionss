@@ -13,7 +13,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [showQuickAdd, setShowQuickAdd] = useState(false);
   const { addToCart, loading } = useCartStore();
 
-  const primaryImage = product.images[0]?.url || 'https://bluorng.com/cdn/shop/files/BLUORNG01009_937f737c-b67e-4bf8-afce-b4a8370a6606.jpg?v=1764343213&width=800';
+  const primaryImage = product.images[0]?.url || 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80';
   const secondaryImage = product.images[1]?.url || primaryImage;
 
   const priceINR = (product.basePrice / 100).toLocaleString('en-IN');

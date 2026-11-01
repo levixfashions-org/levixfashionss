@@ -62,7 +62,7 @@ export const PolicyPage: React.FC = () => {
                 2. Product Authenticity & Limited Runs
               </h3>
               <p>
-                All garments, licensed Godzilla collaborative drops, and accessories are strictly limited edition. Levix reserves the right to limit the quantity of items purchased per client or per household.
+                All garments, capsule collections, and accessories are strictly limited edition. Levix reserves the right to limit the quantity of items purchased per client or per household.
               </p>
             </section>
 

@@ -25,22 +25,20 @@ export const Footer: React.FC = () => {
           {/* Column 1: Connect with us */}
           <div className="space-y-4">
             <h4 className="text-xs uppercase font-bold tracking-widest text-black">
-              Connect with us
+              Client Concierge
             </h4>
             <ul className="space-y-2.5 text-xs text-neutral-600">
               <li>
-                <a href="tel:+918448441388" className="hover:text-black transition-colors flex items-center gap-2">
-                  <span>Call:</span>
-                  <span className="font-mono text-black font-semibold">+91 8448441388</span>
+                <a href="mailto:levixfashions@gmail.com" className="hover:text-black transition-colors flex items-center gap-2">
+                  <span className="font-semibold text-black">Email:</span>
+                  <span className="font-mono text-black">levixfashions@gmail.com</span>
                 </a>
               </li>
-              <li>
-                <a href="https://wa.me/918448441388" target="_blank" rel="noreferrer" className="hover:text-black transition-colors flex items-center gap-2">
-                  <span>Text (WhatsApp):</span>
-                  <span className="font-mono text-black font-semibold">+91 8448441388</span>
-                </a>
+              <li className="text-[11px] text-neutral-500">
+                <span>Support Hours:</span>
+                <span className="block font-medium text-neutral-700">Mon – Sat, 10:00 AM – 7:00 PM IST</span>
               </li>
-              <li>
+              <li className="pt-2">
                 <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-black transition-colors">
                   Instagram
                 </a>
@@ -48,11 +46,6 @@ export const Footer: React.FC = () => {
               <li>
                 <a href="https://youtube.com" target="_blank" rel="noreferrer" className="hover:text-black transition-colors">
                   YouTube
-                </a>
-              </li>
-              <li>
-                <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-black transition-colors">
-                  LinkedIn
                 </a>
               </li>
             </ul>
@@ -104,8 +97,8 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/pages/store" className="hover:text-black transition-colors">
-                  Flagship Store Directory
+                <Link to="/collections" className="hover:text-black transition-colors">
+                  Capsule Drops
                 </Link>
               </li>
               <li>

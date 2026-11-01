@@ -26,32 +26,32 @@ export const Header: React.FC = () => {
     {
       title: 'Bags & Leather',
       handle: 'bags',
-      img: 'https://bluorng.com/cdn/shop/files/dgbetbet-Recovered.jpg?v=1787987969&width=400'
+      img: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=400&q=80'
     },
     {
       title: 'Headwear & Caps',
       handle: 'caps',
-      img: 'https://bluorng.com/cdn/shop/files/erfscersd.jpg?v=1781695074&width=400'
+      img: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=400&q=80'
     },
     {
       title: 'Winter Collection 2025',
       handle: 'winter-collection',
-      img: 'https://bluorng.com/cdn/shop/files/cdwasa.jpg?v=1769161054&width=400'
+      img: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=400&q=80'
     },
     {
       title: 'Levix Racing Club',
       handle: 'levix-racing-club',
-      img: 'https://bluorng.com/cdn/shop/files/qewrsceqwdsa.jpg?v=1769161060&width=400'
+      img: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80'
     },
     {
       title: 'Levix Basics',
       handle: 'summer-basics',
-      img: 'https://bluorng.com/cdn/shop/files/UJNLL_JN.jpg?v=1770039557&width=400'
+      img: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=400&q=80'
     },
     {
       title: 'Yacht Collection',
       handle: 'yacht-collection',
-      img: 'https://bluorng.com/cdn/shop/files/grvfcre.jpg?v=1770966605&width=400'
+      img: 'https://images.unsplash.com/photo-1625910513413-72210c598007?auto=format&fit=crop&w=400&q=80'
     }
   ];
 
@@ -156,15 +156,8 @@ export const Header: React.FC = () => {
           </Link>
         </div>
 
-        {/* Right: Actions (Stores, Search, Wishlist, Account, Cart) */}
+        {/* Right: Actions (Search, Wishlist, Account, Cart) */}
         <div className="flex items-center space-x-2 sm:space-x-4 text-black">
-          <Link
-            to="/pages/store"
-            className="hidden md:inline-block text-[11px] uppercase tracking-widest font-semibold hover:text-neutral-600 transition-colors mr-1"
-          >
-            Stores
-          </Link>
-
           {/* Search Trigger */}
           <button
             onClick={openSearch}

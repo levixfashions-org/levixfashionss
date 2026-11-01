@@ -196,7 +196,7 @@ export const CheckoutPage: React.FC = () => {
                   required
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  placeholder="+91 9876543210"
+                  placeholder="Enter 10-digit mobile number"
                   className="w-full bg-white border border-black/20 p-3 text-xs focus:border-black focus:outline-none font-mono"
                 />
               </div>

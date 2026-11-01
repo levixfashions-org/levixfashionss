@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        canvas: '#EFEFEF', // Signature Bluorng off-white
+        canvas: '#EFEFEF', // Signature LEVIX canvas off-white
         'canvas-pure': '#FFFFFF',
         'canvas-alt': '#E8E8E8',
         brand: {

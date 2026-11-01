@@ -42,23 +42,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setProfile({
           id: user.uid,
           firebaseUid: user.uid,
-          email: user.email || 'customer@levix.local',
-          name: user.displayName || 'VIP Client',
-          phone: '+91 9876543210',
+          email: user.email || 'customer@thelevix.shop',
+          name: user.displayName || 'Levix Client',
+          phone: '',
           role: user.email?.toLowerCase() === 'levixfashions@gmail.com' ? 'ADMIN' : 'CUSTOMER',
-          addresses: [
-            {
-              id: 'addr_1',
-              fullName: user.displayName || 'VIP Client',
-              line1: 'Shed 12, The Dhan Mill, 100 Feet Road',
-              city: 'New Delhi',
-              state: 'Delhi',
-              postalCode: '110074',
-              country: 'India',
-              phone: '+91 9876543210',
-              isDefault: true
-            }
-          ]
+          addresses: []
         });
       }
     }
