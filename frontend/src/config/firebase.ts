@@ -15,9 +15,10 @@ let currentAuthUser: MockUser | null = (() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       const parsed = JSON.parse(saved);
+      const userEmail = parsed.email || '';
       return {
         ...parsed,
-        getIdToken: async () => `dev-mock-token-${parsed.uid}`
+        getIdToken: async () => userEmail ? `dev-mock-token-${userEmail}-${parsed.uid}` : `dev-mock-token-${parsed.uid}`
       };
     }
   } catch (e) {}

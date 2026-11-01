@@ -91,11 +91,11 @@ export const AccountPage: React.FC = () => {
         <div className="flex items-center space-x-3">
           {isAdmin && (
             <Link
-              to="/admin"
+              to="/admin/products"
               className="px-4 py-2.5 bg-[#FF5400] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#e04a00] flex items-center gap-1.5 shadow-sm"
             >
               <Shield className="w-3.5 h-3.5" />
-              <span>Admin Dashboard</span>
+              <span>Catalog Admin</span>
             </Link>
           )}
 
@@ -111,6 +111,42 @@ export const AccountPage: React.FC = () => {
           </button>
         </div>
       </div>
+
+      {/* Prominent Admin Banner when logged in as Owner */}
+      {isAdmin && (
+        <div className="p-6 bg-black text-white border-l-4 border-[#FF5400] flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-md">
+          <div className="space-y-1">
+            <div className="flex items-center space-x-2">
+              <span className="px-2 py-0.5 bg-[#FF5400] text-white font-mono text-[10px] font-bold uppercase tracking-widest">
+                Owner Mode Active
+              </span>
+              <span className="text-xs font-mono text-neutral-400">Authenticated as levixfashions@gmail.com</span>
+            </div>
+            <h3 className="font-display font-black text-xl uppercase tracking-tight text-white">
+              Store Administrator Control Center
+            </h3>
+            <p className="text-xs text-neutral-400">
+              Manage product drops, update retail pricing, edit size inventories, and publish new streetwear pieces.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <Link
+              to="/admin/products"
+              className="px-5 py-2.5 bg-[#FF5400] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#e04a00] flex items-center gap-1.5 transition-all shadow-sm"
+            >
+              <span>Add / Edit Products</span>
+              <Plus className="w-3.5 h-3.5" />
+            </Link>
+            <Link
+              to="/admin"
+              className="px-4 py-2.5 bg-white text-black text-xs font-bold uppercase tracking-wider hover:bg-neutral-200 flex items-center gap-1.5 transition-all"
+            >
+              <Shield className="w-3.5 h-3.5" />
+              <span>Admin Dashboard</span>
+            </Link>
+          </div>
+        </div>
+      )}
 
       {/* Grid: Overview & Addresses */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
