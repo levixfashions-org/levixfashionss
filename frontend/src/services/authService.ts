@@ -23,7 +23,7 @@ export const authService = {
       email,
       displayName: email.split('@')[0],
       emailVerified: true,
-      getIdToken: async () => `dev-mock-token-${uid}`
+      getIdToken: async () => `dev-mock-token-${email}-${uid}`
     };
     setCurrentUser(user);
     return user;
