@@ -1,0 +1,568 @@
+import { authService } from './authService';
+import { Product, Collection, Cart } from '../types';
+
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
+
+function getOrCreateAnonymousToken(): string {
+  let token = localStorage.getItem('levix_anon_token');
+  if (!token) {
+    token = 'anon_' + Math.random().toString(36).substring(2, 15) + Date.now().toString(36);
+    localStorage.setItem('levix_anon_token', token);
+  }
+  return token;
+}
+
+// Authentic Levix Fallback Catalog
+export const MOCK_PRODUCTS: Product[] = [
+  {
+    id: 'prod_0',
+    name: 'Levix X Godzilla Black Thunderstruck T-Shirt',
+    slug: 'black-thunderstruck-t-shirt',
+    description: 'Signature dropped-shoulder heavyweight tee with volcanic distressed Godzilla electric lightning graphics, high-density screen print and vintage mineral wash finish.',
+    details: '280 GSM luxury combed single jersey, seamless ribbed neck band, twin-needle hem finishing.',
+    fabricCare: '100% Premium Cotton. Reverse wash cold. Iron on reverse side only.',
+    fitGuide: 'Intentionally oversized boxy silhouette. Size down for a regular fit.',
+    basePrice: 399000,
+    comparePrice: 450000,
+    isFeatured: true,
+    isActive: true,
+    category: { id: 'cat_tees', name: 'T-Shirts', slug: 't-shirts' },
+    images: [
+      { id: 'img_0_1', url: 'https://bluorng.com/cdn/shop/files/29.jpg?v=1793344714&width=1000', sortOrder: 0, isCover: true },
+      { id: 'img_0_2', url: 'https://bluorng.com/cdn/shop/files/25.jpg?v=1793344714&width=1000', sortOrder: 1, isCover: false },
+      { id: 'img_0_3', url: 'https://bluorng.com/cdn/shop/files/27.jpg?v=1793344714&width=1000', sortOrder: 2, isCover: false }
+    ],
+    variants: [
+      { id: 'var_0_s', productId: 'prod_0', size: 'S', sku: 'TEE-THUN-S', stockQuantity: 20, priceDelta: 0 },
+      { id: 'var_0_m', productId: 'prod_0', size: 'M', sku: 'TEE-THUN-M', stockQuantity: 25, priceDelta: 0 },
+      { id: 'var_0_l', productId: 'prod_0', size: 'L', sku: 'TEE-THUN-L', stockQuantity: 30, priceDelta: 0 },
+      { id: 'var_0_xl', productId: 'prod_0', size: 'XL', sku: 'TEE-THUN-XL', stockQuantity: 10, priceDelta: 0 }
+    ]
+  },
+  {
+    id: 'prod_1',
+    name: 'Levix X Godzilla Cherry Blossom Polo T-Shirt',
+    slug: 'cherry-blossom-polo-t-shirt',
+    description: 'Crafted from heavyweight custom-milled 260 GSM pique cotton with detailed cherry blossom floral embroidery across the chest and Godzilla cinematic kanji branding.',
+    details: 'Tailored oversized fit, ribbed collar, Mother-of-pearl buttons, split hem with reinforced herringbone tape.',
+    fabricCare: '100% Combed Pique Cotton. Cold machine wash inside out. Do not tumble dry. Dry in shade.',
+    fitGuide: 'Oversized Streetwear Fit. Model is 6 ft 1 in wearing size L for a relaxed drape.',
+    basePrice: 499000,
+    comparePrice: 599000,
+    isFeatured: true,
+    isActive: true,
+    category: { id: 'cat_polos', name: 'Polos', slug: 'polos' },
+    images: [
+      { id: 'img_1_1', url: 'https://bluorng.com/cdn/shop/files/BLUORNG00261.jpg?v=1764337091&width=1000', sortOrder: 0, isCover: true },
+      { id: 'img_1_2', url: 'https://bluorng.com/cdn/shop/files/BLUORNG00263.jpg?v=1764337091&width=1000', sortOrder: 1, isCover: false },
+      { id: 'img_1_3', url: 'https://bluorng.com/cdn/shop/files/BLUORNG00265.jpg?v=1764337091&width=1000', sortOrder: 2, isCover: false }
+    ],
+    variants: [
+      { id: 'var_1_s', productId: 'prod_1', size: 'S', sku: 'POLO-CB-S', stockQuantity: 15, priceDelta: 0 },
+      { id: 'var_1_m', productId: 'prod_1', size: 'M', sku: 'POLO-CB-M', stockQuantity: 22, priceDelta: 0 },
+      { id: 'var_1_l', productId: 'prod_1', size: 'L', sku: 'POLO-CB-L', stockQuantity: 30, priceDelta: 0 },
+      { id: 'var_1_xl', productId: 'prod_1', size: 'XL', sku: 'POLO-CB-XL', stockQuantity: 12, priceDelta: 0 },
+      { id: 'var_1_xxl', productId: 'prod_1', size: 'XXL', sku: 'POLO-CB-XXL', stockQuantity: 0, priceDelta: 0 }
+    ]
+  },
+  {
+    id: 'prod_2',
+    name: 'Levix X Godzilla Black Ragnarok T-Shirt',
+    slug: 'black-ragnarok-t-shirt',
+    description: 'Signature dropped-shoulder heavyweight tee with volcanic distressed Godzilla graphics, high-density screen print and vintage mineral wash finish.',
+    details: '280 GSM luxury combed single jersey, seamless ribbed neck band, twin-needle hem finishing.',
+    fabricCare: '100% Premium Cotton. Reverse wash cold. Iron on reverse side only.',
+    fitGuide: 'Intentionally oversized boxy silhouette. Size down for a regular fit.',
+    basePrice: 399000,
+    comparePrice: 450000,
+    isFeatured: true,
+    isActive: true,
+    category: { id: 'cat_tees', name: 'T-Shirts', slug: 't-shirts' },
+    images: [
+      { id: 'img_2_1', url: 'https://bluorng.com/cdn/shop/files/BLUORNG01009_937f737c-b67e-4bf8-afce-b4a8370a6606.jpg?v=1764343213&width=1000', sortOrder: 0, isCover: true },
+      { id: 'img_2_2', url: 'https://bluorng.com/cdn/shop/files/BLUORNG01011.jpg?v=1764343213&width=1000', sortOrder: 1, isCover: false }
+    ],
+    variants: [
+      { id: 'var_2_s', productId: 'prod_2', size: 'S', sku: 'TEE-RAG-S', stockQuantity: 20, priceDelta: 0 },
+      { id: 'var_2_m', productId: 'prod_2', size: 'M', sku: 'TEE-RAG-M', stockQuantity: 28, priceDelta: 0 },
+      { id: 'var_2_l', productId: 'prod_2', size: 'L', sku: 'TEE-RAG-L', stockQuantity: 18, priceDelta: 0 },
+      { id: 'var_2_xl', productId: 'prod_2', size: 'XL', sku: 'TEE-RAG-XL', stockQuantity: 8, priceDelta: 0 }
+    ]
+  },
+  {
+    id: 'prod_3',
+    name: 'Levix X Godzilla Thunderstruck Hoodie',
+    slug: 'thunderstruck-hoodie',
+    description: 'Ultra-heavy 450 GSM diagonal fleece hoodie engineered for winter drape. High-definition screen print with electric atmospheric artwork.',
+    details: 'Double-layered substantial hood without drawstrings for clean minimalist aesthetic. Concealed kangaroo pocket seams, heavyweight 2x2 ribbed cuffs.',
+    fabricCare: '100% Organic Heavyweight Cotton Fleece. Machine wash cold with like colors.',
+    fitGuide: 'Boxy streetwear drape with dropped shoulder seams.',
+    basePrice: 699000,
+    comparePrice: 799000,
+    isFeatured: true,
+    isActive: true,
+    category: { id: 'cat_hoodies', name: 'Hoodies', slug: 'hoodies' },
+    images: [
+      { id: 'img_3_1', url: 'https://bluorng.com/cdn/shop/files/BLUORNG00111.jpg?v=1764336787&width=1000', sortOrder: 0, isCover: true },
+      { id: 'img_3_2', url: 'https://bluorng.com/cdn/shop/files/BLUORNG00113.jpg?v=1764336787&width=1000', sortOrder: 1, isCover: false }
+    ],
+    variants: [
+      { id: 'var_3_m', productId: 'prod_3', size: 'M', sku: 'HD-THUN-M', stockQuantity: 15, priceDelta: 0 },
+      { id: 'var_3_l', productId: 'prod_3', size: 'L', sku: 'HD-THUN-L', stockQuantity: 25, priceDelta: 0 },
+      { id: 'var_3_xl', productId: 'prod_3', size: 'XL', sku: 'HD-THUN-XL', stockQuantity: 10, priceDelta: 0 },
+      { id: 'var_3_xxl', productId: 'prod_3', size: 'XXL', sku: 'HD-THUN-XXL', stockQuantity: 5, priceDelta: 0 }
+    ]
+  },
+  {
+    id: 'prod_4',
+    name: 'Levix X Godzilla Mothra Rising T-Shirt',
+    slug: 'mothra-rising-t-shirt',
+    description: 'Vintage-white heavyweight tee showcasing intricate Mothra wing illustrations with soft puff-print textural dimensions.',
+    details: '260 GSM single jersey cotton, bio-washed and pre-shrunk.',
+    fabricCare: '100% Combed Cotton. Hand or delicate cycle wash cold.',
+    fitGuide: 'Relaxed true-to-size oversized drape.',
+    basePrice: 449000,
+    comparePrice: null,
+    isFeatured: true,
+    isActive: true,
+    category: { id: 'cat_tees', name: 'T-Shirts', slug: 't-shirts' },
+    images: [
+      { id: 'img_4_1', url: 'https://bluorng.com/cdn/shop/files/BLUORNG01323.jpg?v=1764337851&width=1000', sortOrder: 0, isCover: true }
+    ],
+    variants: [
+      { id: 'var_4_s', productId: 'prod_4', size: 'S', sku: 'TEE-MOTH-S', stockQuantity: 14, priceDelta: 0 },
+      { id: 'var_4_m', productId: 'prod_4', size: 'M', sku: 'TEE-MOTH-M', stockQuantity: 20, priceDelta: 0 },
+      { id: 'var_4_l', productId: 'prod_4', size: 'L', sku: 'TEE-MOTH-L', stockQuantity: 15, priceDelta: 0 },
+      { id: 'var_4_xl', productId: 'prod_4', size: 'XL', sku: 'TEE-MOTH-XL', stockQuantity: 6, priceDelta: 0 }
+    ]
+  },
+  {
+    id: 'prod_5',
+    name: 'Black Ripstop Tactical Cargos',
+    slug: 'black-ripstop-cargos',
+    description: 'Engineered utility trousers crafted from cross-woven tear-resistant ripstop cotton. Equipped with 6 3D bellow cargo compartments.',
+    details: 'Articulated knee darts, bungee-cord adjustable cuffs with metal cord-locks, reinforced seat panel.',
+    fabricCare: '100% Cotton Ripstop. Machine wash cold inside out.',
+    fitGuide: 'Relaxed straight leg with taper toggle options at the ankle.',
+    basePrice: 599000,
+    comparePrice: 699000,
+    isFeatured: true,
+    isActive: true,
+    category: { id: 'cat_bottoms', name: 'Bottoms', slug: 'bottoms' },
+    images: [
+      { id: 'img_5_1', url: 'https://bluorng.com/cdn/shop/files/BLUORNG01190.jpg?v=1764342775&width=1000', sortOrder: 0, isCover: true }
+    ],
+    variants: [
+      { id: 'var_5_30', productId: 'prod_5', size: '30', sku: 'CRG-30', stockQuantity: 10, priceDelta: 0 },
+      { id: 'var_5_32', productId: 'prod_5', size: '32', sku: 'CRG-32', stockQuantity: 18, priceDelta: 0 },
+      { id: 'var_5_34', productId: 'prod_5', size: '34', sku: 'CRG-34', stockQuantity: 12, priceDelta: 0 },
+      { id: 'var_5_36', productId: 'prod_5', size: '36', sku: 'CRG-36', stockQuantity: 5, priceDelta: 0 }
+    ]
+  },
+  {
+    id: 'prod_bag_1',
+    name: 'Jacquard Card Case',
+    slug: 'jacquard-card-case',
+    description: 'Custom woven jacquard monogram card wallet with top grain leather edging and 4 dedicated card slots.',
+    details: 'Custom milled jacquard, hand-burnished edges, debossed metal logo badge.',
+    fabricCare: 'Wipe with clean dry microfiber cloth. Keep away from extreme moisture.',
+    fitGuide: 'One Size Slim Profile. 10cm x 7.5cm.',
+    basePrice: 299000,
+    comparePrice: null,
+    isFeatured: true,
+    isActive: true,
+    category: { id: 'cat_bags', name: 'Bags & Accessories', slug: 'bags' },
+    images: [
+      { id: 'img_b1_1', url: 'https://bluorng.com/cdn/shop/files/DSC08722copy_jpg.jpg?v=1788681078&width=1000', sortOrder: 0, isCover: true },
+      { id: 'img_b1_2', url: 'https://bluorng.com/cdn/shop/files/smallwallet-4.jpg?v=1788595423&width=1000', sortOrder: 1, isCover: false }
+    ],
+    variants: [
+      { id: 'var_b1_os', productId: 'prod_bag_1', size: 'ONE SIZE', sku: 'WAL-JAC-OS', stockQuantity: 25, priceDelta: 0 }
+    ]
+  },
+  {
+    id: 'prod_bag_2',
+    name: 'Crest Mini Backpack Jacquard',
+    slug: 'crest-mini-backpack',
+    description: 'Compact technical daypack featuring all-over monogram jacquard weaving, custom metal hardware, and padded adjustable straps.',
+    details: 'Dual two-way zipper compartments, internal padded sleeve, reinforced base.',
+    fabricCare: 'Spot clean with damp cloth.',
+    fitGuide: 'Compact Daily Size. 28cm x 22cm x 12cm.',
+    basePrice: 899000,
+    comparePrice: 999000,
+    isFeatured: true,
+    isActive: true,
+    category: { id: 'cat_bags', name: 'Bags & Accessories', slug: 'bags' },
+    images: [
+      { id: 'img_b2_1', url: 'https://bluorng.com/cdn/shop/files/smallwallet-4.jpg?v=1788595423&width=1000', sortOrder: 0, isCover: true },
+      { id: 'img_b2_2', url: 'https://bluorng.com/cdn/shop/files/DSC08722copy_jpg.jpg?v=1788681078&width=1000', sortOrder: 1, isCover: false }
+    ],
+    variants: [
+      { id: 'var_b2_os', productId: 'prod_bag_2', size: 'ONE SIZE', sku: 'BPK-MINI-OS', stockQuantity: 15, priceDelta: 0 }
+    ]
+  },
+  {
+    id: 'prod_bag_3',
+    name: 'Crest Duffle Leather',
+    slug: 'crest-duffle-leather',
+    description: 'Executive weekend travel duffle crafted from full-grain bovine leather with custom metal zipper pulls and luggage tag.',
+    details: 'Reinforced leather grab handles, detachable tactical webbing shoulder strap, internal zippered valuables pocket.',
+    fabricCare: 'Professional leather care only.',
+    fitGuide: 'Cabin Approved Weekend Size. 50cm x 28cm x 26cm.',
+    basePrice: 1499000,
+    comparePrice: 1699000,
+    isFeatured: true,
+    isActive: true,
+    category: { id: 'cat_bags', name: 'Bags & Accessories', slug: 'bags' },
+    images: [
+      { id: 'img_b3_1', url: 'https://bluorng.com/cdn/shop/files/DSC09084_copy_2_jpg.jpg?v=1788681132&width=1000', sortOrder: 0, isCover: true },
+      { id: 'img_b3_2', url: 'https://bluorng.com/cdn/shop/files/DSC09102_copy_jpg.jpg?v=1788681189&width=1000', sortOrder: 1, isCover: false }
+    ],
+    variants: [
+      { id: 'var_b3_os', productId: 'prod_bag_3', size: 'ONE SIZE', sku: 'DUF-LTH-OS', stockQuantity: 8, priceDelta: 0 }
+    ]
+  },
+  {
+    id: 'prod_bag_4',
+    name: 'Crest Carryall Leather',
+    slug: 'crest-carryall-leather',
+    description: 'Architectural oversized tote bag structured in pebble-grained leather with matte black hardware accents.',
+    details: 'Spacious main compartment fitting up to 16-inch laptops, magnetic closure, metal bag feet.',
+    fabricCare: 'Condition leather bi-annually.',
+    fitGuide: 'Overnight & Daily Carryall. 42cm x 34cm x 15cm.',
+    basePrice: 1299000,
+    comparePrice: null,
+    isFeatured: true,
+    isActive: true,
+    category: { id: 'cat_bags', name: 'Bags & Accessories', slug: 'bags' },
+    images: [
+      { id: 'img_b4_1', url: 'https://bluorng.com/cdn/shop/files/DSC09102_copy_jpg.jpg?v=1788681189&width=1000', sortOrder: 0, isCover: true },
+      { id: 'img_b4_2', url: 'https://bluorng.com/cdn/shop/files/DSC09084_copy_2_jpg.jpg?v=1788681132&width=1000', sortOrder: 1, isCover: false }
+    ],
+    variants: [
+      { id: 'var_b4_os', productId: 'prod_bag_4', size: 'ONE SIZE', sku: 'TOT-LTH-OS', stockQuantity: 12, priceDelta: 0 }
+    ]
+  }
+];
+
+export const MOCK_COLLECTIONS: Collection[] = [
+  {
+    id: 'col_1',
+    name: 'LEVIX X GODZILLA',
+    slug: 'levix-x-godzilla',
+    description: 'Exclusive authorized collaboration featuring Japanese cinematic monsters.',
+    bannerImageUrl: 'https://bluorng.com/cdn/shop/files/BLUORNG01009_937f737c-b67e-4bf8-afce-b4a8370a6606.jpg?v=1764343213&width=1400'
+  },
+  {
+    id: 'col_2',
+    name: 'Levix Racing Club',
+    slug: 'levix-racing-club',
+    description: 'Motorsport heritage cut in signature boxy aesthetics.',
+    bannerImageUrl: 'https://bluorng.com/cdn/shop/files/BLUORNG00261.jpg?v=1764337091&width=1400'
+  },
+  {
+    id: 'col_3',
+    name: 'Winter Collection 2025',
+    slug: 'winter-collection',
+    description: 'Thermal heavyweight hoodies, knitwear and cargos.',
+    bannerImageUrl: 'https://bluorng.com/cdn/shop/files/BLUORNG00111.jpg?v=1764336787&width=1400'
+  },
+  {
+    id: 'col_4',
+    name: 'Bags & Leather Goods',
+    slug: 'bags',
+    description: 'Custom woven jacquards and pebble grain bovine leather accessories.',
+    bannerImageUrl: 'https://bluorng.com/cdn/shop/files/dgbetbet-Recovered.jpg?v=1787987969&width=1400'
+  },
+  {
+    id: 'col_5',
+    name: 'Architectural Headwear & Caps',
+    slug: 'caps',
+    description: 'Structured 6-panel streetwear caps with high-density 3D embroidery.',
+    bannerImageUrl: 'https://bluorng.com/cdn/shop/files/erfscersd.jpg?v=1781695074&width=1400'
+  },
+  {
+    id: 'col_6',
+    name: 'Yacht Collection',
+    slug: 'yacht-collection',
+    description: 'High-octane coastal streetwear and resort tailoring.',
+    bannerImageUrl: 'https://bluorng.com/cdn/shop/files/grvfcre.jpg?v=1770966605&width=1400'
+  },
+  {
+    id: 'col_7',
+    name: 'Levix Basics',
+    slug: 'summer-basics',
+    description: 'Daily custom combed cotton staples with architectural proportions.',
+    bannerImageUrl: 'https://bluorng.com/cdn/shop/files/UJNLL_JN.jpg?v=1770039557&width=1400'
+  }
+];
+
+// In-Memory Cart State
+let inMemoryCartItems: Array<{
+  id: string;
+  variantId: string;
+  quantity: number;
+  product: Product;
+  size: string;
+}> = [
+  {
+    id: 'item_1',
+    variantId: 'var_1_l',
+    quantity: 1,
+    product: MOCK_PRODUCTS[0],
+    size: 'L'
+  }
+];
+
+function getCartCalculation(): Cart {
+  let subtotal = 0;
+  const items = inMemoryCartItems.map(it => {
+    const total = it.product.basePrice * it.quantity;
+    subtotal += total;
+    return {
+      id: it.id,
+      variantId: it.variantId,
+      quantity: it.quantity,
+      size: it.size,
+      stockQuantity: 20,
+      productId: it.product.id,
+      productName: it.product.name,
+      productSlug: it.product.slug,
+      unitPricePaise: it.product.basePrice,
+      totalPaise: total,
+      imageUrl: it.product.images[0]?.url || null
+    };
+  });
+
+  const FREE_SHIPPING_THRESHOLD = 299900;
+  const shipping = subtotal >= FREE_SHIPPING_THRESHOLD || subtotal === 0 ? 0 : 15000;
+
+  return {
+    cartId: 'local_cart_session',
+    items,
+    itemCount: items.reduce((acc, it) => acc + it.quantity, 0),
+    subtotalPaise: subtotal,
+    shippingPaise: shipping,
+    totalPaise: subtotal + shipping,
+    freeShippingThresholdPaise: FREE_SHIPPING_THRESHOLD,
+    remainingForFreeShippingPaise: Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal)
+  };
+}
+
+export const apiClient = {
+  async request<T = any>(endpoint: string, options: RequestInit = {}): Promise<{ data: T; status: number }> {
+    const url = `${BASE_URL}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`;
+    
+    // In standalone local dev mode, serve instant mock catalog without proxy timeouts
+    const useStandaloneMock = !import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_BASE_URL === 'mock';
+
+    if (!useStandaloneMock) {
+      try {
+        const token = await authService.getToken();
+        const headers = new Headers(options.headers || {});
+        if (token) headers.set('Authorization', `Bearer ${token}`);
+        headers.set('x-anonymous-token', getOrCreateAnonymousToken());
+
+        const res = await fetch(url, { ...options, headers });
+        if (res.ok) {
+          const data = await res.json();
+          return { data, status: res.status };
+        }
+      } catch (netErr) {
+        // Fall through to mock handler
+      }
+    }
+
+    // High-Fidelity Mock Response Handler
+    const path = endpoint.split('?')[0];
+
+    // Products
+    if (path === '/products') {
+      const q = new URLSearchParams(endpoint.split('?')[1] || '');
+      const search = q.get('search')?.toLowerCase();
+      const cat = q.get('category');
+      
+      let prods = MOCK_PRODUCTS;
+      if (search) {
+        prods = prods.filter(p => p.name.toLowerCase().includes(search) || p.description.toLowerCase().includes(search));
+      }
+      if (cat) {
+        prods = prods.filter(p => p.category?.slug === cat);
+      }
+      return { data: { products: prods, pagination: { total: prods.length } } as any, status: 200 };
+    }
+
+    if (path.startsWith('/products/')) {
+      const slug = path.replace('/products/', '');
+      const prod = MOCK_PRODUCTS.find(p => p.slug === slug) || MOCK_PRODUCTS[0];
+      const related = MOCK_PRODUCTS.filter(p => p.id !== prod.id).slice(0, 4);
+      return { data: { product: prod, relatedProducts: related } as any, status: 200 };
+    }
+
+    // Collections
+    if (path === '/collections') {
+      return { data: { collections: MOCK_COLLECTIONS } as any, status: 200 };
+    }
+
+    if (path.startsWith('/collections/')) {
+      const slug = path.replace('/collections/', '');
+      const col = MOCK_COLLECTIONS.find(c => c.slug === slug || (slug === 'bluorng-x-godzilla' && c.slug === 'levix-x-godzilla') || (slug === 'bluorng-racing-club' && c.slug === 'levix-racing-club')) || {
+        id: slug,
+        name: slug.toUpperCase(),
+        slug: slug,
+        description: 'Curated streetwear archive.'
+      };
+      return { data: { collection: col, products: MOCK_PRODUCTS } as any, status: 200 };
+    }
+
+    // Cart
+    if (path === '/cart') {
+      return { data: getCartCalculation() as any, status: 200 };
+    }
+
+    if (path === '/cart/items' && options.method === 'POST') {
+      const body = JSON.parse(options.body as string || '{}');
+      let foundProd = MOCK_PRODUCTS[0];
+      let foundSize = 'L';
+      for (const p of MOCK_PRODUCTS) {
+        const v = p.variants.find(va => va.id === body.variantId);
+        if (v) {
+          foundProd = p;
+          foundSize = v.size;
+          break;
+        }
+      }
+      inMemoryCartItems.push({
+        id: 'item_' + Date.now(),
+        variantId: body.variantId,
+        quantity: body.quantity || 1,
+        product: foundProd,
+        size: foundSize
+      });
+      return { data: getCartCalculation() as any, status: 200 };
+    }
+
+    if (path.startsWith('/cart/items/') && options.method === 'PUT') {
+      const id = path.replace('/cart/items/', '');
+      const body = JSON.parse(options.body as string || '{}');
+      const it = inMemoryCartItems.find(i => i.id === id);
+      if (it) {
+        if (body.quantity <= 0) {
+          inMemoryCartItems = inMemoryCartItems.filter(i => i.id !== id);
+        } else {
+          it.quantity = body.quantity;
+        }
+      }
+      return { data: getCartCalculation() as any, status: 200 };
+    }
+
+    if (path.startsWith('/cart/items/') && options.method === 'DELETE') {
+      const id = path.replace('/cart/items/', '');
+      inMemoryCartItems = inMemoryCartItems.filter(i => i.id !== id);
+      return { data: getCartCalculation() as any, status: 200 };
+    }
+
+    // Orders
+    if (path === '/orders' && options.method === 'POST') {
+      const body = JSON.parse(options.body as string || '{}');
+      const orderNum = `BLU-2026-${Math.floor(100000 + Math.random() * 900000)}`;
+      const calc = getCartCalculation();
+      return {
+        data: {
+          order: {
+            orderNumber: orderNum,
+            customerEmail: body.customerEmail,
+            customerName: body.customerName,
+            totalPaise: calc.totalPaise
+          },
+          razorpayOrderId: `order_mock_${Date.now()}`,
+          amountPaise: calc.totalPaise,
+          keyId: 'rzp_test_mock_123'
+        } as any,
+        status: 201
+      };
+    }
+
+    if (path === '/payments/verify') {
+      inMemoryCartItems = [];
+      return { data: { success: true } as any, status: 200 };
+    }
+
+    if (path.startsWith('/orders/')) {
+      const orderNum = path.replace('/orders/', '');
+      return {
+        data: {
+          order: {
+            orderNumber: orderNum,
+            customerEmail: 'customer@levix.local',
+            customerName: 'VIP Collector',
+            items: [
+              {
+                id: 'ord_it_1',
+                productName: MOCK_PRODUCTS[0].name,
+                size: 'L',
+                quantity: 1,
+                subtotalPaise: MOCK_PRODUCTS[0].basePrice
+              }
+            ],
+            totalPaise: MOCK_PRODUCTS[0].basePrice
+          }
+        } as any,
+        status: 200
+      };
+    }
+
+    // Admin
+    if (path === '/admin/metrics') {
+      return {
+        data: {
+          metrics: {
+            totalOrders: 142,
+            totalRevenueINR: 785400,
+            totalCustomers: 98,
+            totalProducts: 5
+          },
+          recentOrders: [
+            { id: '1', orderNumber: 'BLU-2026-1049', customerName: 'Kabir Mehta', status: 'PAID', totalPaise: 499000 },
+            { id: '2', orderNumber: 'BLU-2026-1048', customerName: 'Ananya Roy', status: 'SHIPPED', totalPaise: 699000 }
+          ],
+          lowStockVariants: [
+            { id: '1', product: { name: 'Black Ripstop Tactical Cargos' }, sku: 'CRG-36', size: '36', stockQuantity: 3 }
+          ]
+        } as any,
+        status: 200
+      };
+    }
+
+    return { data: {} as any, status: 200 };
+  },
+
+  get<T = any>(endpoint: string, params?: Record<string, any>) {
+    let url = endpoint;
+    const query = new URLSearchParams();
+    if (params) {
+      Object.entries(params).forEach(([k, v]) => {
+        if (v !== undefined && v !== null) query.set(k, String(v));
+      });
+      const qs = query.toString();
+      if (qs) url += (url.includes('?') ? '&' : '?') + qs;
+    }
+    return this.request<T>(url, { method: 'GET' });
+  },
+
+  post<T = any>(endpoint: string, body?: any) {
+    return this.request<T>(endpoint, { method: 'POST', body: JSON.stringify(body || {}) });
+  },
+
+  put<T = any>(endpoint: string, body?: any) {
+    return this.request<T>(endpoint, { method: 'PUT', body: JSON.stringify(body || {}) });
+  },
+
+  patch<T = any>(endpoint: string, body?: any) {
+    return this.request<T>(endpoint, { method: 'PATCH', body: JSON.stringify(body || {}) });
+  },
+
+  delete<T = any>(endpoint: string) {
+    return this.request<T>(endpoint, { method: 'DELETE' });
+  }
+};

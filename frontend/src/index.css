@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #EFEFEF;
+    color: #000000;
+    font-family: 'Assistant', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Assistant', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Custom Minimalist Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #EFEFEF;
+}
+::-webkit-scrollbar-thumb {
+  background: #B0B0B0;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #808080;
+}
+
+/* Image Crossfade Effect */
+.product-card-img-primary {
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.product-card-img-secondary {
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group:hover .product-card-img-secondary {
+  opacity: 1;
+}
+.group:hover .product-card-img-primary {
+  opacity: 0;
+}
+
+/* Marquee infinite scroll */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: 200%;
+  animation: marquee 20s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Authentic Levix Mobile Bottom Dock & Rotating Gradient Ring */
+@keyframes rotateBorder {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.levix-stories-wrap {
+  position: relative;
+  height: 44px;
+  width: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.levix-stories-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 3px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #0261e3, #68a6fb);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: rotateBorder 2.6s linear infinite;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Levix Mobile Curved Bottom Bar Accent Corners */
+.curved-box {
+  position: relative;
+  width: 100%;
+  height: 10px;
+  background: transparent;
+  overflow: hidden;
+}
+
+#curved-corner-bottomleft,
+#curved-corner-bottomright {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+}
+
+#curved-corner-bottomleft {
+  top: 0;
+  left: 0;
+}
+
+#curved-corner-bottomright {
+  top: 0;
+  right: 0;
+}
+
+#curved-corner-bottomleft::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  box-shadow: -12px 12px 0 0 #000;
+}
+
+#curved-corner-bottomright::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  box-shadow: 12px 12px 0 0 #000;
+}

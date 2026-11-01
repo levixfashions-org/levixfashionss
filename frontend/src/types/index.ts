@@ -1,0 +1,128 @@
+export interface ProductImage {
+  id: string;
+  url: string;
+  altText?: string | null;
+  sortOrder: number;
+  isCover: boolean;
+}
+
+export interface ProductVariant {
+  id: string;
+  productId: string;
+  size: string;
+  sku: string;
+  stockQuantity: number;
+  priceDelta: number;
+}
+
+export interface Category {
+  id: string;
+  name: string;
+  slug: string;
+  description?: string | null;
+  imageUrl?: string | null;
+}
+
+export interface Collection {
+  id: string;
+  name: string;
+  slug: string;
+  description?: string | null;
+  bannerImageUrl?: string | null;
+  _count?: { products: number };
+}
+
+export interface Product {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  details?: string | null;
+  fabricCare?: string | null;
+  fitGuide?: string | null;
+  basePrice: number; // in paise
+  comparePrice?: number | null; // in paise
+  isFeatured: boolean;
+  isActive: boolean;
+  category?: Category | null;
+  images: ProductImage[];
+  variants: ProductVariant[];
+}
+
+export interface CartItem {
+  id: string;
+  variantId: string;
+  quantity: number;
+  size: string;
+  stockQuantity: number;
+  productId: string;
+  productName: string;
+  productSlug: string;
+  unitPricePaise: number;
+  totalPaise: number;
+  imageUrl: string | null;
+}
+
+export interface Cart {
+  cartId: string;
+  items: CartItem[];
+  itemCount: number;
+  subtotalPaise: number;
+  shippingPaise: number;
+  totalPaise: number;
+  freeShippingThresholdPaise: number;
+  remainingForFreeShippingPaise: number;
+}
+
+export interface Address {
+  id?: string;
+  fullName: string;
+  line1: string;
+  line2?: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  country: string;
+  phone: string;
+  isDefault?: boolean;
+}
+
+export interface OrderItem {
+  id: string;
+  productName: string;
+  productSlug: string;
+  size: string;
+  unitPricePaise: number;
+  quantity: number;
+  subtotalPaise: number;
+  imageUrl?: string | null;
+}
+
+export interface Order {
+  id: string;
+  orderNumber: string;
+  customerEmail: string;
+  customerName: string;
+  customerPhone: string;
+  shippingAddressSnapshot: Address;
+  subtotalPaise: number;
+  shippingPaise: number;
+  discountPaise: number;
+  totalPaise: number;
+  status: 'PENDING' | 'PAID' | 'PROCESSING' | 'SHIPPED' | 'DELIVERED' | 'CANCELLED';
+  paymentStatus: 'PENDING' | 'PAID' | 'FAILED' | 'REFUNDED';
+  razorpayOrderId?: string | null;
+  items: OrderItem[];
+  createdAt: string;
+}
+
+export interface UserProfile {
+  id: string;
+  firebaseUid: string;
+  email: string;
+  name?: string | null;
+  phone?: string | null;
+  role: 'CUSTOMER' | 'ADMIN';
+  addresses: Address[];
+  _count?: { orders: number };
+}

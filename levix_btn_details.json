@@ -1,0 +1,18 @@
+{
+  "tagName": "DIV",
+  "className": "drawer_empty-shop_link",
+  "outerHTML": "<div class=\"drawer_empty-shop_link\">\n              <a href=\"/collections/all-products\">Shop now \n                <span>\n                  <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"-0.75 -0.75 16 16\" stroke=\"#000000\" aria-hidden=\"true\" id=\"Arrow-Up-Right--Streamline-Heroicons-Outline\" height=\"16\" width=\"16\">\n                    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"m2.71875 11.78125 9.0625 -9.0625m0 0H4.984375m6.796875 0v6.796875\" stroke-width=\"1.5\"></path>\n  ",
+  "rect": {},
+  "styles": {
+    "borderRadius": "0px",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "color": "rgba(18, 18, 18, 0.75)",
+    "fontSize": "11.7px",
+    "fontFamily": "nits-UIText-Regular",
+    "fontWeight": "400",
+    "padding": "0px",
+    "textTransform": "none",
+    "border": "0px none rgba(18, 18, 18, 0.75)",
+    "boxShadow": "none"
+  }
+}

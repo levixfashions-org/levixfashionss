@@ -1,0 +1,107 @@
+<div id="shopify-section-template--27656975941912__hero_section_zdALVb" class="shopify-section"><link href="//bluorng.com/cdn/shop/t/71/assets/hero-section.css?v=154337847671017084011791366318" rel="stylesheet" type="text/css" media="all">
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.6/build/spline-viewer.js" defer="defer"></script>
+<style>
+  @media screen and (max-width : 950px){
+    .hero-coin-box{
+        width: 50vw;
+    height: 50vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+  }
+  .hero-coin-box spline-viewer {
+        position: relative;
+             width: 121% !important;
+        height: 200% !important;
+    }
+  }
+</style>
+<section class="hero-section">
+  <div class="hero-section-main"><picture class="hero-picture">
+        <source media="(max-width: 950px)" srcset="
+            //bluorng.com/cdn/shop/files/f4redws.jpg?v=1793365892&amp;width=450 450w,
+            //bluorng.com/cdn/shop/files/f4redws.jpg?v=1793365892&amp;width=900 900w,
+            //bluorng.com/cdn/shop/files/f4redws.jpg?v=1793365892&amp;width=1290 1290w
+          " sizes="100vw" width="900" height="1600">
+        <img src="//bluorng.com/cdn/shop/files/wedcwa.jpg?v=1793366025&amp;width=1600" srcset="
+            //bluorng.com/cdn/shop/files/wedcwa.jpg?v=1793366025&amp;width=1200 1200w,
+            //bluorng.com/cdn/shop/files/wedcwa.jpg?v=1793366025&amp;width=1600 1600w,
+            //bluorng.com/cdn/shop/files/wedcwa.jpg?v=1793366025&amp;width=2000 2000w
+          " sizes="100vw" alt="BLUORNG" width="1600" height="900" fetchpriority="high" decoding="async">
+      </picture><div class="hero-desc">
+      <a href="/collections/all-products">Shop now</a>
+    </div>
+    
+    
+    
+
+    
+    
+    
+    
+
+    <spline-viewer hint="" url="https://prod.spline.design/fQVJRdh1QExGWyXm/scene.splinecode"></spline-viewer>
+     
+  </div>
+    
+
+
+
+
+</section>
+
+
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const videos = document.querySelectorAll('.hero-video');
+
+    if (!videos.length) return;
+
+    const tryPlay = (video) => {
+      if (video.paused) {
+        const p = video.play();
+        if (p !== undefined) {
+          p.catch(() => {});
+        }
+      }
+    };
+
+    // Initial attempt
+    videos.forEach((v) => tryPlay(v));
+
+    // iOS-approved user interaction fallback
+    const interactionEvents = ['touchstart', 'click', 'pointerdown'];
+
+    const onUserInteraction = () => {
+      videos.forEach((v) => tryPlay(v));
+      interactionEvents.forEach((evt) => document.removeEventListener(evt, onUserInteraction));
+    };
+
+    interactionEvents.forEach((evt) => document.addEventListener(evt, onUserInteraction, { once: true }));
+
+    // Resume if Safari pauses it (common in Low Power Mode)
+    videos.forEach((video) => {
+      video.addEventListener('pause', () => {
+        setTimeout(() => tryPlay(video), 500);
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>

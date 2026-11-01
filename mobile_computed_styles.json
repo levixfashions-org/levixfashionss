@@ -1,0 +1,75 @@
+{
+  "body": {
+    "bg": "rgb(239, 239, 239)",
+    "color": "rgb(0, 0, 0)",
+    "fontSize": "15px",
+    "fontFamily": "Assistant, sans-serif",
+    "padding": "0px",
+    "margin": "0px",
+    "height": "5480.55px",
+    "display": "grid",
+    "justifyContent": "normal",
+    "alignItems": "normal"
+  },
+  "header": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgba(18, 18, 18, 0.75)",
+    "fontSize": "15px",
+    "fontFamily": "Assistant, sans-serif",
+    "padding": "0px",
+    "margin": "0px",
+    "height": "58.5px",
+    "display": "flex",
+    "justifyContent": "normal",
+    "alignItems": "center"
+  },
+  "logo": {
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(255, 255, 255)",
+    "fontSize": "15px",
+    "fontFamily": "Assistant, sans-serif",
+    "padding": "0px",
+    "margin": "0px",
+    "height": "100%",
+    "display": "flex",
+    "justifyContent": "center",
+    "alignItems": "center"
+  },
+  "announcement": null,
+  "firstProductCard": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgba(18, 18, 18, 0.75)",
+    "fontSize": "15px",
+    "fontFamily": "nits-UIText-Regular",
+    "padding": "0px",
+    "margin": "0px",
+    "height": "100%",
+    "display": "flex",
+    "justifyContent": "normal",
+    "alignItems": "normal"
+  },
+  "productTitle": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(18, 18, 18)",
+    "fontSize": "17px",
+    "fontFamily": "Assistant, sans-serif",
+    "padding": "0px",
+    "margin": "0px",
+    "height": "auto",
+    "display": "block",
+    "justifyContent": "normal",
+    "alignItems": "normal"
+  },
+  "productPrice": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(0, 0, 0)",
+    "fontSize": "16px",
+    "fontFamily": "Assistant, sans-serif",
+    "padding": "0px",
+    "margin": "0px",
+    "height": "10.1406px",
+    "display": "flex",
+    "justifyContent": "normal",
+    "alignItems": "normal"
+  }
+}

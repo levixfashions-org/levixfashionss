@@ -1,0 +1,104 @@
+[
+  {
+    "index": 0,
+    "id": "shopify-section-template--27656975941912__hero_section_zdALVb",
+    "tagName": "DIV",
+    "className": "shopify-section",
+    "height": 702,
+    "heading": null,
+    "textPreview": "Shop now",
+    "images": [
+      "https://levix.com/cdn/shop/files/wedcwa.jpg?v=1793366025&width=1600"
+    ]
+  },
+  {
+    "index": 1,
+    "id": "shopify-section-template--27656975941912__featured_collection_UY43WN",
+    "tagName": "SECTION",
+    "className": "shopify-section section",
+    "height": 701,
+    "heading": "Latest drop",
+    "textPreview": "Latest drop | Discover more | Levix X Godzilla Black Thunderstruck T-Shirt | Regular price",
+    "images": [
+      "https://levix.com/cdn/shop/files/29.jpg?v=1793344714&width=600",
+      "https://levix.com/cdn/shop/files/25.jpg?v=1793344714&width=600",
+      "https://levix.com/cdn/shop/files/27.jpg?v=1793344714&width=600",
+      "https://levix.com/cdn/shop/files/2_a0ee6aaa-5d27-43bd-aeb6-5db500f3bd2a.jpg?v=1793344897&width=600"
+    ]
+  },
+  {
+    "index": 2,
+    "id": "shopify-section-template--27656975941912__cust_exclusive_BTGMHy",
+    "tagName": "DIV",
+    "className": "shopify-section",
+    "height": 252,
+    "heading": "Levix Bags",
+    "textPreview": "Levix Bags | Discover more | Sold Out | Sold Out",
+    "images": [
+      "https://levix.com/cdn/shop/files/DSC08722copy_jpg.jpg?v=1788681078&width=600",
+      "https://levix.com/cdn/shop/files/smallwallet-4.jpg?v=1788595423&width=600",
+      "https://levix.com/cdn/shop/files/DSC09084_copy_2_jpg.jpg?v=1788681132&width=600",
+      "https://levix.com/cdn/shop/files/DSC09102_copy_jpg.jpg?v=1788681189&width=600"
+    ]
+  },
+  {
+    "index": 3,
+    "id": "shopify-section-template--27656975941912__gallery_hero_zwadm6",
+    "tagName": "DIV",
+    "className": "shopify-section",
+    "height": 546,
+    "heading": "discover collection",
+    "textPreview": "Bags | Caps | Levix Polo Club | Winter Collection 2025",
+    "images": [
+      "https://levix.com/cdn/shop/files/dgbetbet-Recovered.jpg?v=1787987969&width=1600",
+      "https://levix.com/cdn/shop/files/erfscersd.jpg?v=1781695074&width=1600",
+      "https://levix.com/cdn/shop/files/UJNLL_JN.jpg?v=1770039557&width=1600",
+      "https://levix.com/cdn/shop/files/cdwasa.jpg?v=1769161054&width=1600"
+    ]
+  },
+  {
+    "index": 4,
+    "id": "shopify-section-template--27656975941912__featured_collection",
+    "tagName": "SECTION",
+    "className": "shopify-section section",
+    "height": 1322,
+    "heading": "Brown Star Studded Hoodie",
+    "textPreview": "Brown Star Studded Hoodie | Regular price | RS. 17,000 | Grey Star Studded Hoodie",
+    "images": [
+      "https://levix.com/cdn/shop/files/LEVIX00261.jpg?v=1764337091&width=600",
+      "https://levix.com/cdn/shop/files/hjbmhn.jpg?v=1764337091&width=600",
+      "https://levix.com/cdn/shop/files/LEVIX00276.jpg?v=1764337091&width=600",
+      "https://levix.com/cdn/shop/files/LEVIX00170.jpg?v=1764337091&width=600"
+    ]
+  },
+  {
+    "index": 5,
+    "id": "shopify-section-template--27656975941912__new_exclusive_collection_Ng4c6i",
+    "tagName": "DIV",
+    "className": "shopify-section",
+    "height": 392,
+    "heading": "iPhone Case",
+    "textPreview": "iPhone Case | Discover more | Sold Out | Sold Out",
+    "images": [
+      "https://levix.com/cdn/shop/files/REDO1.jpg?v=1779904207&width=600",
+      "https://levix.com/cdn/shop/files/REDO2.jpg?v=1779904209&width=600",
+      "https://levix.com/cdn/shop/files/Orange_Money_1.png?v=1779972887&width=600",
+      "https://levix.com/cdn/shop/files/REDO4.jpg?v=1779904243&width=600"
+    ]
+  },
+  {
+    "index": 6,
+    "id": "shopify-section-template--27656975941912__levix_stores_Gbzqze",
+    "tagName": "DIV",
+    "className": "shopify-section",
+    "height": 636,
+    "heading": "Delhi (Vasant Kunj)",
+    "textPreview": "Stores across India | Delhi (Vasant Kunj) | Get Direction | Retail Space UG-19, Upper Ground Floor, Ambience Mall, Vasant Kunj, New Delhi, Delhi 11007",
+    "images": [
+      "https://levix.com/cdn/shop/files/IMG_0689_2_jpg.jpg?v=1791445063&width=800",
+      "https://levix.com/cdn/shop/files/image_47.png?v=1786104753&width=800",
+      "https://levix.com/cdn/shop/files/delhi_store_9b995cfd-8fe8-41df-a58c-7844e1e8cc49.jpg?v=1734518093&width=800",
+      "https://levix.com/cdn/shop/files/image_5.png?v=1789450926&width=800"
+    ]
+  }
+]

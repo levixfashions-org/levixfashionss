@@ -1,0 +1,1180 @@
+{
+  "navItems": [
+    {
+      "text": "explore",
+      "href": "https://bluorng.com/collections/all-products",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "",
+      "href": "https://bluorng.com/account",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "",
+      "href": "https://bluorng.com/pages/store",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "New in",
+      "href": "https://bluorng.com/collections/new-in",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "11.52px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Collections",
+      "href": "https://bluorng.com/collections",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "11.52px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Valentine Special",
+      "href": "https://bluorng.com/collections/valentine-drop",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "11.52px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Caps",
+      "href": "https://bluorng.com/collections/caps",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "11.52px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Winter Collection 2025",
+      "href": "https://bluorng.com/collections/winter-collection",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "11.52px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Bluorng Racing Club",
+      "href": "https://bluorng.com/collections/bluorng-racing-club",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "11.52px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Bluorng Basics",
+      "href": "https://bluorng.com/collections/summer-basics",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "11.52px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Yacht Collection",
+      "href": "https://bluorng.com/collections/yacht-summer-june-25",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "11.52px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "",
+      "href": "https://bluorng.com/pages/store",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "11.52px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(255, 255, 255)"
+      }
+    },
+    {
+      "text": "",
+      "href": "https://bluorng.com/account/login",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "11.52px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(255, 255, 255)"
+      }
+    },
+    {
+      "text": "",
+      "href": "https://bluorng.com/pages/swym-wishlist",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "12.96px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(255, 255, 255)"
+      }
+    },
+    {
+      "text": "",
+      "href": "https://bluorng.com/cart",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "12.96px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(255, 255, 255)"
+      }
+    },
+    {
+      "text": "New Arrivals",
+      "href": "https://bluorng.com/collections/new-arrivals-feb-drop-26",
+      "styles": {
+        "fontFamily": "nits-Pro-Display-Bold",
+        "fontSize": "11.52px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Winter collection 2025",
+      "href": "https://bluorng.com/collections/winter-collection",
+      "styles": {
+        "fontFamily": "nits-Pro-Display-Bold",
+        "fontSize": "11.52px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Basics",
+      "href": "https://bluorng.com/collections/summer-basics",
+      "styles": {
+        "fontFamily": "nits-Pro-Display-Bold",
+        "fontSize": "11.52px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Bluorng Racing Club",
+      "href": "https://bluorng.com/collections/bluorng-racing-club",
+      "styles": {
+        "fontFamily": "nits-Pro-Display-Bold",
+        "fontSize": "11.52px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Icons",
+      "href": "https://bluorng.com/collections/bluorng-iconics",
+      "styles": {
+        "fontFamily": "nits-Pro-Display-Bold",
+        "fontSize": "11.52px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Bluorng X Godzilla",
+      "href": "https://bluorng.com/collections/bluorng-x-godzilla",
+      "styles": {
+        "fontFamily": "nits-Pro-Display-Bold",
+        "fontSize": "11.52px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "T-Shirts",
+      "href": "https://bluorng.com/collections/t-shirts",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "10.08px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "capitalize",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Polos",
+      "href": "https://bluorng.com/collections/polos",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "10.08px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "capitalize",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Shirts",
+      "href": "https://bluorng.com/collections/shirts-unisex",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "10.08px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "capitalize",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Sweatshirts",
+      "href": "https://bluorng.com/collections/sweatshirts",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "10.08px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "capitalize",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Hoodies",
+      "href": "https://bluorng.com/collections/hoodies",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "10.08px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "capitalize",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Jackets",
+      "href": "https://bluorng.com/collections/jackets",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "10.08px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "capitalize",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Cargos",
+      "href": "https://bluorng.com/collections/cargos",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "10.08px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "capitalize",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Jeans",
+      "href": "https://bluorng.com/collections/jeans",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "10.08px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "capitalize",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Pants",
+      "href": "https://bluorng.com/collections/pants",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "10.08px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "capitalize",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Shorts",
+      "href": "https://bluorng.com/collections/shorts",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "10.08px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "capitalize",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Bags",
+      "href": "https://bluorng.com/collections/bags",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "10.08px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "capitalize",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Caps",
+      "href": "https://bluorng.com/collections/caps",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "10.08px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "capitalize",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Cases",
+      "href": "https://bluorng.com/collections/iphone-case",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "10.08px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "capitalize",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "BLUES",
+      "href": "https://bluorng.com/collections/all-products?filter.v.availability=1&filter.p.m.custom.meta_color=BLUES&sort_by=manual",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "10.08px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "capitalize",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "BROWNS",
+      "href": "https://bluorng.com/collections/all-products?filter.v.availability=1&filter.p.m.custom.meta_color=BROWNS&sort_by=manual",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "10.08px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "capitalize",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "GREENS",
+      "href": "https://bluorng.com/collections/all-products?filter.v.availability=1&filter.p.m.custom.meta_color=GREENS&sort_by=manual",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "10.08px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "capitalize",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "NEUTRALS",
+      "href": "https://bluorng.com/collections/all-products?filter.v.availability=1&filter.p.m.custom.meta_color=NEUTRALS&sort_by=manual",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "10.08px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "capitalize",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "PURPLES",
+      "href": "https://bluorng.com/collections/all-products?filter.v.availability=1&filter.p.m.custom.meta_color=PURPLES&sort_by=manual",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "10.08px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "capitalize",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "REDS",
+      "href": "https://bluorng.com/collections/all-products?filter.v.availability=1&filter.p.m.custom.meta_color=REDS&sort_by=manual",
+      "styles": {
+        "fontFamily": "nits-UIText-Regular",
+        "fontSize": "10.08px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "capitalize",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "",
+      "href": "https://bluorng.com/collections/all",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "",
+      "href": "https://bluorng.com/account/login",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "",
+      "href": "https://bluorng.com/pages/stores",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "All Products",
+      "href": "https://bluorng.com/collections/all-products",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "New Arrivals",
+      "href": "https://bluorng.com/collections/new-arrivals-feb-drop-26",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Winter collection 2025",
+      "href": "https://bluorng.com/collections/winter-collection",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Basics",
+      "href": "https://bluorng.com/collections/summer-basics",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Bluorng Racing Club",
+      "href": "https://bluorng.com/collections/bluorng-racing-club",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Icons",
+      "href": "https://bluorng.com/collections/bluorng-iconics",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Bluorng X Godzilla",
+      "href": "https://bluorng.com/collections/bluorng-x-godzilla",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "T-shirts",
+      "href": "https://bluorng.com/collections/t-shirts",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Polos",
+      "href": "https://bluorng.com/collections/polos",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Shirts",
+      "href": "https://bluorng.com/collections/shirts-unisex",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Sweatshirts",
+      "href": "https://bluorng.com/collections/sweatshirts",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Hoodies",
+      "href": "https://bluorng.com/collections/hoodies",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Jackets",
+      "href": "https://bluorng.com/collections/jackets",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Cargos",
+      "href": "https://bluorng.com/collections/cargos",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Jeans",
+      "href": "https://bluorng.com/collections/jeans",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Pants",
+      "href": "https://bluorng.com/collections/pants",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Shorts",
+      "href": "https://bluorng.com/collections/shorts",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Bag",
+      "href": "https://bluorng.com/collections/bags",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Caps",
+      "href": "https://bluorng.com/collections/caps",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Cases",
+      "href": "https://bluorng.com/collections/iphone-case",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "BLUES",
+      "href": "https://bluorng.com/collections/all-products?filter.v.availability=1&filter.p.m.custom.meta_color=BLUES&sort_by=manual",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "BROWNS",
+      "href": "https://bluorng.com/collections/all-products?filter.v.availability=1&filter.p.m.custom.meta_color=BROWNS&sort_by=manual",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "GREENS",
+      "href": "https://bluorng.com/collections/all-products?filter.v.availability=1&filter.p.m.custom.meta_color=GREENS&sort_by=manual",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "NEUTRALS",
+      "href": "https://bluorng.com/collections/all-products?filter.v.availability=1&filter.p.m.custom.meta_color=NEUTRALS&sort_by=manual",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "PURPLES",
+      "href": "https://bluorng.com/collections/all-products?filter.v.availability=1&filter.p.m.custom.meta_color=PURPLES&sort_by=manual",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "REDS",
+      "href": "https://bluorng.com/collections/all-products?filter.v.availability=1&filter.p.m.custom.meta_color=REDS&sort_by=manual",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Delhi",
+      "href": "https://goo.gl/maps/Sgr5nZuiSzGA2eT8A",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Mumbai",
+      "href": "https://goo.gl/maps/1exHJZssoCyGHanA8",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Ahmedabad",
+      "href": "https://maps.app.goo.gl/9aGoL3xNYVNC3ixc9",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Hyderabad",
+      "href": "https://maps.app.goo.gl/y3SK4Tu2Bvm6Gwmj6",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Gurugram",
+      "href": "https://maps.app.goo.gl/acarxL14ewiMENHh9",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Noida",
+      "href": "https://maps.app.goo.gl/D92aKLAEWLYudBWp7",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Make a return/Exchange",
+      "href": "https://bluorng.clickpost.ai/en/returns",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Refund/Exchange policy",
+      "href": "https://bluorng.com/pages/refund-exchange-policy",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Track your order",
+      "href": "https://bluorng.com/pages/track",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Shipping policy",
+      "href": "https://bluorng.com/policies/shipping-policy",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Account",
+      "href": "https://bluorng.com/account",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Stores",
+      "href": "https://bluorng.com/pages/store",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Our Story",
+      "href": "https://bluorng.com/pages/new-about-us",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Collaborations",
+      "href": "https://bluorng.com/pages/bluorngxcollaborations",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Media & Press",
+      "href": "https://bluorng.com/blogs/news/",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Winter Collection 2025",
+      "href": "https://bluorng.com/collections/winter-collection",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Bluorng Racing Club",
+      "href": "https://bluorng.com/collections/bluorng-racing-club",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Bluorng Basics",
+      "href": "https://bluorng.com/collections/summer-basics",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Yacht Collection",
+      "href": "https://bluorng.com/collections/yacht-summer-june-25",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Winter Collection 2025",
+      "href": "https://bluorng.com/collections/winter-collection",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Bluorng Racing Club",
+      "href": "https://bluorng.com/collections/bluorng-racing-club",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Bluorng Basics",
+      "href": "https://bluorng.com/collections/summer-basics",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Yacht Collection",
+      "href": "https://bluorng.com/collections/yacht-summer-june-25",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Our Story",
+      "href": "https://bluorng.com/pages/new-about-us",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Collabrations",
+      "href": "https://bluorng.com/pages/bluorngxcollaborations",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Media & Press",
+      "href": "https://bluorng.com/blogs/news/",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Members Login",
+      "href": "https://bluorng.com/account",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Career",
+      "href": "https://bluorng.com/pages/career",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "text": "Order Support",
+      "href": "https://bluorng.com/pages/new-faq",
+      "styles": {
+        "fontFamily": "Assistant, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "letterSpacing": "normal",
+        "textTransform": "none",
+        "color": "rgb(0, 0, 0)"
+      }
+    }
+  ]
+}

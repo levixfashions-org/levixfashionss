@@ -1,0 +1,110 @@
+[
+  {
+    "prod": {
+      "handle": "black-ragnarok-t-shirt",
+      "name": "Black Ragnarok T-Shirt",
+      "num": 2
+    },
+    "title": "Bluorng X Godzilla Black Ragnarok T-Shirt",
+    "price": "Regular price\nRS. 5,500",
+    "desc": "\n              Introducing the BLUORNG x Godzilla Black Ragnarok T-Shirt, a licensed collaboration with Toho. Two faces of the Toho universe on one tee - the front carries a close-up Godzilla artwork,",
+    "images": [
+      "https://bluorng.com/cdn/shop/files/BLUORNG01009_937f737c-b67e-4bf8-afce-b4a8370a6606.jpg?v=1764343213&width=400",
+      "https://bluorng.com/cdn/shop/files/BLUORNG00261.jpg?v=1764337091&width=400",
+      "https://bluorng.com/cdn/shop/files/BLUORNG00111.jpg?v=1764336787&width=400",
+      "https://bluorng.com/cdn/shop/files/BLUORNG01190.jpg?v=1764342775&width=400",
+      "https://bluorng.com/cdn/shop/files/BLUORNG01323.jpg?v=1764337851&width=400"
+    ],
+    "sizes": [
+      "XXXS",
+      "XXS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "XXXL"
+    ]
+  },
+  {
+    "prod": {
+      "handle": "thunderstruck-hoodie",
+      "name": "Thunderstruck Hoodie",
+      "num": 3
+    },
+    "title": "Bluorng X Godzilla Thunderstruck Hoodie",
+    "price": "Regular price\nRS. 14,000",
+    "desc": "\n              Introducing the BLUORNG x Godzilla Thunderstruck Hoodie, a licensed collaboration with Toho. Scaled up onto a 480gsm fleece hoodie - Godzilla rising from the ocean depths in electric bl",
+    "images": [
+      "https://bluorng.com/cdn/shop/files/BLUORNG01009_937f737c-b67e-4bf8-afce-b4a8370a6606.jpg?v=1764343213&width=400",
+      "https://bluorng.com/cdn/shop/files/BLUORNG00261.jpg?v=1764337091&width=400",
+      "https://bluorng.com/cdn/shop/files/BLUORNG00111.jpg?v=1764336787&width=400",
+      "https://bluorng.com/cdn/shop/files/BLUORNG01190.jpg?v=1764342775&width=400",
+      "https://bluorng.com/cdn/shop/files/BLUORNG01323.jpg?v=1764337851&width=400"
+    ],
+    "sizes": [
+      "XXXS",
+      "XXS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "XXXL"
+    ]
+  },
+  {
+    "prod": {
+      "handle": "mothra-rising-t-shirt",
+      "name": "Mothra Rising T-Shirt",
+      "num": 4
+    },
+    "title": "Bluorng X Godzilla Mothra Rising T-Shirt",
+    "price": "Regular price\nRS. 5,000",
+    "desc": "\n              Introducing the BLUORNG x Godzilla Mothra Rising T-Shirt, a licensed collaboration with Toho. The back carries a BLUORNG-designed Mothra artwork in puff print - wings spread wide, the g",
+    "images": [
+      "https://bluorng.com/cdn/shop/files/BLUORNG01009_937f737c-b67e-4bf8-afce-b4a8370a6606.jpg?v=1764343213&width=400",
+      "https://bluorng.com/cdn/shop/files/BLUORNG00261.jpg?v=1764337091&width=400",
+      "https://bluorng.com/cdn/shop/files/BLUORNG00111.jpg?v=1764336787&width=400",
+      "https://bluorng.com/cdn/shop/files/BLUORNG01190.jpg?v=1764342775&width=400",
+      "https://bluorng.com/cdn/shop/files/BLUORNG01323.jpg?v=1764337851&width=400"
+    ],
+    "sizes": [
+      "XXXS",
+      "XXS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "XXXL"
+    ]
+  },
+  {
+    "prod": {
+      "handle": "black-ripstop-cargos",
+      "name": "Black Ripstop Cargos",
+      "num": 5
+    },
+    "title": "Black Ripstop Cargos",
+    "price": "Regular price\nRS. 15,000",
+    "desc": "\n              Bluorng black ripstop cargo is in black colour. The design is inspired from Bluorng’s take on cargos. The material is premium quality and textured; doesnt rip. The cargos are convertibl",
+    "images": [
+      "https://bluorng.com/cdn/shop/files/BLUORNG01009_937f737c-b67e-4bf8-afce-b4a8370a6606.jpg?v=1764343213&width=400",
+      "https://bluorng.com/cdn/shop/files/BLUORNG00261.jpg?v=1764337091&width=400",
+      "https://bluorng.com/cdn/shop/files/BLUORNG00111.jpg?v=1764336787&width=400",
+      "https://bluorng.com/cdn/shop/files/BLUORNG01190.jpg?v=1764342775&width=400",
+      "https://bluorng.com/cdn/shop/files/BLUORNG01323.jpg?v=1764337851&width=400"
+    ],
+    "sizes": [
+      "W28",
+      "W30",
+      "W32",
+      "W34",
+      "W36\nVariant sold out or unavailable"
+    ]
+  }
+]
