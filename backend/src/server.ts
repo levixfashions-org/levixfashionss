@@ -3,32 +3,31 @@ import { app } from './app.js';
 import { env } from './config/env.js';
 import { prisma } from './config/db.js';
 
-const primaryPort = Number(process.env.PORT) || 3000;
-const fallbackPort = 4000;
+const rawPort = process.env.PORT || 3000;
 
 async function bootstrap() {
   try {
-    const server = app.listen(primaryPort, '0.0.0.0', () => {
-      console.log(`✓ Levix primary server listening on port ${primaryPort} [${env.NODE_ENV}]`);
-    });
+    const isSocket = typeof rawPort === 'string' && isNaN(Number(rawPort));
+    const port = isSocket ? rawPort : (Number(rawPort) || 3000);
 
-    if (primaryPort !== fallbackPort) {
-      try {
-        const backupServer = http.createServer(app);
-        backupServer.listen(fallbackPort, '0.0.0.0', () => {
-          console.log(`✓ Levix fallback server listening on port ${fallbackPort}`);
+    const server = isSocket
+      ? app.listen(port, () => {
+          console.log(`✓ Levix server listening on socket: ${port} [${env.NODE_ENV}]`);
+        })
+      : app.listen(port, '0.0.0.0', () => {
+          console.log(`✓ Levix server listening on port: ${port} [${env.NODE_ENV}]`);
         });
-      } catch (_) {
-        // Fallback port optional
-      }
-    }
 
     // Non-blocking database connection
-    prisma.$connect().then(() => {
-      console.log('✓ Connected to MySQL database via Prisma ORM.');
-    }).catch((dbErr: any) => {
-      console.warn('⚠️ Database connection note:', dbErr.message);
-    });
+    try {
+      prisma.$connect?.().then(() => {
+        console.log('✓ Connected to MySQL database via Prisma ORM.');
+      }).catch((dbErr: any) => {
+        console.warn('⚠️ Database connection note:', dbErr?.message || dbErr);
+      });
+    } catch (e: any) {
+      console.warn('⚠️ Database initial call note:', e?.message || e);
+    }
 
     const shutdown = async (signal: string) => {
       console.log(`Received ${signal}. Gracefully terminating server...`);

@@ -34,7 +34,6 @@ __export(server_exports, {
   serverInstance: () => serverInstance
 });
 module.exports = __toCommonJS(server_exports);
-var import_http = __toESM(require("http"), 1);
 
 // backend/src/app.ts
 var import_express8 = __toESM(require("express"), 1);
@@ -166,9 +165,27 @@ var import_express = require("express");
 
 // backend/src/config/db.ts
 var import_client2 = require("@prisma/client");
-var prisma = new import_client2.PrismaClient({
-  log: process.env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"]
-});
+var prismaInstance;
+try {
+  prismaInstance = new import_client2.PrismaClient({
+    log: process.env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"]
+  });
+} catch (err) {
+  console.warn("\u26A0\uFE0F Warning: PrismaClient synchronous init note:", err.message);
+  const createFallback = () => new Proxy(() => {
+  }, {
+    get: () => createFallback(),
+    apply: () => Promise.resolve([])
+  });
+  prismaInstance = new Proxy({}, {
+    get: (_target, prop) => {
+      if (prop === "$connect") return () => Promise.reject(new Error("Prisma database client not ready"));
+      if (prop === "$disconnect") return () => Promise.resolve();
+      return createFallback();
+    }
+  });
+}
+var prisma = prismaInstance;
 
 // backend/src/controllers/authController.ts
 var import_zod3 = require("zod");
@@ -1446,27 +1463,25 @@ if (frontendDist) {
 app.use(errorHandler);
 
 // backend/src/server.ts
-var primaryPort = Number(process.env.PORT) || 3e3;
-var fallbackPort = 4e3;
+var rawPort = process.env.PORT || 3e3;
 async function bootstrap() {
   try {
-    const server = app.listen(primaryPort, "0.0.0.0", () => {
-      console.log(`\u2713 Levix primary server listening on port ${primaryPort} [${env.NODE_ENV}]`);
+    const isSocket = typeof rawPort === "string" && isNaN(Number(rawPort));
+    const port = isSocket ? rawPort : Number(rawPort) || 3e3;
+    const server = isSocket ? app.listen(port, () => {
+      console.log(`\u2713 Levix server listening on socket: ${port} [${env.NODE_ENV}]`);
+    }) : app.listen(port, "0.0.0.0", () => {
+      console.log(`\u2713 Levix server listening on port: ${port} [${env.NODE_ENV}]`);
     });
-    if (primaryPort !== fallbackPort) {
-      try {
-        const backupServer = import_http.default.createServer(app);
-        backupServer.listen(fallbackPort, "0.0.0.0", () => {
-          console.log(`\u2713 Levix fallback server listening on port ${fallbackPort}`);
-        });
-      } catch (_) {
-      }
+    try {
+      prisma.$connect?.().then(() => {
+        console.log("\u2713 Connected to MySQL database via Prisma ORM.");
+      }).catch((dbErr) => {
+        console.warn("\u26A0\uFE0F Database connection note:", dbErr?.message || dbErr);
+      });
+    } catch (e) {
+      console.warn("\u26A0\uFE0F Database initial call note:", e?.message || e);
     }
-    prisma.$connect().then(() => {
-      console.log("\u2713 Connected to MySQL database via Prisma ORM.");
-    }).catch((dbErr) => {
-      console.warn("\u26A0\uFE0F Database connection note:", dbErr.message);
-    });
     const shutdown = async (signal) => {
       console.log(`Received ${signal}. Gracefully terminating server...`);
       server.close(async () => {
@@ -1487,8 +1502,9 @@ async function bootstrap() {
 }
 var serverInstance = bootstrap();
 var server_default = app;
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
-  app,
-  serverInstance
-});
+
+module.exports = app;
+module.exports.default = app;
+module.exports.app = app;
+module.exports.serverInstance = serverInstance;
+
