@@ -1,3 +1,6 @@
+// backend/src/server.ts
+import http from "http";
+
 // backend/src/app.ts
 import express from "express";
 import cors from "cors";
@@ -1410,12 +1413,22 @@ if (frontendDist) {
 app.use(errorHandler);
 
 // backend/src/server.ts
-var PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : env.PORT || 4e3;
+var primaryPort = Number(process.env.PORT) || 3e3;
+var fallbackPort = 4e3;
 async function bootstrap() {
   try {
-    const server = app.listen(PORT, "0.0.0.0", () => {
-      console.log(`\u2713 Levix production server actively listening on port ${PORT} [${env.NODE_ENV}]`);
+    const server = app.listen(primaryPort, "0.0.0.0", () => {
+      console.log(`\u2713 Levix primary server listening on port ${primaryPort} [${env.NODE_ENV}]`);
     });
+    if (primaryPort !== fallbackPort) {
+      try {
+        const backupServer = http.createServer(app);
+        backupServer.listen(fallbackPort, "0.0.0.0", () => {
+          console.log(`\u2713 Levix fallback server listening on port ${fallbackPort}`);
+        });
+      } catch (_) {
+      }
+    }
     prisma.$connect().then(() => {
       console.log("\u2713 Connected to MySQL database via Prisma ORM.");
     }).catch((dbErr) => {
@@ -1435,8 +1448,7 @@ async function bootstrap() {
     process.on("SIGTERM", () => shutdown("SIGTERM"));
     process.on("SIGINT", () => shutdown("SIGINT"));
   } catch (err) {
-    console.error("CRITICAL: Server failed to start:", err.message);
-    process.exit(1);
+    console.error("CRITICAL: Server startup caught error:", err.message);
   }
 }
 bootstrap();
