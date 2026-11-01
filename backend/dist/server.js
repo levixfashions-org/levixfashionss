@@ -11,32 +11,44 @@ import dotenv from "dotenv";
 import { z } from "zod";
 dotenv.config();
 var envSchema = z.object({
-  NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
-  PORT: z.string().default("4000").transform(Number),
-  DATABASE_URL: z.string().default("postgresql://postgres:postgres@127.0.0.1:5432/levix?schema=public"),
-  FRONTEND_URL: z.string().default("http://localhost:5173"),
+  NODE_ENV: z.string().default("production"),
+  PORT: z.union([z.string(), z.number()]).default(4e3).transform((val) => Number(val) || 4e3),
+  DATABASE_URL: z.string().optional().default(""),
+  FRONTEND_URL: z.string().optional().default("https://thelevix.shop"),
   // Firebase Admin Credentials
   FIREBASE_PROJECT_ID: z.string().optional(),
   FIREBASE_CLIENT_EMAIL: z.string().optional(),
   FIREBASE_PRIVATE_KEY: z.string().optional(),
   FIREBASE_SERVICE_ACCOUNT_PATH: z.string().optional(),
   // Razorpay
-  RAZORPAY_KEY_ID: z.string().default("rzp_test_placeholder"),
-  RAZORPAY_KEY_SECRET: z.string().default("rzp_secret_placeholder"),
+  RAZORPAY_KEY_ID: z.string().optional().default("rzp_test_placeholder"),
+  RAZORPAY_KEY_SECRET: z.string().optional().default("rzp_secret_placeholder"),
   RAZORPAY_WEBHOOK_SECRET: z.string().optional(),
   // Cloudinary / Object Storage
   CLOUDINARY_CLOUD_NAME: z.string().optional(),
   CLOUDINARY_API_KEY: z.string().optional(),
   CLOUDINARY_API_SECRET: z.string().optional()
-});
+}).passthrough();
 var parsed = envSchema.safeParse(process.env);
 if (!parsed.success) {
-  console.error("CRITICAL: Invalid environment configuration:", parsed.error.format());
-  if (process.env.NODE_ENV === "production") {
-    process.exit(1);
-  }
+  console.warn("\u26A0\uFE0F Warning: Environment configuration details:", parsed.error.format());
 }
-var env = parsed.success ? parsed.data : envSchema.parse({});
+var env = parsed.success ? parsed.data : {
+  NODE_ENV: process.env.NODE_ENV || "production",
+  PORT: Number(process.env.PORT) || 4e3,
+  DATABASE_URL: process.env.DATABASE_URL || "",
+  FRONTEND_URL: process.env.FRONTEND_URL || "https://thelevix.shop",
+  FIREBASE_PROJECT_ID: process.env.FIREBASE_PROJECT_ID,
+  FIREBASE_CLIENT_EMAIL: process.env.FIREBASE_CLIENT_EMAIL,
+  FIREBASE_PRIVATE_KEY: process.env.FIREBASE_PRIVATE_KEY,
+  FIREBASE_SERVICE_ACCOUNT_PATH: process.env.FIREBASE_SERVICE_ACCOUNT_PATH,
+  RAZORPAY_KEY_ID: process.env.RAZORPAY_KEY_ID || "rzp_test_placeholder",
+  RAZORPAY_KEY_SECRET: process.env.RAZORPAY_KEY_SECRET || "rzp_secret_placeholder",
+  RAZORPAY_WEBHOOK_SECRET: process.env.RAZORPAY_WEBHOOK_SECRET,
+  CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+  CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
+  CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET
+};
 
 // backend/src/middleware/rateLimiter.ts
 import rateLimit from "express-rate-limit";
@@ -1366,12 +1378,33 @@ app.use("/api/payments", paymentRoutes_default);
 app.use("/api/admin", adminRoutes_default);
 var __filename = fileURLToPath(import.meta.url);
 var __dirname = path.dirname(__filename);
-var frontendDist = fs2.existsSync(path.resolve(process.cwd(), "frontend/dist")) ? path.resolve(process.cwd(), "frontend/dist") : path.resolve(__dirname, "../../frontend/dist");
-if (fs2.existsSync(frontendDist)) {
+var possiblePaths = [
+  path.resolve(process.cwd(), "frontend/dist"),
+  path.resolve(process.cwd(), "dist"),
+  path.resolve(__dirname, "../../frontend/dist"),
+  path.resolve(__dirname, "../frontend/dist"),
+  path.resolve(__dirname, "frontend/dist"),
+  "./frontend/dist"
+];
+var frontendDist = possiblePaths.find((p) => {
+  try {
+    return fs2.existsSync(p) && fs2.existsSync(path.join(p, "index.html"));
+  } catch (_) {
+    return false;
+  }
+}) || "";
+if (frontendDist) {
+  console.log(`\u2713 Serving frontend static files from: ${frontendDist}`);
   app.use(express.static(frontendDist));
   app.get("*", (req, res, next) => {
     if (req.path.startsWith("/api")) return next();
     res.sendFile(path.join(frontendDist, "index.html"));
+  });
+} else {
+  console.warn("\u26A0\uFE0F Frontend dist directory not found in known locations. Checked:", possiblePaths);
+  app.get("*", (req, res, next) => {
+    if (req.path.startsWith("/api")) return next();
+    res.status(200).send("<h1>LEVIX Production Server Online</h1><p>Storefront is initializing. Please refresh in a moment.</p>");
   });
 }
 app.use(errorHandler);

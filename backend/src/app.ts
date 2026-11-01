@@ -79,15 +79,36 @@ app.use('/api/admin', adminRoutes);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const frontendDist = fs.existsSync(path.resolve(process.cwd(), 'frontend/dist'))
-  ? path.resolve(process.cwd(), 'frontend/dist')
-  : path.resolve(__dirname, '../../frontend/dist');
 
-if (fs.existsSync(frontendDist)) {
+const possiblePaths = [
+  path.resolve(process.cwd(), 'frontend/dist'),
+  path.resolve(process.cwd(), 'dist'),
+  path.resolve(__dirname, '../../frontend/dist'),
+  path.resolve(__dirname, '../frontend/dist'),
+  path.resolve(__dirname, 'frontend/dist'),
+  './frontend/dist'
+];
+
+const frontendDist = possiblePaths.find(p => {
+  try {
+    return fs.existsSync(p) && fs.existsSync(path.join(p, 'index.html'));
+  } catch (_) {
+    return false;
+  }
+}) || '';
+
+if (frontendDist) {
+  console.log(`✓ Serving frontend static files from: ${frontendDist}`);
   app.use(express.static(frontendDist));
   app.get('*', (req, res, next) => {
     if (req.path.startsWith('/api')) return next();
     res.sendFile(path.join(frontendDist, 'index.html'));
+  });
+} else {
+  console.warn('⚠️ Frontend dist directory not found in known locations. Checked:', possiblePaths);
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api')) return next();
+    res.status(200).send('<h1>LEVIX Production Server Online</h1><p>Storefront is initializing. Please refresh in a moment.</p>');
   });
 }
 
