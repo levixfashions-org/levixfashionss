@@ -1,0 +1,12 @@
+import { Router } from 'express';
+import { getProfile, updateProfile, addAddress, deleteAddress } from '../controllers/authController.js';
+import { verifyFirebaseToken } from '../middleware/verifyFirebaseToken.js';
+import { authRateLimiter } from '../middleware/rateLimiter.js';
+const router = Router();
+router.use(authRateLimiter);
+router.use(verifyFirebaseToken);
+router.get('/profile', getProfile);
+router.put('/profile', updateProfile);
+router.post('/addresses', addAddress);
+router.delete('/addresses/:id', deleteAddress);
+export default router;

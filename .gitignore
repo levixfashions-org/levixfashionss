@@ -8,6 +8,10 @@ dist/
 build/
 .next/
 out/
+!frontend/dist/
+!frontend/dist/**
+!backend/dist/
+!backend/dist/**
 
 # Environment files
 .env
