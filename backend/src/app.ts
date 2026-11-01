@@ -3,7 +3,6 @@ import cors from 'cors';
 import helmet from 'helmet';
 import path from 'path';
 import fs from 'fs';
-import { fileURLToPath } from 'url';
 import { env } from './config/env.js';
 import { apiRateLimiter } from './middleware/rateLimiter.js';
 import { errorHandler } from './middleware/errorHandler.js';
@@ -77,15 +76,15 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/admin', adminRoutes);
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// Path resolution for static files
+const currentDir = typeof __dirname !== 'undefined' ? __dirname : process.cwd();
 
 const possiblePaths = [
   path.resolve(process.cwd(), 'frontend/dist'),
   path.resolve(process.cwd(), 'dist'),
-  path.resolve(__dirname, '../../frontend/dist'),
-  path.resolve(__dirname, '../frontend/dist'),
-  path.resolve(__dirname, 'frontend/dist'),
+  path.resolve(currentDir, '../../frontend/dist'),
+  path.resolve(currentDir, '../frontend/dist'),
+  path.resolve(currentDir, 'frontend/dist'),
   './frontend/dist'
 ];
 

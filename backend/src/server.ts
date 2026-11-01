@@ -41,9 +41,14 @@ async function bootstrap() {
 
     process.on('SIGTERM', () => shutdown('SIGTERM'));
     process.on('SIGINT', () => shutdown('SIGINT'));
+
+    return server;
   } catch (err: any) {
     console.error('CRITICAL: Server startup caught error:', err.message);
   }
 }
 
-bootstrap();
+const serverInstance = bootstrap();
+
+export default app;
+export { app, serverInstance };

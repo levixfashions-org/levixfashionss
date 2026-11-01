@@ -1,36 +1,70 @@
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
 // backend/src/server.ts
-import http from "http";
+var server_exports = {};
+__export(server_exports, {
+  app: () => app,
+  default: () => server_default,
+  serverInstance: () => serverInstance
+});
+module.exports = __toCommonJS(server_exports);
+var import_http = __toESM(require("http"), 1);
 
 // backend/src/app.ts
-import express from "express";
-import cors from "cors";
-import helmet from "helmet";
-import path from "path";
-import fs2 from "fs";
-import { fileURLToPath } from "url";
+var import_express8 = __toESM(require("express"), 1);
+var import_cors = __toESM(require("cors"), 1);
+var import_helmet = __toESM(require("helmet"), 1);
+var import_path = __toESM(require("path"), 1);
+var import_fs2 = __toESM(require("fs"), 1);
 
 // backend/src/config/env.ts
-import dotenv from "dotenv";
-import { z } from "zod";
-dotenv.config();
-var envSchema = z.object({
-  NODE_ENV: z.string().default("production"),
-  PORT: z.union([z.string(), z.number()]).default(4e3).transform((val) => Number(val) || 4e3),
-  DATABASE_URL: z.string().optional().default(""),
-  FRONTEND_URL: z.string().optional().default("https://thelevix.shop"),
+var import_dotenv = __toESM(require("dotenv"), 1);
+var import_zod = require("zod");
+import_dotenv.default.config();
+var envSchema = import_zod.z.object({
+  NODE_ENV: import_zod.z.string().default("production"),
+  PORT: import_zod.z.union([import_zod.z.string(), import_zod.z.number()]).default(4e3).transform((val) => Number(val) || 4e3),
+  DATABASE_URL: import_zod.z.string().optional().default(""),
+  FRONTEND_URL: import_zod.z.string().optional().default("https://thelevix.shop"),
   // Firebase Admin Credentials
-  FIREBASE_PROJECT_ID: z.string().optional(),
-  FIREBASE_CLIENT_EMAIL: z.string().optional(),
-  FIREBASE_PRIVATE_KEY: z.string().optional(),
-  FIREBASE_SERVICE_ACCOUNT_PATH: z.string().optional(),
+  FIREBASE_PROJECT_ID: import_zod.z.string().optional(),
+  FIREBASE_CLIENT_EMAIL: import_zod.z.string().optional(),
+  FIREBASE_PRIVATE_KEY: import_zod.z.string().optional(),
+  FIREBASE_SERVICE_ACCOUNT_PATH: import_zod.z.string().optional(),
   // Razorpay
-  RAZORPAY_KEY_ID: z.string().optional().default("rzp_test_placeholder"),
-  RAZORPAY_KEY_SECRET: z.string().optional().default("rzp_secret_placeholder"),
-  RAZORPAY_WEBHOOK_SECRET: z.string().optional(),
+  RAZORPAY_KEY_ID: import_zod.z.string().optional().default("rzp_test_placeholder"),
+  RAZORPAY_KEY_SECRET: import_zod.z.string().optional().default("rzp_secret_placeholder"),
+  RAZORPAY_WEBHOOK_SECRET: import_zod.z.string().optional(),
   // Cloudinary / Object Storage
-  CLOUDINARY_CLOUD_NAME: z.string().optional(),
-  CLOUDINARY_API_KEY: z.string().optional(),
-  CLOUDINARY_API_SECRET: z.string().optional()
+  CLOUDINARY_CLOUD_NAME: import_zod.z.string().optional(),
+  CLOUDINARY_API_KEY: import_zod.z.string().optional(),
+  CLOUDINARY_API_SECRET: import_zod.z.string().optional()
 }).passthrough();
 var parsed = envSchema.safeParse(process.env);
 if (!parsed.success) {
@@ -54,8 +88,8 @@ var env = parsed.success ? parsed.data : {
 };
 
 // backend/src/middleware/rateLimiter.ts
-import rateLimit from "express-rate-limit";
-var apiRateLimiter = rateLimit({
+var import_express_rate_limit = __toESM(require("express-rate-limit"), 1);
+var apiRateLimiter = (0, import_express_rate_limit.default)({
   windowMs: 15 * 60 * 1e3,
   // 15 minutes
   max: 300,
@@ -66,7 +100,7 @@ var apiRateLimiter = rateLimit({
     error: "Too many requests from this IP, please try again after 15 minutes"
   }
 });
-var authRateLimiter = rateLimit({
+var authRateLimiter = (0, import_express_rate_limit.default)({
   windowMs: 15 * 60 * 1e3,
   max: 30,
   // 30 requests per 15 minutes for auth endpoints
@@ -76,7 +110,7 @@ var authRateLimiter = rateLimit({
     error: "Too many authentication attempts, please try again later"
   }
 });
-var checkoutRateLimiter = rateLimit({
+var checkoutRateLimiter = (0, import_express_rate_limit.default)({
   windowMs: 10 * 60 * 1e3,
   max: 20,
   // 20 checkout attempts per 10 minutes
@@ -88,8 +122,8 @@ var checkoutRateLimiter = rateLimit({
 });
 
 // backend/src/middleware/errorHandler.ts
-import { ZodError } from "zod";
-import { Prisma } from "@prisma/client";
+var import_zod2 = require("zod");
+var import_client = require("@prisma/client");
 var AppError = class _AppError extends Error {
   statusCode;
   constructor(message, statusCode = 400) {
@@ -99,7 +133,7 @@ var AppError = class _AppError extends Error {
   }
 };
 function errorHandler(err, req, res, next) {
-  if (err instanceof ZodError) {
+  if (err instanceof import_zod2.ZodError) {
     res.status(400).json({
       error: "Validation Error",
       details: err.errors.map((e) => ({ field: e.path.join("."), message: e.message }))
@@ -110,7 +144,7 @@ function errorHandler(err, req, res, next) {
     res.status(err.statusCode).json({ error: err.message });
     return;
   }
-  if (err instanceof Prisma.PrismaClientKnownRequestError) {
+  if (err instanceof import_client.Prisma.PrismaClientKnownRequestError) {
     if (err.code === "P2002") {
       res.status(409).json({ error: "A record with this unique value already exists" });
       return;
@@ -128,26 +162,26 @@ function errorHandler(err, req, res, next) {
 }
 
 // backend/src/routes/authRoutes.ts
-import { Router } from "express";
+var import_express = require("express");
 
 // backend/src/config/db.ts
-import { PrismaClient } from "@prisma/client";
-var prisma = new PrismaClient({
+var import_client2 = require("@prisma/client");
+var prisma = new import_client2.PrismaClient({
   log: process.env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"]
 });
 
 // backend/src/controllers/authController.ts
-import { z as z2 } from "zod";
-var addressSchema = z2.object({
-  fullName: z2.string().min(2),
-  line1: z2.string().min(3),
-  line2: z2.string().optional(),
-  city: z2.string().min(2),
-  state: z2.string().min(2),
-  postalCode: z2.string().min(4),
-  country: z2.string().default("India"),
-  phone: z2.string().min(10),
-  isDefault: z2.boolean().default(false)
+var import_zod3 = require("zod");
+var addressSchema = import_zod3.z.object({
+  fullName: import_zod3.z.string().min(2),
+  line1: import_zod3.z.string().min(3),
+  line2: import_zod3.z.string().optional(),
+  city: import_zod3.z.string().min(2),
+  state: import_zod3.z.string().min(2),
+  postalCode: import_zod3.z.string().min(4),
+  country: import_zod3.z.string().default("India"),
+  phone: import_zod3.z.string().min(10),
+  isDefault: import_zod3.z.boolean().default(false)
 });
 async function getProfile(req, res, next) {
   try {
@@ -174,9 +208,9 @@ async function updateProfile(req, res, next) {
     if (!req.user) {
       throw new AppError("Unauthorized", 401);
     }
-    const { name, phone } = z2.object({
-      name: z2.string().min(2).optional(),
-      phone: z2.string().min(10).optional()
+    const { name, phone } = import_zod3.z.object({
+      name: import_zod3.z.string().min(2).optional(),
+      phone: import_zod3.z.string().min(10).optional()
     }).parse(req.body);
     const updatedUser = await prisma.user.update({
       where: { id: req.user.id },
@@ -229,28 +263,28 @@ async function deleteAddress(req, res, next) {
 }
 
 // backend/src/config/firebase-admin.ts
-import admin from "firebase-admin";
-import fs from "fs";
+var import_firebase_admin = __toESM(require("firebase-admin"), 1);
+var import_fs = __toESM(require("fs"), 1);
 var firebaseApp = null;
 function getFirebaseAdmin() {
   if (firebaseApp) return firebaseApp;
-  if (admin.apps.length > 0) {
-    firebaseApp = admin.apps[0];
+  if (import_firebase_admin.default.apps.length > 0) {
+    firebaseApp = import_firebase_admin.default.apps[0];
     return firebaseApp;
   }
   try {
-    if (env.FIREBASE_SERVICE_ACCOUNT_PATH && fs.existsSync(env.FIREBASE_SERVICE_ACCOUNT_PATH)) {
-      const serviceAccount = JSON.parse(fs.readFileSync(env.FIREBASE_SERVICE_ACCOUNT_PATH, "utf8"));
-      firebaseApp = admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount)
+    if (env.FIREBASE_SERVICE_ACCOUNT_PATH && import_fs.default.existsSync(env.FIREBASE_SERVICE_ACCOUNT_PATH)) {
+      const serviceAccount = JSON.parse(import_fs.default.readFileSync(env.FIREBASE_SERVICE_ACCOUNT_PATH, "utf8"));
+      firebaseApp = import_firebase_admin.default.initializeApp({
+        credential: import_firebase_admin.default.credential.cert(serviceAccount)
       });
       console.log("Firebase Admin initialized with service account file.");
       return firebaseApp;
     }
     if (env.FIREBASE_PROJECT_ID && env.FIREBASE_CLIENT_EMAIL && env.FIREBASE_PRIVATE_KEY) {
       const privateKey = env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n");
-      firebaseApp = admin.initializeApp({
-        credential: admin.credential.cert({
+      firebaseApp = import_firebase_admin.default.initializeApp({
+        credential: import_firebase_admin.default.credential.cert({
           projectId: env.FIREBASE_PROJECT_ID,
           clientEmail: env.FIREBASE_CLIENT_EMAIL,
           privateKey
@@ -260,7 +294,7 @@ function getFirebaseAdmin() {
       return firebaseApp;
     }
     console.warn("WARNING: Firebase Admin credentials not fully configured. Running in mock/development mode.");
-    firebaseApp = admin.initializeApp({
+    firebaseApp = import_firebase_admin.default.initializeApp({
       projectId: "levix-dev-mock"
     });
     return firebaseApp;
@@ -272,7 +306,7 @@ function getFirebaseAdmin() {
 var adminAuth = () => getFirebaseAdmin().auth();
 
 // backend/src/middleware/verifyFirebaseToken.ts
-import { Role } from "@prisma/client";
+var import_client3 = require("@prisma/client");
 async function verifyFirebaseToken(req, res, next) {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -308,7 +342,7 @@ async function verifyFirebaseToken(req, res, next) {
         firebaseUid: uid,
         email,
         name,
-        role: Role.CUSTOMER
+        role: import_client3.Role.CUSTOMER
       }
     });
     req.user = {
@@ -352,7 +386,7 @@ async function optionalAuth(req, res, next) {
         firebaseUid: uid,
         email,
         name,
-        role: Role.CUSTOMER
+        role: import_client3.Role.CUSTOMER
       }
     });
     req.user = {
@@ -371,7 +405,7 @@ function requireAdmin(req, res, next) {
     res.status(401).json({ error: "Unauthorized: Authentication required" });
     return;
   }
-  if (req.user.role !== Role.ADMIN) {
+  if (req.user.role !== import_client3.Role.ADMIN) {
     res.status(403).json({ error: "Forbidden: Admin privileges required" });
     return;
   }
@@ -379,7 +413,7 @@ function requireAdmin(req, res, next) {
 }
 
 // backend/src/routes/authRoutes.ts
-var router = Router();
+var router = (0, import_express.Router)();
 router.use(authRateLimiter);
 router.use(verifyFirebaseToken);
 router.get("/profile", getProfile);
@@ -389,7 +423,7 @@ router.delete("/addresses/:id", deleteAddress);
 var authRoutes_default = router;
 
 // backend/src/routes/productRoutes.ts
-import { Router as Router2 } from "express";
+var import_express2 = require("express");
 
 // backend/src/controllers/productController.ts
 async function getProducts(req, res, next) {
@@ -486,13 +520,13 @@ async function getProductBySlug(req, res, next) {
 }
 
 // backend/src/routes/productRoutes.ts
-var router2 = Router2();
+var router2 = (0, import_express2.Router)();
 router2.get("/", getProducts);
 router2.get("/:slug", getProductBySlug);
 var productRoutes_default = router2;
 
 // backend/src/routes/collectionRoutes.ts
-import { Router as Router3 } from "express";
+var import_express3 = require("express");
 
 // backend/src/controllers/collectionController.ts
 async function getCollections(req, res, next) {
@@ -549,20 +583,20 @@ async function getCollectionBySlug(req, res, next) {
 }
 
 // backend/src/routes/collectionRoutes.ts
-var router3 = Router3();
+var router3 = (0, import_express3.Router)();
 router3.get("/", getCollections);
 router3.get("/:slug", getCollectionBySlug);
 var collectionRoutes_default = router3;
 
 // backend/src/routes/cartRoutes.ts
-import { Router as Router4 } from "express";
+var import_express4 = require("express");
 
 // backend/src/controllers/cartController.ts
-import { z as z3 } from "zod";
-var addToCartSchema = z3.object({
-  variantId: z3.string().uuid(),
-  quantity: z3.number().int().min(1).default(1),
-  anonymousToken: z3.string().optional()
+var import_zod4 = require("zod");
+var addToCartSchema = import_zod4.z.object({
+  variantId: import_zod4.z.string().uuid(),
+  quantity: import_zod4.z.number().int().min(1).default(1),
+  anonymousToken: import_zod4.z.string().optional()
 });
 async function getOrCreateCart(userId, anonymousToken) {
   if (userId) {
@@ -728,7 +762,7 @@ async function addToCart(req, res, next) {
 async function updateCartItem(req, res, next) {
   try {
     const { id } = req.params;
-    const { quantity } = z3.object({ quantity: z3.number().int().min(0) }).parse(req.body);
+    const { quantity } = import_zod4.z.object({ quantity: import_zod4.z.number().int().min(0) }).parse(req.body);
     const cartItem = await prisma.cartItem.findUnique({
       where: { id },
       include: { variant: true, cart: true }
@@ -766,7 +800,7 @@ async function removeCartItem(req, res, next) {
 }
 
 // backend/src/routes/cartRoutes.ts
-var router4 = Router4();
+var router4 = (0, import_express4.Router)();
 router4.use(optionalAuth);
 router4.get("/", getCart);
 router4.post("/items", addToCart);
@@ -775,19 +809,19 @@ router4.delete("/items/:id", removeCartItem);
 var cartRoutes_default = router4;
 
 // backend/src/routes/orderRoutes.ts
-import { Router as Router5 } from "express";
+var import_express5 = require("express");
 
 // backend/src/config/razorpay.ts
-import Razorpay from "razorpay";
-import crypto from "crypto";
-var razorpay = new Razorpay({
+var import_razorpay = __toESM(require("razorpay"), 1);
+var import_crypto = __toESM(require("crypto"), 1);
+var razorpay = new import_razorpay.default({
   key_id: env.RAZORPAY_KEY_ID,
   key_secret: env.RAZORPAY_KEY_SECRET
 });
 function verifyPaymentSignature(orderId, paymentId, signature) {
   try {
     const text = `${orderId}|${paymentId}`;
-    const generatedSignature = crypto.createHmac("sha256", env.RAZORPAY_KEY_SECRET).update(text).digest("hex");
+    const generatedSignature = import_crypto.default.createHmac("sha256", env.RAZORPAY_KEY_SECRET).update(text).digest("hex");
     return generatedSignature === signature;
   } catch (err) {
     console.error("Signature verification error:", err);
@@ -800,7 +834,7 @@ function verifyWebhookSignature(body, signature) {
     return true;
   }
   try {
-    const expectedSignature = crypto.createHmac("sha256", env.RAZORPAY_WEBHOOK_SECRET).update(body).digest("hex");
+    const expectedSignature = import_crypto.default.createHmac("sha256", env.RAZORPAY_WEBHOOK_SECRET).update(body).digest("hex");
     return expectedSignature === signature;
   } catch (err) {
     console.error("Webhook signature verification error:", err);
@@ -809,25 +843,25 @@ function verifyWebhookSignature(body, signature) {
 }
 
 // backend/src/controllers/orderController.ts
-import { z as z4 } from "zod";
-import { OrderStatus, PaymentStatus, DiscountType } from "@prisma/client";
-var createOrderSchema = z4.object({
-  customerEmail: z4.string().email(),
-  customerName: z4.string().min(2),
-  customerPhone: z4.string().min(10),
-  shippingAddress: z4.object({
-    fullName: z4.string().min(2),
-    line1: z4.string().min(3),
-    line2: z4.string().optional(),
-    city: z4.string().min(2),
-    state: z4.string().min(2),
-    postalCode: z4.string().min(4),
-    country: z4.string().default("India"),
-    phone: z4.string().min(10)
+var import_zod5 = require("zod");
+var import_client4 = require("@prisma/client");
+var createOrderSchema = import_zod5.z.object({
+  customerEmail: import_zod5.z.string().email(),
+  customerName: import_zod5.z.string().min(2),
+  customerPhone: import_zod5.z.string().min(10),
+  shippingAddress: import_zod5.z.object({
+    fullName: import_zod5.z.string().min(2),
+    line1: import_zod5.z.string().min(3),
+    line2: import_zod5.z.string().optional(),
+    city: import_zod5.z.string().min(2),
+    state: import_zod5.z.string().min(2),
+    postalCode: import_zod5.z.string().min(4),
+    country: import_zod5.z.string().default("India"),
+    phone: import_zod5.z.string().min(10)
   }),
-  cartId: z4.string().uuid().optional(),
-  couponCode: z4.string().optional(),
-  anonymousToken: z4.string().optional()
+  cartId: import_zod5.z.string().uuid().optional(),
+  couponCode: import_zod5.z.string().optional(),
+  anonymousToken: import_zod5.z.string().optional()
 });
 async function createOrder(req, res, next) {
   try {
@@ -869,7 +903,7 @@ async function createOrder(req, res, next) {
         where: { code: data.couponCode.toUpperCase() }
       });
       if (coupon && coupon.isActive && subtotalPaise >= coupon.minOrderPaise) {
-        if (coupon.discountType === DiscountType.PERCENTAGE) {
+        if (coupon.discountType === import_client4.DiscountType.PERCENTAGE) {
           discountPaise = Math.round(subtotalPaise * coupon.discountValue / 100);
         } else {
           discountPaise = coupon.discountValue;
@@ -910,8 +944,8 @@ async function createOrder(req, res, next) {
           shippingPaise,
           discountPaise,
           totalPaise,
-          status: OrderStatus.PENDING,
-          paymentStatus: PaymentStatus.PENDING,
+          status: import_client4.OrderStatus.PENDING,
+          paymentStatus: import_client4.PaymentStatus.PENDING,
           razorpayOrderId,
           items: {
             create: cart.items.map((item) => ({
@@ -983,24 +1017,24 @@ async function getOrderByNumber(req, res, next) {
 }
 
 // backend/src/routes/orderRoutes.ts
-var router5 = Router5();
+var router5 = (0, import_express5.Router)();
 router5.post("/", checkoutRateLimiter, optionalAuth, createOrder);
 router5.get("/my-orders", verifyFirebaseToken, getUserOrders);
 router5.get("/:orderNumber", optionalAuth, getOrderByNumber);
 var orderRoutes_default = router5;
 
 // backend/src/routes/paymentRoutes.ts
-import { Router as Router6 } from "express";
+var import_express6 = require("express");
 
 // backend/src/controllers/paymentController.ts
-import { z as z5 } from "zod";
-import { OrderStatus as OrderStatus2, PaymentStatus as PaymentStatus2 } from "@prisma/client";
-var verifyPaymentSchema = z5.object({
-  orderNumber: z5.string(),
-  razorpayOrderId: z5.string(),
-  razorpayPaymentId: z5.string(),
-  razorpaySignature: z5.string(),
-  cartId: z5.string().optional()
+var import_zod6 = require("zod");
+var import_client5 = require("@prisma/client");
+var verifyPaymentSchema = import_zod6.z.object({
+  orderNumber: import_zod6.z.string(),
+  razorpayOrderId: import_zod6.z.string(),
+  razorpayPaymentId: import_zod6.z.string(),
+  razorpaySignature: import_zod6.z.string(),
+  cartId: import_zod6.z.string().optional()
 });
 async function verifyPayment(req, res, next) {
   try {
@@ -1012,7 +1046,7 @@ async function verifyPayment(req, res, next) {
     if (!order) {
       throw new AppError("Order not found", 404);
     }
-    if (order.status === OrderStatus2.PAID) {
+    if (order.status === import_client5.OrderStatus.PAID) {
       res.json({ message: "Order is already marked as paid", order });
       return;
     }
@@ -1022,7 +1056,7 @@ async function verifyPayment(req, res, next) {
       await prisma.payment.upsert({
         where: { orderId: order.id },
         update: {
-          status: PaymentStatus2.FAILED,
+          status: import_client5.PaymentStatus.FAILED,
           razorpayPaymentId,
           razorpaySignature
         },
@@ -1032,7 +1066,7 @@ async function verifyPayment(req, res, next) {
           razorpayOrderId,
           razorpayPaymentId,
           razorpaySignature,
-          status: PaymentStatus2.FAILED
+          status: import_client5.PaymentStatus.FAILED
         }
       });
       throw new AppError("Payment verification failed: Invalid cryptographic signature", 400);
@@ -1041,15 +1075,15 @@ async function verifyPayment(req, res, next) {
       const ord = await tx.order.update({
         where: { id: order.id },
         data: {
-          status: OrderStatus2.PAID,
-          paymentStatus: PaymentStatus2.PAID
+          status: import_client5.OrderStatus.PAID,
+          paymentStatus: import_client5.PaymentStatus.PAID
         },
         include: { items: true }
       });
       await tx.payment.upsert({
         where: { orderId: order.id },
         update: {
-          status: PaymentStatus2.PAID,
+          status: import_client5.PaymentStatus.PAID,
           razorpayPaymentId,
           razorpaySignature
         },
@@ -1059,7 +1093,7 @@ async function verifyPayment(req, res, next) {
           razorpayOrderId,
           razorpayPaymentId,
           razorpaySignature,
-          status: PaymentStatus2.PAID
+          status: import_client5.PaymentStatus.PAID
         }
       });
       for (const item of order.items) {
@@ -1122,19 +1156,19 @@ async function handleWebhook(req, res, next) {
           where: { razorpayOrderId: rzpOrderId },
           include: { items: true }
         });
-        if (order && order.status !== OrderStatus2.PAID) {
+        if (order && order.status !== import_client5.OrderStatus.PAID) {
           await prisma.$transaction(async (tx) => {
             await tx.order.update({
               where: { id: order.id },
               data: {
-                status: OrderStatus2.PAID,
-                paymentStatus: PaymentStatus2.PAID
+                status: import_client5.OrderStatus.PAID,
+                paymentStatus: import_client5.PaymentStatus.PAID
               }
             });
             await tx.payment.upsert({
               where: { orderId: order.id },
               update: {
-                status: PaymentStatus2.PAID,
+                status: import_client5.PaymentStatus.PAID,
                 razorpayPaymentId: paymentEntity.id,
                 rawPayload: payload
               },
@@ -1143,7 +1177,7 @@ async function handleWebhook(req, res, next) {
                 amountPaise: paymentEntity.amount,
                 razorpayOrderId: rzpOrderId,
                 razorpayPaymentId: paymentEntity.id,
-                status: PaymentStatus2.PAID,
+                status: import_client5.PaymentStatus.PAID,
                 rawPayload: payload
               }
             });
@@ -1170,17 +1204,17 @@ async function handleWebhook(req, res, next) {
 }
 
 // backend/src/routes/paymentRoutes.ts
-var router6 = Router6();
+var router6 = (0, import_express6.Router)();
 router6.post("/verify", checkoutRateLimiter, verifyPayment);
 router6.post("/webhook", handleWebhook);
 var paymentRoutes_default = router6;
 
 // backend/src/routes/adminRoutes.ts
-import { Router as Router7 } from "express";
+var import_express7 = require("express");
 
 // backend/src/controllers/adminController.ts
-import { z as z6 } from "zod";
-import { OrderStatus as OrderStatus3 } from "@prisma/client";
+var import_zod7 = require("zod");
+var import_client6 = require("@prisma/client");
 async function getDashboardMetrics(req, res, next) {
   try {
     const [totalOrders, paidOrders, totalCustomers, totalProducts, lowStockVariants, recentOrders] = await Promise.all([
@@ -1255,8 +1289,8 @@ async function getAllOrders(req, res, next) {
 async function updateOrderStatus(req, res, next) {
   try {
     const { id } = req.params;
-    const { status } = z6.object({
-      status: z6.nativeEnum(OrderStatus3)
+    const { status } = import_zod7.z.object({
+      status: import_zod7.z.nativeEnum(import_client6.OrderStatus)
     }).parse(req.body);
     const updated = await prisma.order.update({
       where: { id },
@@ -1269,29 +1303,29 @@ async function updateOrderStatus(req, res, next) {
 }
 async function createProduct(req, res, next) {
   try {
-    const productSchema = z6.object({
-      name: z6.string().min(2),
-      slug: z6.string().min(2),
-      description: z6.string().min(10),
-      details: z6.string().optional(),
-      fabricCare: z6.string().optional(),
-      fitGuide: z6.string().optional(),
-      basePrice: z6.number().int().positive(),
+    const productSchema = import_zod7.z.object({
+      name: import_zod7.z.string().min(2),
+      slug: import_zod7.z.string().min(2),
+      description: import_zod7.z.string().min(10),
+      details: import_zod7.z.string().optional(),
+      fabricCare: import_zod7.z.string().optional(),
+      fitGuide: import_zod7.z.string().optional(),
+      basePrice: import_zod7.z.number().int().positive(),
       // in paise
-      comparePrice: z6.number().int().positive().optional(),
-      categoryId: z6.string().uuid().optional(),
-      isFeatured: z6.boolean().default(false),
-      images: z6.array(z6.object({
-        url: z6.string().url(),
-        altText: z6.string().optional(),
-        isCover: z6.boolean().default(false),
-        sortOrder: z6.number().int().default(0)
+      comparePrice: import_zod7.z.number().int().positive().optional(),
+      categoryId: import_zod7.z.string().uuid().optional(),
+      isFeatured: import_zod7.z.boolean().default(false),
+      images: import_zod7.z.array(import_zod7.z.object({
+        url: import_zod7.z.string().url(),
+        altText: import_zod7.z.string().optional(),
+        isCover: import_zod7.z.boolean().default(false),
+        sortOrder: import_zod7.z.number().int().default(0)
       })).min(1),
-      variants: z6.array(z6.object({
-        size: z6.string(),
-        sku: z6.string(),
-        stockQuantity: z6.number().int().min(0),
-        priceDelta: z6.number().int().default(0)
+      variants: import_zod7.z.array(import_zod7.z.object({
+        size: import_zod7.z.string(),
+        sku: import_zod7.z.string(),
+        stockQuantity: import_zod7.z.number().int().min(0),
+        priceDelta: import_zod7.z.number().int().default(0)
       })).min(1)
     });
     const data = productSchema.parse(req.body);
@@ -1322,7 +1356,7 @@ async function createProduct(req, res, next) {
 }
 
 // backend/src/routes/adminRoutes.ts
-var router7 = Router7();
+var router7 = (0, import_express7.Router)();
 router7.use(verifyFirebaseToken);
 router7.use(requireAdmin);
 router7.get("/metrics", getDashboardMetrics);
@@ -1332,8 +1366,8 @@ router7.post("/products", createProduct);
 var adminRoutes_default = router7;
 
 // backend/src/app.ts
-var app = express();
-app.use(helmet({
+var app = (0, import_express8.default)();
+app.use((0, import_helmet.default)({
   crossOriginResourcePolicy: { policy: "cross-origin" }
 }));
 var cleanFrontendUrl = (env.FRONTEND_URL || "").replace(/\/+$/, "");
@@ -1345,7 +1379,7 @@ var allowedOrigins = /* @__PURE__ */ new Set([
   "http://localhost:3000",
   "http://localhost"
 ]);
-app.use(cors({
+app.use((0, import_cors.default)({
   origin: (origin, callback) => {
     if (!origin) return callback(null, true);
     if (env.NODE_ENV !== "production" || allowedOrigins.has(origin)) {
@@ -1355,13 +1389,13 @@ app.use(cors({
   },
   credentials: true
 }));
-app.use(express.json({
+app.use(import_express8.default.json({
   limit: "5mb",
   verify: (req, _res, buf) => {
     req.rawBody = buf;
   }
 }));
-app.use(express.urlencoded({ extended: true, limit: "5mb" }));
+app.use(import_express8.default.urlencoded({ extended: true, limit: "5mb" }));
 app.use("/api", apiRateLimiter);
 app.get("/api/health", (_req, res) => {
   res.json({
@@ -1379,29 +1413,28 @@ app.use("/api/cart", cartRoutes_default);
 app.use("/api/orders", orderRoutes_default);
 app.use("/api/payments", paymentRoutes_default);
 app.use("/api/admin", adminRoutes_default);
-var __filename = fileURLToPath(import.meta.url);
-var __dirname = path.dirname(__filename);
+var currentDir = typeof __dirname !== "undefined" ? __dirname : process.cwd();
 var possiblePaths = [
-  path.resolve(process.cwd(), "frontend/dist"),
-  path.resolve(process.cwd(), "dist"),
-  path.resolve(__dirname, "../../frontend/dist"),
-  path.resolve(__dirname, "../frontend/dist"),
-  path.resolve(__dirname, "frontend/dist"),
+  import_path.default.resolve(process.cwd(), "frontend/dist"),
+  import_path.default.resolve(process.cwd(), "dist"),
+  import_path.default.resolve(currentDir, "../../frontend/dist"),
+  import_path.default.resolve(currentDir, "../frontend/dist"),
+  import_path.default.resolve(currentDir, "frontend/dist"),
   "./frontend/dist"
 ];
 var frontendDist = possiblePaths.find((p) => {
   try {
-    return fs2.existsSync(p) && fs2.existsSync(path.join(p, "index.html"));
+    return import_fs2.default.existsSync(p) && import_fs2.default.existsSync(import_path.default.join(p, "index.html"));
   } catch (_) {
     return false;
   }
 }) || "";
 if (frontendDist) {
   console.log(`\u2713 Serving frontend static files from: ${frontendDist}`);
-  app.use(express.static(frontendDist));
+  app.use(import_express8.default.static(frontendDist));
   app.get("*", (req, res, next) => {
     if (req.path.startsWith("/api")) return next();
-    res.sendFile(path.join(frontendDist, "index.html"));
+    res.sendFile(import_path.default.join(frontendDist, "index.html"));
   });
 } else {
   console.warn("\u26A0\uFE0F Frontend dist directory not found in known locations. Checked:", possiblePaths);
@@ -1422,7 +1455,7 @@ async function bootstrap() {
     });
     if (primaryPort !== fallbackPort) {
       try {
-        const backupServer = http.createServer(app);
+        const backupServer = import_http.default.createServer(app);
         backupServer.listen(fallbackPort, "0.0.0.0", () => {
           console.log(`\u2713 Levix fallback server listening on port ${fallbackPort}`);
         });
@@ -1447,8 +1480,15 @@ async function bootstrap() {
     };
     process.on("SIGTERM", () => shutdown("SIGTERM"));
     process.on("SIGINT", () => shutdown("SIGINT"));
+    return server;
   } catch (err) {
     console.error("CRITICAL: Server startup caught error:", err.message);
   }
 }
-bootstrap();
+var serverInstance = bootstrap();
+var server_default = app;
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  app,
+  serverInstance
+});
