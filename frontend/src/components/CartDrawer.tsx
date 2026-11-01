@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { X, Trash2, Plus, Minus, ShoppingBag, ArrowRight } from 'lucide-react';
+import { X, Trash2, Plus, Minus, ArrowRight } from 'lucide-react';
+import { LevixCartIcon } from './LevixCartIcon';
 import { useCartStore } from '../store/cartStore';
 
 export const CartDrawer: React.FC = () => {
@@ -38,7 +39,7 @@ export const CartDrawer: React.FC = () => {
           {/* Header */}
           <div className="p-5 border-b border-black/10 flex items-center justify-between bg-[#EFEFEF]">
             <div className="flex items-center space-x-2">
-              <ShoppingBag className="w-5 h-5 text-black" />
+              <LevixCartIcon className="w-5 h-5 text-black" />
               <h2 className="font-display font-black text-xl uppercase tracking-tight text-black">
                 Your Bag ({cart?.itemCount || 0})
               </h2>
@@ -75,7 +76,7 @@ export const CartDrawer: React.FC = () => {
           <div className="flex-1 overflow-y-auto p-5 space-y-4">
             {!cart || cart.items.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center text-center space-y-4 py-20">
-                <ShoppingBag className="w-12 h-12 text-neutral-400 stroke-1" />
+                <LevixCartIcon className="w-14 h-16 text-neutral-400 opacity-60" />
                 <div className="space-y-1">
                   <p className="font-display font-bold text-lg uppercase tracking-tight text-black">
                     Your bag is empty

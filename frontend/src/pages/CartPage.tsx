@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCartStore } from '../store/cartStore';
-import { Trash2, Plus, Minus, ArrowRight, ShoppingBag } from 'lucide-react';
+import { Trash2, Plus, Minus, ArrowRight } from 'lucide-react';
+import { LevixCartIcon } from '../components/LevixCartIcon';
 
 export const CartPage: React.FC = () => {
   const { cart, fetchCart, updateQuantity, removeItem, loading } = useCartStore();
@@ -14,7 +15,7 @@ export const CartPage: React.FC = () => {
   if (!cart || cart.items.length === 0) {
     return (
       <div className="max-w-[1440px] mx-auto px-4 py-24 text-center space-y-4">
-        <ShoppingBag className="w-16 h-16 text-neutral-400 mx-auto stroke-1" />
+        <LevixCartIcon className="w-16 h-20 text-neutral-400 mx-auto opacity-60" />
         <h2 className="font-display font-black text-3xl uppercase tracking-tight text-black">
           Your Shopping Bag is Empty
         </h2>

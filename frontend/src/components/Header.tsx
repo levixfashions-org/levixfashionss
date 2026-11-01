@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Search, ShoppingBag, User as UserIcon, Menu, ChevronDown, ArrowRight, Heart } from 'lucide-react';
+import { Search, User as UserIcon, Menu, ChevronDown, ArrowRight, Heart } from 'lucide-react';
+import { LevixCartIcon } from './LevixCartIcon';
 import { useCartStore } from '../store/cartStore';
 import { useAuth } from '../context/AuthContext';
 
@@ -200,18 +201,13 @@ export const Header: React.FC = () => {
             )}
           </button>
 
-          {/* Cart Bag Trigger */}
+          {/* Bespoke LEVIX Shopping Bag Trigger */}
           <button
             onClick={toggleCart}
-            className="p-1 sm:p-1.5 hover:opacity-70 transition-opacity relative flex items-center"
+            className="p-1 sm:p-1.5 hover:opacity-75 transition-all active:scale-95 relative flex items-center"
             aria-label="Shopping Cart"
           >
-            <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />
-            {itemCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-black text-white text-[9px] sm:text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center font-mono">
-                {itemCount}
-              </span>
-            )}
+            <LevixCartIcon itemCount={itemCount} className="w-[22px] h-[25px] sm:w-[24px] sm:h-[27px] text-black" />
           </button>
         </div>
 
