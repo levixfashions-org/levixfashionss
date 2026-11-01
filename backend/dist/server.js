@@ -1377,18 +1377,24 @@ if (fs2.existsSync(frontendDist)) {
 app.use(errorHandler);
 
 // backend/src/server.ts
-var PORT = env.PORT || 4e3;
+var PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : env.PORT || 4e3;
 async function bootstrap() {
   try {
-    await prisma.$connect();
-    console.log("\u2713 Connected to MySQL database via Prisma ORM.");
     const server = app.listen(PORT, "0.0.0.0", () => {
-      console.log(`\u2713 Levix API server actively listening on http://0.0.0.0:${PORT} [${env.NODE_ENV}]`);
+      console.log(`\u2713 Levix production server actively listening on port ${PORT} [${env.NODE_ENV}]`);
+    });
+    prisma.$connect().then(() => {
+      console.log("\u2713 Connected to MySQL database via Prisma ORM.");
+    }).catch((dbErr) => {
+      console.warn("\u26A0\uFE0F Database connection note:", dbErr.message);
     });
     const shutdown = async (signal) => {
       console.log(`Received ${signal}. Gracefully terminating server...`);
       server.close(async () => {
-        await prisma.$disconnect();
+        try {
+          await prisma.$disconnect();
+        } catch (_) {
+        }
         console.log("Database connection closed. Exiting process.");
         process.exit(0);
       });
