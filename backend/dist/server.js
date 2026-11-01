@@ -1366,7 +1366,7 @@ app.use("/api/payments", paymentRoutes_default);
 app.use("/api/admin", adminRoutes_default);
 var __filename = fileURLToPath(import.meta.url);
 var __dirname = path.dirname(__filename);
-var frontendDist = path.resolve(__dirname, "../../frontend/dist");
+var frontendDist = fs2.existsSync(path.resolve(process.cwd(), "frontend/dist")) ? path.resolve(process.cwd(), "frontend/dist") : path.resolve(__dirname, "../../frontend/dist");
 if (fs2.existsSync(frontendDist)) {
   app.use(express.static(frontendDist));
   app.get("*", (req, res, next) => {

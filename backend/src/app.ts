@@ -79,7 +79,9 @@ app.use('/api/admin', adminRoutes);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const frontendDist = path.resolve(__dirname, '../../frontend/dist');
+const frontendDist = fs.existsSync(path.resolve(process.cwd(), 'frontend/dist'))
+  ? path.resolve(process.cwd(), 'frontend/dist')
+  : path.resolve(__dirname, '../../frontend/dist');
 
 if (fs.existsSync(frontendDist)) {
   app.use(express.static(frontendDist));
