@@ -105,16 +105,16 @@ export async function createProduct(req: Request, res: Response, next: NextFunct
     const productSchema = z.object({
       name: z.string().min(2),
       slug: z.string().min(2),
-      description: z.string().min(10),
+      description: z.string().min(5),
       details: z.string().optional(),
       fabricCare: z.string().optional(),
       fitGuide: z.string().optional(),
       basePrice: z.number().int().positive(), // in paise
       comparePrice: z.number().int().positive().optional(),
-      categoryId: z.string().uuid().optional(),
+      categoryId: z.string().optional(),
       isFeatured: z.boolean().default(false),
       images: z.array(z.object({
-        url: z.string().url(),
+        url: z.string(),
         altText: z.string().optional(),
         isCover: z.boolean().default(false),
         sortOrder: z.number().int().default(0)
@@ -151,6 +151,89 @@ export async function createProduct(req: Request, res: Response, next: NextFunct
     });
 
     res.status(201).json({ product });
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function updateProduct(req: Request, res: Response, next: NextFunction): Promise<void> {
+  try {
+    const { id } = req.params;
+    const productSchema = z.object({
+      name: z.string().min(2).optional(),
+      slug: z.string().min(2).optional(),
+      description: z.string().optional(),
+      details: z.string().optional(),
+      fabricCare: z.string().optional(),
+      fitGuide: z.string().optional(),
+      basePrice: z.number().int().positive().optional(),
+      comparePrice: z.number().int().positive().nullable().optional(),
+      categoryId: z.string().optional(),
+      isFeatured: z.boolean().optional(),
+      isActive: z.boolean().optional(),
+      images: z.array(z.object({
+        url: z.string(),
+        altText: z.string().optional(),
+        isCover: z.boolean().default(false),
+        sortOrder: z.number().int().default(0)
+      })).optional(),
+      variants: z.array(z.object({
+        size: z.string(),
+        sku: z.string(),
+        stockQuantity: z.number().int().min(0),
+        priceDelta: z.number().int().default(0)
+      })).optional()
+    });
+
+    const data = productSchema.parse(req.body);
+
+    await prisma.product.update({
+      where: { id },
+      data: {
+        ...(data.name && { name: data.name }),
+        ...(data.slug && { slug: data.slug }),
+        ...(data.description && { description: data.description }),
+        ...(data.details !== undefined && { details: data.details }),
+        ...(data.fabricCare !== undefined && { fabricCare: data.fabricCare }),
+        ...(data.fitGuide !== undefined && { fitGuide: data.fitGuide }),
+        ...(data.basePrice && { basePrice: data.basePrice }),
+        ...(data.comparePrice !== undefined && { comparePrice: data.comparePrice }),
+        ...(data.categoryId !== undefined && { categoryId: data.categoryId }),
+        ...(data.isFeatured !== undefined && { isFeatured: data.isFeatured }),
+        ...(data.isActive !== undefined && { isActive: data.isActive }),
+      }
+    });
+
+    if (data.variants && data.variants.length > 0) {
+      await prisma.productVariant.deleteMany({ where: { productId: id } });
+      await prisma.productVariant.createMany({
+        data: data.variants.map(v => ({ ...v, productId: id }))
+      });
+    }
+
+    if (data.images && data.images.length > 0) {
+      await prisma.productImage.deleteMany({ where: { productId: id } });
+      await prisma.productImage.createMany({
+        data: data.images.map(img => ({ ...img, productId: id }))
+      });
+    }
+
+    const fullProduct = await prisma.product.findUnique({
+      where: { id },
+      include: { images: true, variants: true, category: true }
+    });
+
+    res.json({ product: fullProduct });
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function deleteProduct(req: Request, res: Response, next: NextFunction): Promise<void> {
+  try {
+    const { id } = req.params;
+    await prisma.product.delete({ where: { id } });
+    res.json({ success: true, message: 'Product deleted successfully' });
   } catch (err) {
     next(err);
   }

@@ -1352,17 +1352,17 @@ async function createProduct(req, res, next) {
     const productSchema = import_zod7.z.object({
       name: import_zod7.z.string().min(2),
       slug: import_zod7.z.string().min(2),
-      description: import_zod7.z.string().min(10),
+      description: import_zod7.z.string().min(5),
       details: import_zod7.z.string().optional(),
       fabricCare: import_zod7.z.string().optional(),
       fitGuide: import_zod7.z.string().optional(),
       basePrice: import_zod7.z.number().int().positive(),
       // in paise
       comparePrice: import_zod7.z.number().int().positive().optional(),
-      categoryId: import_zod7.z.string().uuid().optional(),
+      categoryId: import_zod7.z.string().optional(),
       isFeatured: import_zod7.z.boolean().default(false),
       images: import_zod7.z.array(import_zod7.z.object({
-        url: import_zod7.z.string().url(),
+        url: import_zod7.z.string(),
         altText: import_zod7.z.string().optional(),
         isCover: import_zod7.z.boolean().default(false),
         sortOrder: import_zod7.z.number().int().default(0)
@@ -1400,6 +1400,81 @@ async function createProduct(req, res, next) {
     next(err);
   }
 }
+async function updateProduct(req, res, next) {
+  try {
+    const { id } = req.params;
+    const productSchema = import_zod7.z.object({
+      name: import_zod7.z.string().min(2).optional(),
+      slug: import_zod7.z.string().min(2).optional(),
+      description: import_zod7.z.string().optional(),
+      details: import_zod7.z.string().optional(),
+      fabricCare: import_zod7.z.string().optional(),
+      fitGuide: import_zod7.z.string().optional(),
+      basePrice: import_zod7.z.number().int().positive().optional(),
+      comparePrice: import_zod7.z.number().int().positive().nullable().optional(),
+      categoryId: import_zod7.z.string().optional(),
+      isFeatured: import_zod7.z.boolean().optional(),
+      isActive: import_zod7.z.boolean().optional(),
+      images: import_zod7.z.array(import_zod7.z.object({
+        url: import_zod7.z.string(),
+        altText: import_zod7.z.string().optional(),
+        isCover: import_zod7.z.boolean().default(false),
+        sortOrder: import_zod7.z.number().int().default(0)
+      })).optional(),
+      variants: import_zod7.z.array(import_zod7.z.object({
+        size: import_zod7.z.string(),
+        sku: import_zod7.z.string(),
+        stockQuantity: import_zod7.z.number().int().min(0),
+        priceDelta: import_zod7.z.number().int().default(0)
+      })).optional()
+    });
+    const data = productSchema.parse(req.body);
+    await prisma.product.update({
+      where: { id },
+      data: {
+        ...data.name && { name: data.name },
+        ...data.slug && { slug: data.slug },
+        ...data.description && { description: data.description },
+        ...data.details !== void 0 && { details: data.details },
+        ...data.fabricCare !== void 0 && { fabricCare: data.fabricCare },
+        ...data.fitGuide !== void 0 && { fitGuide: data.fitGuide },
+        ...data.basePrice && { basePrice: data.basePrice },
+        ...data.comparePrice !== void 0 && { comparePrice: data.comparePrice },
+        ...data.categoryId !== void 0 && { categoryId: data.categoryId },
+        ...data.isFeatured !== void 0 && { isFeatured: data.isFeatured },
+        ...data.isActive !== void 0 && { isActive: data.isActive }
+      }
+    });
+    if (data.variants && data.variants.length > 0) {
+      await prisma.productVariant.deleteMany({ where: { productId: id } });
+      await prisma.productVariant.createMany({
+        data: data.variants.map((v) => ({ ...v, productId: id }))
+      });
+    }
+    if (data.images && data.images.length > 0) {
+      await prisma.productImage.deleteMany({ where: { productId: id } });
+      await prisma.productImage.createMany({
+        data: data.images.map((img) => ({ ...img, productId: id }))
+      });
+    }
+    const fullProduct = await prisma.product.findUnique({
+      where: { id },
+      include: { images: true, variants: true, category: true }
+    });
+    res.json({ product: fullProduct });
+  } catch (err) {
+    next(err);
+  }
+}
+async function deleteProduct(req, res, next) {
+  try {
+    const { id } = req.params;
+    await prisma.product.delete({ where: { id } });
+    res.json({ success: true, message: "Product deleted successfully" });
+  } catch (err) {
+    next(err);
+  }
+}
 
 // backend/src/routes/adminRoutes.ts
 var router7 = (0, import_express7.Router)();
@@ -1409,6 +1484,8 @@ router7.get("/metrics", getDashboardMetrics);
 router7.get("/orders", getAllOrders);
 router7.patch("/orders/:id/status", updateOrderStatus);
 router7.post("/products", createProduct);
+router7.put("/products/:id", updateProduct);
+router7.delete("/products/:id", deleteProduct);
 var adminRoutes_default = router7;
 
 // backend/src/app.ts
@@ -1531,9 +1608,13 @@ async function bootstrap() {
 }
 var serverInstance = bootstrap();
 var server_default = app;
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  app,
+  serverInstance
+});
 
 module.exports = app;
 module.exports.default = app;
 module.exports.app = app;
 module.exports.serverInstance = serverInstance;
-

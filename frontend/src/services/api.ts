@@ -511,7 +511,97 @@ export const apiClient = {
       };
     }
 
-    // Admin
+    // Admin Product Management
+    if (path === '/admin/products' && options.method === 'POST') {
+      const body = JSON.parse(options.body as string || '{}');
+      const newProd: Product = {
+        id: 'prod_' + Date.now(),
+        name: body.name,
+        slug: body.slug || body.name.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+        description: body.description || '',
+        details: body.details || '',
+        fabricCare: body.fabricCare || '',
+        fitGuide: body.fitGuide || '',
+        basePrice: body.basePrice || 299900,
+        comparePrice: body.comparePrice || null,
+        isFeatured: Boolean(body.isFeatured),
+        isActive: true,
+        category: { id: body.categoryId || 'cat_tees', name: 'Streetwear', slug: 'streetwear' },
+        images: body.images || [{ id: 'img_' + Date.now(), url: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=80', isCover: true, sortOrder: 0 }],
+        variants: body.variants || [
+          { id: 'var_s_' + Date.now(), productId: 'prod_' + Date.now(), size: 'S', sku: 'LVX-S', stockQuantity: 10, priceDelta: 0 },
+          { id: 'var_m_' + Date.now(), productId: 'prod_' + Date.now(), size: 'M', sku: 'LVX-M', stockQuantity: 15, priceDelta: 0 },
+          { id: 'var_l_' + Date.now(), productId: 'prod_' + Date.now(), size: 'L', sku: 'LVX-L', stockQuantity: 20, priceDelta: 0 },
+          { id: 'var_xl_' + Date.now(), productId: 'prod_' + Date.now(), size: 'XL', sku: 'LVX-XL', stockQuantity: 10, priceDelta: 0 }
+        ]
+      };
+      MOCK_PRODUCTS.unshift(newProd);
+      return { data: { product: newProd } as any, status: 201 };
+    }
+
+    if (path.startsWith('/admin/products/') && options.method === 'PUT') {
+      const prodId = path.replace('/admin/products/', '');
+      const body = JSON.parse(options.body as string || '{}');
+      const pIdx = MOCK_PRODUCTS.findIndex(p => p.id === prodId || p.slug === prodId);
+      if (pIdx !== -1) {
+        MOCK_PRODUCTS[pIdx] = {
+          ...MOCK_PRODUCTS[pIdx],
+          ...body,
+          ...(body.images && { images: body.images }),
+          ...(body.variants && { variants: body.variants })
+        };
+        return { data: { product: MOCK_PRODUCTS[pIdx] } as any, status: 200 };
+      }
+      return { data: { error: 'Product not found' } as any, status: 404 };
+    }
+
+    if (path.startsWith('/admin/products/') && options.method === 'DELETE') {
+      const prodId = path.replace('/admin/products/', '');
+      const idx = MOCK_PRODUCTS.findIndex(p => p.id === prodId || p.slug === prodId);
+      if (idx !== -1) {
+        MOCK_PRODUCTS.splice(idx, 1);
+      }
+      return { data: { success: true } as any, status: 200 };
+    }
+
+    // Admin Orders
+    if (path === '/admin/orders') {
+      return {
+        data: {
+          orders: [
+            {
+              id: 'ord_1',
+              orderNumber: 'LVX-2026-9481',
+              customerName: 'Aditya Rao',
+              customerEmail: 'aditya@gmail.com',
+              status: 'PROCESSING',
+              paymentStatus: 'PAID',
+              totalPaise: 499000,
+              createdAt: new Date().toISOString(),
+              items: [{ productName: 'Levix Cherry Blossom Polo T-Shirt', size: 'L', quantity: 1 }]
+            },
+            {
+              id: 'ord_2',
+              orderNumber: 'LVX-2026-8821',
+              customerName: 'Pooja Verma',
+              customerEmail: 'pooja@gmail.com',
+              status: 'SHIPPED',
+              paymentStatus: 'PAID',
+              totalPaise: 699000,
+              createdAt: new Date(Date.now() - 86400000).toISOString(),
+              items: [{ productName: 'Levix Thunderstruck Heavyweight Hoodie', size: 'XL', quantity: 1 }]
+            }
+          ]
+        } as any,
+        status: 200
+      };
+    }
+
+    if (path.startsWith('/admin/orders/') && options.method === 'PATCH') {
+      return { data: { success: true } as any, status: 200 };
+    }
+
+    // Admin Metrics
     if (path === '/admin/metrics') {
       return {
         data: {
@@ -519,11 +609,11 @@ export const apiClient = {
             totalOrders: 142,
             totalRevenueINR: 785400,
             totalCustomers: 98,
-            totalProducts: 5
+            totalProducts: MOCK_PRODUCTS.length
           },
           recentOrders: [
-            { id: '1', orderNumber: 'BLU-2026-1049', customerName: 'Kabir Mehta', status: 'PAID', totalPaise: 499000 },
-            { id: '2', orderNumber: 'BLU-2026-1048', customerName: 'Ananya Roy', status: 'SHIPPED', totalPaise: 699000 }
+            { id: '1', orderNumber: 'LVX-2026-9481', customerName: 'Aditya Rao', status: 'PROCESSING', totalPaise: 499000 },
+            { id: '2', orderNumber: 'LVX-2026-8821', customerName: 'Pooja Verma', status: 'SHIPPED', totalPaise: 699000 }
           ],
           lowStockVariants: [
             { id: '1', product: { name: 'Black Ripstop Tactical Cargos' }, sku: 'CRG-36', size: '36', stockQuantity: 3 }
