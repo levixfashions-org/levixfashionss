@@ -340,9 +340,16 @@ async function verifyFirebaseToken(req, res, next) {
     let email;
     let name = null;
     if (token.startsWith("dev-mock-token-")) {
-      uid = token.replace("dev-mock-token-", "");
-      email = uid.includes("@") ? uid : `admin@thelevix.shop`;
-      name = "Levix Administrator";
+      const payload = token.replace("dev-mock-token-", "");
+      const lastDash = payload.lastIndexOf("-");
+      if (lastDash !== -1 && payload.includes("@")) {
+        email = payload.substring(0, lastDash);
+        uid = payload.substring(lastDash + 1);
+      } else {
+        email = payload.includes("@") ? payload : `${payload}@customer.levix.local`;
+        uid = payload;
+      }
+      name = email.toLowerCase() === "levixfashions@gmail.com" ? "Levix Owner" : email.split("@")[0];
     } else {
       try {
         const decoded = await adminAuth().verifyIdToken(token);
@@ -350,12 +357,12 @@ async function verifyFirebaseToken(req, res, next) {
         email = decoded.email || `${uid}@firebase.levix.local`;
         name = decoded.name || null;
       } catch (authErr) {
-        uid = "admin_exec";
-        email = "admin@thelevix.shop";
-        name = "Levix Administrator";
+        uid = "guest_user";
+        email = "customer@levix.local";
+        name = "Customer";
       }
     }
-    const isAdminEmail = email.toLowerCase().includes("admin") || email.toLowerCase().includes("thelevix.shop");
+    const isAdminEmail = email.trim().toLowerCase() === "levixfashions@gmail.com";
     const targetRole = isAdminEmail ? import_client3.Role.ADMIN : import_client3.Role.CUSTOMER;
     let user = null;
     try {
@@ -443,8 +450,9 @@ function requireAdmin(req, res, next) {
     res.status(401).json({ error: "Unauthorized: Authentication required" });
     return;
   }
-  if (req.user.role !== import_client3.Role.ADMIN) {
-    res.status(403).json({ error: "Forbidden: Admin privileges required" });
+  const isOwner = req.user.role === import_client3.Role.ADMIN && req.user.email?.trim().toLowerCase() === "levixfashions@gmail.com";
+  if (!isOwner) {
+    res.status(403).json({ error: "Forbidden: Admin console restricted to store owner (levixfashions@gmail.com)" });
     return;
   }
   next();

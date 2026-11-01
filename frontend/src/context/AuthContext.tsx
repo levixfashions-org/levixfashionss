@@ -45,7 +45,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           email: user.email || 'customer@levix.local',
           name: user.displayName || 'VIP Client',
           phone: '+91 9876543210',
-          role: user.email?.includes('admin') ? 'ADMIN' : 'CUSTOMER',
+          role: user.email?.toLowerCase() === 'levixfashions@gmail.com' ? 'ADMIN' : 'CUSTOMER',
           addresses: [
             {
               id: 'addr_1',
@@ -99,7 +99,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         profile,
         loading,
         idToken,
-        isAdmin: profile?.role === 'ADMIN' || user?.email?.includes('admin') || true, // Allow admin console view for inspection
+        isAdmin: Boolean(
+          (user?.email && user.email.trim().toLowerCase() === 'levixfashions@gmail.com') ||
+          (profile?.role === 'ADMIN' && profile?.email?.trim().toLowerCase() === 'levixfashions@gmail.com')
+        ),
         logout,
         refreshProfile: fetchProfile,
       }}

@@ -17,13 +17,14 @@ export const authService = {
 
   // Login with email and password
   async login(email: string, pass: string): Promise<MockUser> {
+    const cleanEmail = email.trim();
     const uid = 'usr_' + Math.random().toString(36).substring(2, 9);
     const user: MockUser = {
       uid,
-      email,
-      displayName: email.split('@')[0],
+      email: cleanEmail,
+      displayName: cleanEmail.toLowerCase() === 'levixfashions@gmail.com' ? 'Levix Owner' : cleanEmail.split('@')[0],
       emailVerified: true,
-      getIdToken: async () => `dev-mock-token-${email}-${uid}`
+      getIdToken: async () => `dev-mock-token-${cleanEmail}-${uid}`
     };
     setCurrentUser(user);
     return user;
