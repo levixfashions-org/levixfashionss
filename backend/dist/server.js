@@ -1475,6 +1475,48 @@ async function deleteProduct(req, res, next) {
     next(err);
   }
 }
+var serverStoreSettings = {
+  announcementText: "FREE DOMESTIC SHIPPING ON ALL PREPAID ORDERS \u2022 LEVIX WINTER DROPS LIVE \u2022 COMPLIMENTARY EXCHANGES \u2022 ",
+  heroHeadline: "STREETWEAR ARCHITECTURE",
+  heroSubtitle: "Heavyweight Custom-Milled Silhouettes & Limited Private Drops.",
+  supportEmail: "levixfashions@gmail.com",
+  supportPhone: "+91 98765 43210",
+  instagramHandle: "thelevix.shop",
+  freeShippingThreshold: 1999
+};
+var serverDiscounts = [
+  { id: "disc_1", code: "LEVIX10", type: "PERCENTAGE", value: 10, minOrderPaise: 199900, isActive: true, expiresAt: "2026-12-31" },
+  { id: "disc_2", code: "WELCOME500", type: "FIXED", value: 500, minOrderPaise: 299900, isActive: true, expiresAt: "2026-12-31" },
+  { id: "disc_3", code: "VIP20", type: "PERCENTAGE", value: 20, minOrderPaise: 499900, isActive: true, expiresAt: "2026-12-31" }
+];
+async function getAdminStoreSettings(req, res) {
+  res.json({ settings: serverStoreSettings });
+}
+async function updateAdminStoreSettings(req, res) {
+  serverStoreSettings = { ...serverStoreSettings, ...req.body };
+  res.json({ success: true, settings: serverStoreSettings });
+}
+async function getAdminDiscounts(req, res) {
+  res.json({ discounts: serverDiscounts });
+}
+async function createAdminDiscount(req, res) {
+  const newDisc = {
+    id: "disc_" + Date.now(),
+    code: (req.body.code || "CODE" + Date.now()).toUpperCase().trim(),
+    type: req.body.type === "FIXED" ? "FIXED" : "PERCENTAGE",
+    value: Number(req.body.value) || 10,
+    minOrderPaise: (Number(req.body.minOrderINR) || 1999) * 100,
+    isActive: req.body.isActive !== void 0 ? Boolean(req.body.isActive) : true,
+    expiresAt: req.body.expiresAt || "2026-12-31"
+  };
+  serverDiscounts.unshift(newDisc);
+  res.status(201).json({ success: true, discount: newDisc });
+}
+async function deleteAdminDiscount(req, res) {
+  const { id } = req.params;
+  serverDiscounts = serverDiscounts.filter((d) => d.id !== id && d.code !== id);
+  res.json({ success: true, message: "Discount deleted successfully" });
+}
 
 // backend/src/routes/adminRoutes.ts
 var router7 = (0, import_express7.Router)();
@@ -1486,6 +1528,11 @@ router7.patch("/orders/:id/status", updateOrderStatus);
 router7.post("/products", createProduct);
 router7.put("/products/:id", updateProduct);
 router7.delete("/products/:id", deleteProduct);
+router7.get("/settings", getAdminStoreSettings);
+router7.post("/settings", updateAdminStoreSettings);
+router7.get("/discounts", getAdminDiscounts);
+router7.post("/discounts", createAdminDiscount);
+router7.delete("/discounts/:id", deleteAdminDiscount);
 var adminRoutes_default = router7;
 
 // backend/src/app.ts

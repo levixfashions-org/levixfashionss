@@ -13,7 +13,7 @@ function getOrCreateAnonymousToken(): string {
 }
 
 // Authentic Levix Fallback Catalog
-export const MOCK_PRODUCTS: Product[] = [
+const DEFAULT_PRODUCTS: Product[] = [
   {
     id: 'prod_0',
     name: 'Levix X Godzilla Black Thunderstruck T-Shirt',
@@ -243,6 +243,197 @@ export const MOCK_PRODUCTS: Product[] = [
     ]
   }
 ];
+
+// Persistent LocalStorage Products Support
+const STORAGE_PRODUCTS_KEY = 'levix_custom_products';
+
+export const getStoredProducts = (): Product[] => {
+  try {
+    const saved = localStorage.getItem(STORAGE_PRODUCTS_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+    }
+  } catch (e) {}
+  return DEFAULT_PRODUCTS;
+};
+
+export const saveStoredProducts = (prods: Product[]) => {
+  try {
+    localStorage.setItem(STORAGE_PRODUCTS_KEY, JSON.stringify(prods));
+    window.dispatchEvent(new CustomEvent('levix_products_updated', { detail: prods }));
+  } catch (e) {}
+};
+
+export const resetStoredProducts = () => {
+  try {
+    localStorage.removeItem(STORAGE_PRODUCTS_KEY);
+    MOCK_PRODUCTS.length = 0;
+    DEFAULT_PRODUCTS.forEach(p => MOCK_PRODUCTS.push({ ...p }));
+    window.dispatchEvent(new CustomEvent('levix_products_updated', { detail: MOCK_PRODUCTS }));
+  } catch (e) {}
+};
+
+export const MOCK_PRODUCTS: Product[] = getStoredProducts();
+
+// Store Settings Types & Persistent Store
+export interface StoreSettings {
+  announcementText: string;
+  heroHeadline: string;
+  heroSubtitle: string;
+  supportEmail: string;
+  supportPhone: string;
+  instagramHandle: string;
+  freeShippingThreshold: number;
+}
+
+export const DEFAULT_STORE_SETTINGS: StoreSettings = {
+  announcementText: 'FREE DOMESTIC SHIPPING ON ALL PREPAID ORDERS • LEVIX EXCLUSIVE WINTER COLLECTION IS NOW LIVE • COMPLIMENTARY EXCHANGES • ',
+  heroHeadline: 'STREETWEAR ARCHITECTURE',
+  heroSubtitle: 'Heavyweight Custom-Milled Silhouettes & Limited Private Drops.',
+  supportEmail: 'levixfashions@gmail.com',
+  supportPhone: '+91 98765 43210',
+  instagramHandle: 'thelevix.shop',
+  freeShippingThreshold: 1999
+};
+
+export const getStoreSettings = (): StoreSettings => {
+  try {
+    const saved = localStorage.getItem('levix_store_settings');
+    if (saved) return { ...DEFAULT_STORE_SETTINGS, ...JSON.parse(saved) };
+  } catch (e) {}
+  return DEFAULT_STORE_SETTINGS;
+};
+
+export const saveStoreSettings = (settings: Partial<StoreSettings>): StoreSettings => {
+  const current = getStoreSettings();
+  const updated = { ...current, ...settings };
+  try {
+    localStorage.setItem('levix_store_settings', JSON.stringify(updated));
+    window.dispatchEvent(new CustomEvent('levix_settings_updated', { detail: updated }));
+  } catch (e) {}
+  return updated;
+};
+
+// Discount Codes Types & Persistent Store
+export interface DiscountCode {
+  id: string;
+  code: string;
+  type: 'PERCENTAGE' | 'FIXED';
+  value: number; // e.g. 20 for 20% or 500 for ₹500
+  minOrderPaise: number;
+  isActive: boolean;
+  expiresAt: string;
+}
+
+export const DEFAULT_DISCOUNTS: DiscountCode[] = [
+  {
+    id: 'disc_1',
+    code: 'LEVIX10',
+    type: 'PERCENTAGE',
+    value: 10,
+    minOrderPaise: 199900,
+    isActive: true,
+    expiresAt: '2026-12-31'
+  },
+  {
+    id: 'disc_2',
+    code: 'WELCOME500',
+    type: 'FIXED',
+    value: 500,
+    minOrderPaise: 299900,
+    isActive: true,
+    expiresAt: '2026-12-31'
+  },
+  {
+    id: 'disc_3',
+    code: 'VIP20',
+    type: 'PERCENTAGE',
+    value: 20,
+    minOrderPaise: 499900,
+    isActive: true,
+    expiresAt: '2026-12-31'
+  }
+];
+
+export const getDiscountCodes = (): DiscountCode[] => {
+  try {
+    const saved = localStorage.getItem('levix_discount_codes');
+    if (saved) return JSON.parse(saved);
+  } catch (e) {}
+  return DEFAULT_DISCOUNTS;
+};
+
+export const saveDiscountCodes = (codes: DiscountCode[]) => {
+  try {
+    localStorage.setItem('levix_discount_codes', JSON.stringify(codes));
+    window.dispatchEvent(new CustomEvent('levix_discounts_updated', { detail: codes }));
+  } catch (e) {}
+};
+
+// Orders Persistent Store
+const DEFAULT_ORDERS = [
+  {
+    id: 'ord_1',
+    orderNumber: 'LVX-2026-9481',
+    customerName: 'Aditya Rao',
+    customerEmail: 'aditya@gmail.com',
+    customerPhone: '+91 98450 11223',
+    shippingAddress: '42, Indiranagar 100ft Road, Bangalore, Karnataka 560038',
+    status: 'PROCESSING',
+    paymentStatus: 'PAID',
+    totalPaise: 499000,
+    createdAt: new Date().toISOString(),
+    courier: 'Blue Dart Express',
+    trackingNumber: 'BD9827419IN',
+    items: [{ productName: 'Levix Cherry Blossom Polo T-Shirt', size: 'L', quantity: 1, unitPricePaise: 499000 }]
+  },
+  {
+    id: 'ord_2',
+    orderNumber: 'LVX-2026-8821',
+    customerName: 'Pooja Verma',
+    customerEmail: 'pooja@gmail.com',
+    customerPhone: '+91 99100 44556',
+    shippingAddress: '15, Bandra West, Mumbai, Maharashtra 400050',
+    status: 'SHIPPED',
+    paymentStatus: 'PAID',
+    totalPaise: 699000,
+    createdAt: new Date(Date.now() - 86400000).toISOString(),
+    courier: 'Delhivery Surface',
+    trackingNumber: 'DEL8832910IN',
+    items: [{ productName: 'Levix Thunderstruck Heavyweight Hoodie', size: 'XL', quantity: 1, unitPricePaise: 699000 }]
+  },
+  {
+    id: 'ord_3',
+    orderNumber: 'LVX-2026-7230',
+    customerName: 'Rohan Mehra',
+    customerEmail: 'rohan.mehra@gmail.com',
+    customerPhone: '+91 97110 88221',
+    shippingAddress: '78, Defence Colony, New Delhi 110024',
+    status: 'DELIVERED',
+    paymentStatus: 'PAID',
+    totalPaise: 399000,
+    createdAt: new Date(Date.now() - 172800000).toISOString(),
+    courier: 'Blue Dart Air',
+    trackingNumber: 'BD7718290IN',
+    items: [{ productName: 'Levix X Godzilla Black Thunderstruck T-Shirt', size: 'M', quantity: 1, unitPricePaise: 399000 }]
+  }
+];
+
+export const getStoredOrders = (): any[] => {
+  try {
+    const saved = localStorage.getItem('levix_admin_orders');
+    if (saved) return JSON.parse(saved);
+  } catch (e) {}
+  return DEFAULT_ORDERS;
+};
+
+export const saveStoredOrders = (ords: any[]) => {
+  try {
+    localStorage.setItem('levix_admin_orders', JSON.stringify(ords));
+    window.dispatchEvent(new CustomEvent('levix_orders_updated', { detail: ords }));
+  } catch (e) {}
+};
 
 export const MOCK_COLLECTIONS: Collection[] = [
   {
@@ -536,6 +727,7 @@ export const apiClient = {
         ]
       };
       MOCK_PRODUCTS.unshift(newProd);
+      saveStoredProducts(MOCK_PRODUCTS);
       return { data: { product: newProd } as any, status: 201 };
     }
 
@@ -550,6 +742,7 @@ export const apiClient = {
           ...(body.images && { images: body.images }),
           ...(body.variants && { variants: body.variants })
         };
+        saveStoredProducts(MOCK_PRODUCTS);
         return { data: { product: MOCK_PRODUCTS[pIdx] } as any, status: 200 };
       }
       return { data: { error: 'Product not found' } as any, status: 404 };
@@ -560,6 +753,7 @@ export const apiClient = {
       const idx = MOCK_PRODUCTS.findIndex(p => p.id === prodId || p.slug === prodId);
       if (idx !== -1) {
         MOCK_PRODUCTS.splice(idx, 1);
+        saveStoredProducts(MOCK_PRODUCTS);
       }
       return { data: { success: true } as any, status: 200 };
     }
@@ -568,53 +762,126 @@ export const apiClient = {
     if (path === '/admin/orders') {
       return {
         data: {
-          orders: [
-            {
-              id: 'ord_1',
-              orderNumber: 'LVX-2026-9481',
-              customerName: 'Aditya Rao',
-              customerEmail: 'aditya@gmail.com',
-              status: 'PROCESSING',
-              paymentStatus: 'PAID',
-              totalPaise: 499000,
-              createdAt: new Date().toISOString(),
-              items: [{ productName: 'Levix Cherry Blossom Polo T-Shirt', size: 'L', quantity: 1 }]
-            },
-            {
-              id: 'ord_2',
-              orderNumber: 'LVX-2026-8821',
-              customerName: 'Pooja Verma',
-              customerEmail: 'pooja@gmail.com',
-              status: 'SHIPPED',
-              paymentStatus: 'PAID',
-              totalPaise: 699000,
-              createdAt: new Date(Date.now() - 86400000).toISOString(),
-              items: [{ productName: 'Levix Thunderstruck Heavyweight Hoodie', size: 'XL', quantity: 1 }]
-            }
-          ]
+          orders: getStoredOrders()
         } as any,
         status: 200
       };
     }
 
+    if (path === '/admin/orders' && options.method === 'POST') {
+      const body = JSON.parse(options.body as string || '{}');
+      const currentOrders = getStoredOrders();
+      const newOrder = {
+        id: 'ord_' + Date.now(),
+        orderNumber: 'LVX-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000),
+        customerName: body.customerName || 'Private Client',
+        customerEmail: body.customerEmail || 'client@thelevix.shop',
+        customerPhone: body.customerPhone || '+91 99999 88888',
+        shippingAddress: body.shippingAddress || 'Bandra West, Mumbai, Maharashtra 400050',
+        status: body.status || 'PROCESSING',
+        paymentStatus: body.paymentStatus || 'PAID',
+        totalPaise: body.totalPaise || 499000,
+        createdAt: new Date().toISOString(),
+        courier: body.courier || 'Blue Dart Express',
+        trackingNumber: body.trackingNumber || ('BD' + Math.floor(10000000 + Math.random() * 90000000) + 'IN'),
+        items: body.items || [{ productName: 'Levix Heavyweight Drop Item', size: 'L', quantity: 1, unitPricePaise: 499000 }]
+      };
+      currentOrders.unshift(newOrder);
+      saveStoredOrders(currentOrders);
+      return { data: { order: newOrder } as any, status: 201 };
+    }
+
     if (path.startsWith('/admin/orders/') && options.method === 'PATCH') {
+      const orderId = path.replace('/admin/orders/', '').replace('/status', '');
+      const body = JSON.parse(options.body as string || '{}');
+      const currentOrders = getStoredOrders();
+      const ordIdx = currentOrders.findIndex(o => o.id === orderId || o.orderNumber === orderId);
+      if (ordIdx !== -1) {
+        currentOrders[ordIdx] = {
+          ...currentOrders[ordIdx],
+          ...body,
+          ...(body.status && { status: body.status }),
+          ...(body.courier && { courier: body.courier }),
+          ...(body.trackingNumber && { trackingNumber: body.trackingNumber })
+        };
+        saveStoredOrders(currentOrders);
+        return { data: { success: true, order: currentOrders[ordIdx] } as any, status: 200 };
+      }
       return { data: { success: true } as any, status: 200 };
+    }
+
+    if (path.startsWith('/admin/orders/') && options.method === 'DELETE') {
+      const orderId = path.replace('/admin/orders/', '');
+      const currentOrders = getStoredOrders();
+      const updated = currentOrders.filter(o => o.id !== orderId && o.orderNumber !== orderId);
+      saveStoredOrders(updated);
+      return { data: { success: true } as any, status: 200 };
+    }
+
+    // Admin Store Settings
+    if (path === '/admin/settings') {
+      if (options.method === 'POST') {
+        const body = JSON.parse(options.body as string || '{}');
+        const updated = saveStoreSettings(body);
+        return { data: { success: true, settings: updated } as any, status: 200 };
+      }
+      return { data: { settings: getStoreSettings() } as any, status: 200 };
+    }
+
+    // Admin Discounts
+    if (path === '/admin/discounts') {
+      if (options.method === 'POST') {
+        const body = JSON.parse(options.body as string || '{}');
+        const currentDiscounts = getDiscountCodes();
+        const newDiscount: DiscountCode = {
+          id: 'disc_' + Date.now(),
+          code: (body.code || 'CODE' + Date.now()).toUpperCase().trim(),
+          type: body.type === 'FIXED' ? 'FIXED' : 'PERCENTAGE',
+          value: Number(body.value) || 10,
+          minOrderPaise: (Number(body.minOrderINR) || 1999) * 100,
+          isActive: body.isActive !== undefined ? Boolean(body.isActive) : true,
+          expiresAt: body.expiresAt || '2026-12-31'
+        };
+        currentDiscounts.unshift(newDiscount);
+        saveDiscountCodes(currentDiscounts);
+        return { data: { success: true, discount: newDiscount } as any, status: 201 };
+      }
+      return { data: { discounts: getDiscountCodes() } as any, status: 200 };
+    }
+
+    if (path.startsWith('/admin/discounts/') && options.method === 'DELETE') {
+      const discId = path.replace('/admin/discounts/', '');
+      const currentDiscounts = getDiscountCodes();
+      const updated = currentDiscounts.filter(d => d.id !== discId && d.code !== discId);
+      saveDiscountCodes(updated);
+      return { data: { success: true } as any, status: 200 };
+    }
+
+    if (path.startsWith('/admin/discounts/') && options.method === 'PATCH') {
+      const discId = path.replace('/admin/discounts/', '').replace('/toggle', '');
+      const currentDiscounts = getDiscountCodes();
+      const idx = currentDiscounts.findIndex(d => d.id === discId || d.code === discId);
+      if (idx !== -1) {
+        currentDiscounts[idx].isActive = !currentDiscounts[idx].isActive;
+        saveDiscountCodes(currentDiscounts);
+        return { data: { success: true, discount: currentDiscounts[idx] } as any, status: 200 };
+      }
+      return { data: { success: false } as any, status: 404 };
     }
 
     // Admin Metrics
     if (path === '/admin/metrics') {
+      const allOrders = getStoredOrders();
+      const totalRev = allOrders.reduce((sum, o) => sum + (o.paymentStatus === 'PAID' ? o.totalPaise : 0), 0);
       return {
         data: {
           metrics: {
-            totalOrders: 142,
-            totalRevenueINR: 785400,
-            totalCustomers: 98,
+            totalOrders: allOrders.length,
+            totalRevenueINR: Math.round(totalRev / 100),
+            totalCustomers: 124,
             totalProducts: MOCK_PRODUCTS.length
           },
-          recentOrders: [
-            { id: '1', orderNumber: 'LVX-2026-9481', customerName: 'Aditya Rao', status: 'PROCESSING', totalPaise: 499000 },
-            { id: '2', orderNumber: 'LVX-2026-8821', customerName: 'Pooja Verma', status: 'SHIPPED', totalPaise: 699000 }
-          ],
+          recentOrders: allOrders.slice(0, 5),
           lowStockVariants: [
             { id: '1', product: { name: 'Black Ripstop Tactical Cargos' }, sku: 'CRG-36', size: '36', stockQuantity: 3 }
           ]

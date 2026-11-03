@@ -238,3 +238,52 @@ export async function deleteProduct(req: Request, res: Response, next: NextFunct
     next(err);
   }
 }
+
+let serverStoreSettings = {
+  announcementText: 'FREE DOMESTIC SHIPPING ON ALL PREPAID ORDERS • LEVIX WINTER DROPS LIVE • COMPLIMENTARY EXCHANGES • ',
+  heroHeadline: 'STREETWEAR ARCHITECTURE',
+  heroSubtitle: 'Heavyweight Custom-Milled Silhouettes & Limited Private Drops.',
+  supportEmail: 'levixfashions@gmail.com',
+  supportPhone: '+91 98765 43210',
+  instagramHandle: 'thelevix.shop',
+  freeShippingThreshold: 1999
+};
+
+let serverDiscounts = [
+  { id: 'disc_1', code: 'LEVIX10', type: 'PERCENTAGE', value: 10, minOrderPaise: 199900, isActive: true, expiresAt: '2026-12-31' },
+  { id: 'disc_2', code: 'WELCOME500', type: 'FIXED', value: 500, minOrderPaise: 299900, isActive: true, expiresAt: '2026-12-31' },
+  { id: 'disc_3', code: 'VIP20', type: 'PERCENTAGE', value: 20, minOrderPaise: 499900, isActive: true, expiresAt: '2026-12-31' }
+];
+
+export async function getAdminStoreSettings(req: Request, res: Response): Promise<void> {
+  res.json({ settings: serverStoreSettings });
+}
+
+export async function updateAdminStoreSettings(req: Request, res: Response): Promise<void> {
+  serverStoreSettings = { ...serverStoreSettings, ...req.body };
+  res.json({ success: true, settings: serverStoreSettings });
+}
+
+export async function getAdminDiscounts(req: Request, res: Response): Promise<void> {
+  res.json({ discounts: serverDiscounts });
+}
+
+export async function createAdminDiscount(req: Request, res: Response): Promise<void> {
+  const newDisc = {
+    id: 'disc_' + Date.now(),
+    code: (req.body.code || 'CODE' + Date.now()).toUpperCase().trim(),
+    type: req.body.type === 'FIXED' ? 'FIXED' : 'PERCENTAGE',
+    value: Number(req.body.value) || 10,
+    minOrderPaise: (Number(req.body.minOrderINR) || 1999) * 100,
+    isActive: req.body.isActive !== undefined ? Boolean(req.body.isActive) : true,
+    expiresAt: req.body.expiresAt || '2026-12-31'
+  };
+  serverDiscounts.unshift(newDisc);
+  res.status(201).json({ success: true, discount: newDisc });
+}
+
+export async function deleteAdminDiscount(req: Request, res: Response): Promise<void> {
+  const { id } = req.params;
+  serverDiscounts = serverDiscounts.filter(d => d.id !== id && d.code !== id);
+  res.json({ success: true, message: 'Discount deleted successfully' });
+}

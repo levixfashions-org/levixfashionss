@@ -1,9 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { apiClient } from '../../services/api';
+import { apiClient, resetStoredProducts } from '../../services/api';
 import { Product } from '../../types';
-import { ArrowLeft, Plus, Edit2, Trash2, ExternalLink, X, Check, Image as ImageIcon } from 'lucide-react';
+import { AdminNav } from '../../components/admin/AdminNav';
+import { 
+  ArrowLeft, 
+  Plus, 
+  Edit2, 
+  Trash2, 
+  ExternalLink, 
+  X, 
+  Check, 
+  Image as ImageIcon, 
+  Copy, 
+  Search, 
+  RotateCcw, 
+  Filter 
+} from 'lucide-react';
 
 export const AdminProductsPage: React.FC = () => {
   const { user, isAdmin, loading: authLoading } = useAuth();
@@ -13,6 +27,8 @@ export const AdminProductsPage: React.FC = () => {
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [saving, setSaving] = useState(false);
   const [actionMsg, setActionMsg] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState('ALL');
   const navigate = useNavigate();
 
   // Form fields
@@ -107,6 +123,42 @@ export const AdminProductsPage: React.FC = () => {
     setShowModal(true);
   };
 
+  const handleDuplicate = (p: Product) => {
+    setEditingProduct(null);
+    setName(`${p.name} (Copy)`);
+    setSlug(`${p.slug}-copy-${Date.now().toString().slice(-4)}`);
+    setCategoryName(p.category?.name || 'T-Shirts');
+    setPriceINR(String(Math.round(p.basePrice / 100)));
+    setComparePriceINR(p.comparePrice ? String(Math.round(p.comparePrice / 100)) : '');
+    setDescription(p.description || '');
+    setFabricCare(p.fabricCare || '');
+    setFitGuide(p.fitGuide || '');
+    setImageUrl1(p.images[0]?.url || '');
+    setImageUrl2(p.images[1]?.url || '');
+    setIsFeatured(Boolean(p.isFeatured));
+
+    const findStock = (sz: string) => {
+      const v = p.variants?.find((va) => va.size.toUpperCase() === sz);
+      return v ? String(v.stockQuantity) : '10';
+    };
+    setStockS(findStock('S'));
+    setStockM(findStock('M'));
+    setStockL(findStock('L'));
+    setStockXL(findStock('XL'));
+    setStockXXL(findStock('XXL'));
+
+    setShowModal(true);
+  };
+
+  const handleResetCatalog = () => {
+    if (window.confirm('Restore initial sample catalog? Any custom products will be reset to factory defaults.')) {
+      resetStoredProducts();
+      loadProducts();
+      setActionMsg('✓ Restored official factory sample catalog.');
+      setTimeout(() => setActionMsg(null), 4000);
+    }
+  };
+
   const handleNameChange = (val: string) => {
     setName(val);
     if (!editingProduct) {
@@ -183,135 +235,233 @@ export const AdminProductsPage: React.FC = () => {
     }
   };
 
+  const filteredProducts = products.filter((p) => {
+    const matchesSearch = 
+      p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      p.slug.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (p.category?.name && p.category.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    
+    const matchesCat = 
+      categoryFilter === 'ALL' || 
+      (categoryFilter === 'FEATURED' && p.isFeatured) ||
+      (p.category?.slug && p.category.slug.toLowerCase().includes(categoryFilter.toLowerCase())) ||
+      (p.category?.name && p.category.name.toLowerCase().includes(categoryFilter.toLowerCase()));
+
+    return matchesSearch && matchesCat;
+  });
+
   return (
-    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12 py-10 space-y-8">
-      
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-black/10 pb-6 gap-4">
-        <div>
-          <Link
-            to="/admin"
-            className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 hover:text-black flex items-center gap-1 mb-2"
-          >
-            <ArrowLeft className="w-3 h-3" />
-            <span>Back to Dashboard</span>
-          </Link>
-          <h1 className="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight text-black">
-            Catalog Management
-          </h1>
-          <p className="text-xs text-neutral-600 mt-1">
-            Create new streetwear drops, update retail pricing, edit descriptions, and manage size inventories.
-          </p>
+    <div className="min-h-screen bg-[#EFEFEF] pb-24">
+      <AdminNav />
+
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12 py-10 space-y-8">
+        
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-black/10 pb-6 gap-4">
+          <div>
+            <div className="flex items-center space-x-2 text-[10px] font-mono uppercase tracking-widest text-[#FF5400] font-bold">
+              <span>CATALOG ADMINISTRATION</span>
+            </div>
+            <h1 className="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight text-black mt-1">
+              Products & Drops Management
+            </h1>
+            <p className="text-xs text-neutral-600 mt-1">
+              Create new streetwear drops, update retail pricing, edit descriptions, adjust size stock, or feature drops on homepage.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3">
+            <button
+              onClick={handleResetCatalog}
+              className="px-3.5 py-2.5 border border-black/20 hover:border-black text-neutral-700 hover:text-black text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-all"
+              title="Reset Catalog to Factory Sample Items"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>Reset Samples</span>
+            </button>
+
+            <button
+              onClick={openAddModal}
+              className="px-5 py-2.5 bg-[#FF5400] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#e04a00] flex items-center justify-center gap-2 shadow-sm transition-all"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Add New Drop</span>
+            </button>
+          </div>
         </div>
 
-        <button
-          onClick={openAddModal}
-          className="px-5 py-3 bg-[#FF5400] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#e04a00] flex items-center justify-center gap-2 shadow-sm transition-all"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Add New Product</span>
-        </button>
-      </div>
+        {actionMsg && (
+          <div className="p-4 bg-black text-white text-xs font-semibold uppercase tracking-wider flex items-center justify-between shadow-md">
+            <span>{actionMsg}</span>
+            <button onClick={() => setActionMsg(null)} className="opacity-70 hover:opacity-100">
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        )}
 
-      {actionMsg && (
-        <div className="p-4 bg-black text-white text-xs font-semibold uppercase tracking-wider flex items-center justify-between">
-          <span>{actionMsg}</span>
-          <button onClick={() => setActionMsg(null)} className="opacity-70 hover:opacity-100">
-            <X className="w-4 h-4" />
-          </button>
-        </div>
-      )}
+        {/* Search & Filter Toolbar */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-4 border border-black/10 shadow-xs">
+          
+          {/* Search Input */}
+          <div className="relative flex-1 max-w-md">
+            <Search className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search drops by name, slug or category..."
+              className="w-full pl-9 pr-4 py-2 border border-black/20 text-xs focus:border-black focus:outline-none"
+            />
+          </div>
 
-      {loading ? (
-        <div className="py-20 text-center font-mono text-xs uppercase text-neutral-500">
-          Loading catalog items...
+          {/* Category Filter Pills */}
+          <div className="flex flex-wrap items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider">
+            {['ALL', 'FEATURED', 't-shirts', 'hoodies', 'cargos', 'bags'].map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setCategoryFilter(cat)}
+                className={`px-3 py-1.5 rounded-xs transition-all ${
+                  categoryFilter === cat
+                    ? 'bg-black text-white'
+                    : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
         </div>
-      ) : (
-        <div className="bg-white border border-black/10 shadow-sm overflow-x-auto">
-          <table className="w-full text-xs text-left">
-            <thead>
-              <tr className="border-b border-black/10 uppercase tracking-wider text-[10px] text-neutral-500 bg-neutral-50">
-                <th className="py-3 px-4">Image</th>
-                <th className="py-3 px-4">Name & Slug</th>
-                <th className="py-3 px-4">Category</th>
-                <th className="py-3 px-4">Retail Price</th>
-                <th className="py-3 px-4">Total Stock</th>
-                <th className="py-3 px-4 text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-black/5 font-sans">
-              {products.map((p) => {
-                const totalStock = p.variants?.reduce((acc, v) => acc + (v.stockQuantity || 0), 0) || 0;
-                return (
-                  <tr key={p.id} className="hover:bg-neutral-50/50 transition-colors">
-                    <td className="py-3 px-4">
-                      <div className="w-12 h-14 bg-neutral-100 overflow-hidden border border-black/5">
-                        {p.images && p.images[0] ? (
-                          <img src={p.images[0].url} alt={p.name} className="w-full h-full object-cover" />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center text-neutral-400">
-                            <ImageIcon className="w-4 h-4" />
-                          </div>
-                        )}
-                      </div>
-                    </td>
-                    <td className="py-3 px-4 font-semibold text-black">
-                      <div className="flex items-center gap-2">
-                        <span>{p.name}</span>
-                        {p.isFeatured && (
-                          <span className="px-1.5 py-0.5 bg-[#FF5400]/10 text-[#FF5400] text-[9px] font-mono font-bold uppercase">
-                            Featured
+
+        {loading ? (
+          <div className="py-20 text-center font-mono text-xs uppercase text-neutral-500">
+            Loading catalog items...
+          </div>
+        ) : filteredProducts.length === 0 ? (
+          <div className="bg-white border border-black/10 p-12 text-center space-y-3">
+            <p className="text-xs font-mono uppercase text-neutral-500">No products match your filter criteria.</p>
+            <button
+              onClick={() => { setSearchTerm(''); setCategoryFilter('ALL'); }}
+              className="text-xs font-bold uppercase text-[#FF5400] underline"
+            >
+              Clear filters
+            </button>
+          </div>
+        ) : (
+          <div className="bg-white border border-black/10 shadow-sm overflow-x-auto">
+            <table className="w-full text-xs text-left">
+              <thead>
+                <tr className="border-b border-black/10 uppercase tracking-wider text-[10px] text-neutral-500 bg-neutral-50">
+                  <th className="py-3 px-4">Image</th>
+                  <th className="py-3 px-4">Name & Slug</th>
+                  <th className="py-3 px-4">Category</th>
+                  <th className="py-3 px-4">Retail Price</th>
+                  <th className="py-3 px-4">Inventory by Size</th>
+                  <th className="py-3 px-4">Total Stock</th>
+                  <th className="py-3 px-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-black/5 font-sans">
+                {filteredProducts.map((p) => {
+                  const totalStock = p.variants?.reduce((acc, v) => acc + (v.stockQuantity || 0), 0) || 0;
+                  return (
+                    <tr key={p.id} className="hover:bg-neutral-50/50 transition-colors">
+                      <td className="py-3 px-4">
+                        <div className="w-12 h-14 bg-neutral-100 overflow-hidden border border-black/5">
+                          {p.images && p.images[0] ? (
+                            <img src={p.images[0].url} alt={p.name} className="w-full h-full object-cover" />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-neutral-400">
+                              <ImageIcon className="w-4 h-4" />
+                            </div>
+                          )}
+                        </div>
+                      </td>
+                      <td className="py-3 px-4 font-semibold text-black">
+                        <div className="flex items-center gap-2">
+                          <span>{p.name}</span>
+                          {p.isFeatured && (
+                            <span className="px-1.5 py-0.5 bg-[#FF5400]/10 text-[#FF5400] text-[9px] font-mono font-bold uppercase">
+                              Featured
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-[10px] font-mono text-neutral-400 mt-0.5">/{p.slug}</p>
+                      </td>
+                      <td className="py-3 px-4 uppercase text-neutral-600 font-medium">
+                        {p.category?.name || 'Streetwear'}
+                      </td>
+                      <td className="py-3 px-4 font-mono font-bold text-black">
+                        RS. {(p.basePrice / 100).toLocaleString('en-IN')}
+                        {p.comparePrice && (
+                          <span className="block text-[10px] text-neutral-400 line-through">
+                            RS. {(p.comparePrice / 100).toLocaleString('en-IN')}
                           </span>
                         )}
-                      </div>
-                      <p className="text-[10px] font-mono text-neutral-400 mt-0.5">/{p.slug}</p>
-                    </td>
-                    <td className="py-3 px-4 uppercase text-neutral-600 font-medium">
-                      {p.category?.name || 'Streetwear'}
-                    </td>
-                    <td className="py-3 px-4 font-mono font-bold text-black">
-                      RS. {(p.basePrice / 100).toLocaleString('en-IN')}
-                    </td>
-                    <td className="py-3 px-4 font-mono">
-                      <span className={`px-2 py-0.5 text-[10px] font-bold ${
-                        totalStock > 10 ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                      }`}>
-                        {totalStock} in stock
-                      </span>
-                    </td>
-                    <td className="py-3 px-4 text-right">
-                      <div className="flex items-center justify-end space-x-2">
-                        <button
-                          onClick={() => openEditModal(p)}
-                          className="p-1.5 border border-black/20 hover:border-black text-black hover:bg-black hover:text-white transition-colors"
-                          title="Edit Product"
-                        >
-                          <Edit2 className="w-3.5 h-3.5" />
-                        </button>
-                        <Link
-                          to={`/products/${p.slug}`}
-                          target="_blank"
-                          className="p-1.5 border border-black/20 hover:border-black text-neutral-700 hover:bg-black hover:text-white transition-colors"
-                          title="View on Storefront"
-                        >
-                          <ExternalLink className="w-3.5 h-3.5" />
-                        </Link>
-                        <button
-                          onClick={() => handleDelete(p.id, p.name)}
-                          className="p-1.5 border border-red-200 text-red-600 hover:bg-red-600 hover:text-white transition-colors"
-                          title="Delete Product"
-                        >
-                          <Trash2 className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      )}
+                      </td>
+                      <td className="py-3 px-4">
+                        <div className="flex flex-wrap gap-1 font-mono text-[9px]">
+                          {p.variants?.map((v) => (
+                            <span
+                              key={v.id || v.size}
+                              className={`px-1.5 py-0.5 rounded-xs border ${
+                                v.stockQuantity > 0 ? 'bg-neutral-50 border-neutral-300 text-neutral-700' : 'bg-red-50 border-red-200 text-red-600'
+                              }`}
+                            >
+                              {v.size}:{v.stockQuantity}
+                            </span>
+                          ))}
+                        </div>
+                      </td>
+                      <td className="py-3 px-4 font-mono">
+                        <span className={`px-2 py-0.5 text-[10px] font-bold ${
+                          totalStock > 10 ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                        }`}>
+                          {totalStock} in stock
+                        </span>
+                      </td>
+                      <td className="py-3 px-4 text-right">
+                        <div className="flex items-center justify-end space-x-1.5">
+                          <button
+                            onClick={() => handleDuplicate(p)}
+                            className="p-1.5 border border-black/20 hover:border-black text-neutral-700 hover:bg-neutral-100 transition-colors"
+                            title="Duplicate / Clone Drop"
+                          >
+                            <Copy className="w-3.5 h-3.5" />
+                          </button>
+                          <button
+                            onClick={() => openEditModal(p)}
+                            className="p-1.5 border border-black/20 hover:border-black text-black hover:bg-black hover:text-white transition-colors"
+                            title="Edit Product"
+                          >
+                            <Edit2 className="w-3.5 h-3.5" />
+                          </button>
+                          <Link
+                            to={`/products/${p.slug}`}
+                            target="_blank"
+                            className="p-1.5 border border-black/20 hover:border-black text-neutral-700 hover:bg-black hover:text-white transition-colors"
+                            title="View on Storefront"
+                          >
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </Link>
+                          <button
+                            onClick={() => handleDelete(p.id, p.name)}
+                            className="p-1.5 border border-red-200 text-red-600 hover:bg-red-600 hover:text-white transition-colors"
+                            title="Delete Product"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+      </div>
 
       {/* Product Add / Edit Modal */}
       {showModal && (

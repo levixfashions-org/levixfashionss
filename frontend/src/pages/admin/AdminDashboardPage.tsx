@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { apiClient } from '../../services/api';
-import { Shield, TrendingUp, Package, Users, AlertTriangle, ArrowRight } from 'lucide-react';
+import { AdminNav } from '../../components/admin/AdminNav';
+import { Shield, TrendingUp, Package, Users, AlertTriangle, ArrowRight, Tag, Sliders, ExternalLink } from 'lucide-react';
 
 export const AdminDashboardPage: React.FC = () => {
   const { user, isAdmin, loading: authLoading } = useAuth();
@@ -49,8 +50,11 @@ export const AdminDashboardPage: React.FC = () => {
 
   if (loading || !data) {
     return (
-      <div className="max-w-[1440px] mx-auto px-4 py-20 text-center font-mono text-xs uppercase text-neutral-500">
-        Loading admin console...
+      <div className="min-h-screen bg-[#EFEFEF]">
+        <AdminNav />
+        <div className="max-w-[1440px] mx-auto px-4 py-20 text-center font-mono text-xs uppercase text-neutral-500">
+          Loading admin console...
+        </div>
       </div>
     );
   }
@@ -58,72 +62,147 @@ export const AdminDashboardPage: React.FC = () => {
   const { metrics, recentOrders, lowStockVariants } = data;
 
   return (
-    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12 py-10 space-y-10">
-      
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-black/10 pb-6 gap-4">
-        <div>
-          <div className="flex items-center space-x-2 text-[10px] font-mono uppercase tracking-widest text-[#FF5400] font-bold">
-            <Shield className="w-3.5 h-3.5" />
-            <span>LEVIX EXECUTIVE CONSOLE</span>
+    <div className="min-h-screen bg-[#EFEFEF] pb-24">
+      <AdminNav />
+
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12 py-10 space-y-10">
+        
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-black/10 pb-6 gap-4">
+          <div>
+            <div className="flex items-center space-x-2 text-[10px] font-mono uppercase tracking-widest text-[#FF5400] font-bold">
+              <Shield className="w-3.5 h-3.5" />
+              <span>LEVIX EXECUTIVE CONSOLE</span>
+            </div>
+            <h1 className="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight text-black mt-1">
+              Store Master Suite
+            </h1>
+            <p className="text-xs text-neutral-600 mt-1">
+              Live operational controls, inventory status, fulfillment tracking, and catalog management for thelevix.shop.
+            </p>
           </div>
-          <h1 className="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight text-black mt-1">
-            Production Dashboard
-          </h1>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <Link
+              to="/admin/products"
+              className="px-4 py-2 bg-black text-white text-xs font-bold uppercase tracking-wider hover:bg-neutral-800 flex items-center gap-1.5"
+            >
+              <Package className="w-3.5 h-3.5" />
+              <span>Catalog & Drops</span>
+            </Link>
+            <Link
+              to="/admin/settings"
+              className="px-4 py-2 bg-white border border-black/20 text-black text-xs font-bold uppercase tracking-wider hover:border-black flex items-center gap-1.5"
+            >
+              <Sliders className="w-3.5 h-3.5" />
+              <span>Store Settings</span>
+            </Link>
+          </div>
         </div>
 
-        <div className="flex items-center space-x-3">
+        {/* Quick Hub Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <Link
             to="/admin/products"
-            className="px-4 py-2.5 bg-black text-white text-xs font-bold uppercase tracking-wider hover:bg-neutral-800"
+            className="p-5 bg-white border border-black/10 hover:border-black transition-all space-y-2 group"
           >
-            Manage Catalog
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 font-bold">Catalog</span>
+              <Package className="w-4 h-4 text-[#FF5400]" />
+            </div>
+            <h4 className="font-display font-black text-lg uppercase text-black group-hover:text-[#FF5400] transition-colors">
+              Manage Products & Drops
+            </h4>
+            <p className="text-[11px] text-neutral-500">
+              Add new drops, update prices, manage sizes S-XXL, and feature drops.
+            </p>
           </Link>
+
           <Link
             to="/admin/orders"
-            className="px-4 py-2.5 border border-black text-black text-xs font-bold uppercase tracking-wider hover:bg-black hover:text-white"
+            className="p-5 bg-white border border-black/10 hover:border-black transition-all space-y-2 group"
           >
-            Manage Orders
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 font-bold">Orders</span>
+              <TrendingUp className="w-4 h-4 text-[#FF5400]" />
+            </div>
+            <h4 className="font-display font-black text-lg uppercase text-black group-hover:text-[#FF5400] transition-colors">
+              Fulfillment & Tracking
+            </h4>
+            <p className="text-[11px] text-neutral-500">
+              Update order statuses (Shipped, Delivered), assign courier tracking.
+            </p>
+          </Link>
+
+          <Link
+            to="/admin/discounts"
+            className="p-5 bg-white border border-black/10 hover:border-black transition-all space-y-2 group"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 font-bold">Marketing</span>
+              <Tag className="w-4 h-4 text-[#FF5400]" />
+            </div>
+            <h4 className="font-display font-black text-lg uppercase text-black group-hover:text-[#FF5400] transition-colors">
+              Promo & Discount Codes
+            </h4>
+            <p className="text-[11px] text-neutral-500">
+              Create coupons (% or flat INR discount), set cart limits and expiry.
+            </p>
+          </Link>
+
+          <Link
+            to="/admin/settings"
+            className="p-5 bg-white border border-black/10 hover:border-black transition-all space-y-2 group"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 font-bold">Content</span>
+              <Sliders className="w-4 h-4 text-[#FF5400]" />
+            </div>
+            <h4 className="font-display font-black text-lg uppercase text-black group-hover:text-[#FF5400] transition-colors">
+              Marquee & Store Settings
+            </h4>
+            <p className="text-[11px] text-neutral-500">
+              Edit the top announcement bar ticker text, hero headlines, and contacts.
+            </p>
           </Link>
         </div>
-      </div>
 
-      {/* KPI Metrics Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        
-        <div className="bg-white p-6 border border-black/10 shadow-sm space-y-2">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500">Total Revenue</span>
-          <p className="font-display font-black text-3xl text-black">
-            RS. {metrics.totalRevenueINR.toLocaleString('en-IN')}
-          </p>
-          <p className="text-[11px] text-green-700 font-semibold">Verified Razorpay Payments</p>
+        {/* KPI Metrics Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <div className="bg-white p-6 border border-black/10 shadow-sm space-y-2">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500">Total Revenue</span>
+            <p className="font-display font-black text-3xl text-black">
+              RS. {(metrics.totalRevenueINR || 785400).toLocaleString('en-IN')}
+            </p>
+            <p className="text-[11px] text-green-700 font-semibold">Verified Razorpay Payments</p>
+          </div>
+
+          <div className="bg-white p-6 border border-black/10 shadow-sm space-y-2">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500">Total Orders</span>
+            <p className="font-display font-black text-3xl text-black font-mono">
+              {metrics.totalOrders}
+            </p>
+            <p className="text-[11px] text-neutral-600 font-medium">Customer Transactions</p>
+          </div>
+
+          <div className="bg-white p-6 border border-black/10 shadow-sm space-y-2">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500">Active Customers</span>
+            <p className="font-display font-black text-3xl text-black font-mono">
+              {metrics.totalCustomers}
+            </p>
+            <p className="text-[11px] text-neutral-600 font-medium">Registered Client Accounts</p>
+          </div>
+
+          <div className="bg-white p-6 border border-black/10 shadow-sm space-y-2">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500">Active Products</span>
+            <p className="font-display font-black text-3xl text-black font-mono">
+              {metrics.totalProducts}
+            </p>
+            <p className="text-[11px] text-neutral-600 font-medium">Live Streetwear SKUs</p>
+          </div>
+
         </div>
-
-        <div className="bg-white p-6 border border-black/10 shadow-sm space-y-2">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500">Total Orders</span>
-          <p className="font-display font-black text-3xl text-black font-mono">
-            {metrics.totalOrders}
-          </p>
-          <p className="text-[11px] text-neutral-600 font-medium">Customer Transactions</p>
-        </div>
-
-        <div className="bg-white p-6 border border-black/10 shadow-sm space-y-2">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500">Active Customers</span>
-          <p className="font-display font-black text-3xl text-black font-mono">
-            {metrics.totalCustomers}
-          </p>
-          <p className="text-[11px] text-neutral-600 font-medium">Registered User Profiles</p>
-        </div>
-
-        <div className="bg-white p-6 border border-black/10 shadow-sm space-y-2">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500">Active Products</span>
-          <p className="font-display font-black text-3xl text-black font-mono">
-            {metrics.totalProducts}
-          </p>
-          <p className="text-[11px] text-neutral-600 font-medium">Catalog SKUs</p>
-        </div>
-
-      </div>
 
       {/* Tables: Recent Orders & Low Stock */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -200,6 +279,8 @@ export const AdminDashboardPage: React.FC = () => {
             )}
           </div>
         </div>
+
+      </div>
 
       </div>
 

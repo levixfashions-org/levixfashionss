@@ -1,0 +1,284 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { apiClient, getStoreSettings, saveStoreSettings, DEFAULT_STORE_SETTINGS, StoreSettings } from '../../services/api';
+import { AdminNav } from '../../components/admin/AdminNav';
+import { Sliders, CheckCircle2, RotateCcw, Save, Sparkles, Megaphone, Mail, Phone, Globe, Truck } from 'lucide-react';
+
+export const AdminSettingsPage: React.FC = () => {
+  const { user, isAdmin, loading: authLoading } = useAuth();
+  const [settings, setSettings] = useState<StoreSettings>(getStoreSettings());
+  const [saving, setSaving] = useState(false);
+  const [successMsg, setSuccessMsg] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!authLoading && (!user || !isAdmin)) {
+      navigate('/login');
+      return;
+    }
+  }, [user, isAdmin, authLoading, navigate]);
+
+  const handleSave = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSaving(true);
+    try {
+      await apiClient.post('/admin/settings', settings);
+      saveStoreSettings(settings);
+      setSuccessMsg('✓ Store settings saved and live across the entire website!');
+      setTimeout(() => setSuccessMsg(null), 4000);
+    } catch (err: any) {
+      alert(err.message || 'Failed to update store settings');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleResetDefaults = () => {
+    if (window.confirm('Reset all store content and announcement settings to initial brand defaults?')) {
+      setSettings(DEFAULT_STORE_SETTINGS);
+      saveStoreSettings(DEFAULT_STORE_SETTINGS);
+      setSuccessMsg('✓ Restored official brand defaults.');
+      setTimeout(() => setSuccessMsg(null), 4000);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-[#EFEFEF] pb-24">
+      <AdminNav />
+
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12 py-10 space-y-8">
+        
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-black/10 pb-6 gap-4">
+          <div>
+            <div className="flex items-center space-x-2 text-[10px] font-mono uppercase tracking-widest text-[#FF5400] font-bold">
+              <Sliders className="w-3.5 h-3.5" />
+              <span>CONTENT & CONFIGURATION</span>
+            </div>
+            <h1 className="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight text-black mt-1">
+              Store Content & Settings
+            </h1>
+            <p className="text-xs text-neutral-600 mt-1">
+              Customize top marquee announcements, brand concierge details, homepage headlines, and shipping rules.
+            </p>
+          </div>
+
+          <div className="flex items-center space-x-3">
+            <button
+              type="button"
+              onClick={handleResetDefaults}
+              className="px-4 py-2.5 border border-black/20 hover:border-black text-neutral-700 hover:text-black text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-all"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>Reset Defaults</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={handleSave}
+              disabled={saving}
+              className="px-6 py-2.5 bg-[#FF5400] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#e04a00] flex items-center gap-1.5 shadow-sm transition-all"
+            >
+              <Save className="w-4 h-4" />
+              <span>{saving ? 'Saving...' : 'Save Settings'}</span>
+            </button>
+          </div>
+        </div>
+
+        {successMsg && (
+          <div className="p-4 bg-black text-white text-xs font-semibold uppercase tracking-wider flex items-center justify-between shadow-md">
+            <div className="flex items-center space-x-2">
+              <CheckCircle2 className="w-4 h-4 text-[#FF5400]" />
+              <span>{successMsg}</span>
+            </div>
+          </div>
+        )}
+
+        <form onSubmit={handleSave} className="space-y-8">
+          
+          {/* Section 1: Marquee Announcement Bar */}
+          <div className="bg-white p-6 border border-black/10 shadow-sm space-y-4">
+            <div className="flex items-center justify-between border-b border-black/10 pb-3">
+              <div className="flex items-center space-x-2">
+                <Megaphone className="w-4 h-4 text-[#FF5400]" />
+                <h3 className="font-display font-black text-lg uppercase tracking-tight text-black">
+                  Top Announcement Ticker (Marquee)
+                </h3>
+              </div>
+              <span className="text-[10px] font-mono uppercase bg-neutral-100 px-2 py-0.5 text-neutral-600">
+                Displays globally at top of store
+              </span>
+            </div>
+
+            <p className="text-xs text-neutral-600">
+              This message scrolls continuously across the very top bar of every page on the website. Use bullets (•) to separate multiple announcements.
+            </p>
+
+            <div>
+              <textarea
+                rows={3}
+                required
+                value={settings.announcementText}
+                onChange={(e) => setSettings({ ...settings, announcementText: e.target.value })}
+                placeholder="e.g. FREE DOMESTIC SHIPPING ON ALL PREPAID ORDERS • USE CODE 'LEVIX20' FOR 20% OFF • "
+                className="w-full border border-black/20 p-3 text-xs font-mono focus:border-black focus:outline-none"
+              />
+            </div>
+
+            {/* Live Preview */}
+            <div className="space-y-1.5 pt-2">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 font-bold">
+                Live Marquee Preview:
+              </span>
+              <div className="h-8 bg-black text-white text-[11px] uppercase tracking-widest font-medium overflow-hidden flex items-center px-4 select-none">
+                <div className="whitespace-nowrap truncate font-mono">
+                  {settings.announcementText}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Section 2: Homepage Hero Banner */}
+          <div className="bg-white p-6 border border-black/10 shadow-sm space-y-4">
+            <div className="flex items-center space-x-2 border-b border-black/10 pb-3">
+              <Sparkles className="w-4 h-4 text-[#FF5400]" />
+              <h3 className="font-display font-black text-lg uppercase tracking-tight text-black">
+                Homepage Hero Headline & Tagline
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-neutral-700 mb-1">
+                  Main Headline
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={settings.heroHeadline}
+                  onChange={(e) => setSettings({ ...settings, heroHeadline: e.target.value })}
+                  placeholder="e.g. STREETWEAR ARCHITECTURE"
+                  className="w-full border border-black/20 p-2.5 text-xs font-display font-black uppercase tracking-tight focus:border-black focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-neutral-700 mb-1">
+                  Subtitle / Mission Statement
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={settings.heroSubtitle}
+                  onChange={(e) => setSettings({ ...settings, heroSubtitle: e.target.value })}
+                  placeholder="e.g. Heavyweight Custom-Milled Silhouettes & Limited Private Drops."
+                  className="w-full border border-black/20 p-2.5 text-xs focus:border-black focus:outline-none"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Section 3: Brand Concierge & Contact */}
+          <div className="bg-white p-6 border border-black/10 shadow-sm space-y-4">
+            <div className="flex items-center space-x-2 border-b border-black/10 pb-3">
+              <Mail className="w-4 h-4 text-[#FF5400]" />
+              <h3 className="font-display font-black text-lg uppercase tracking-tight text-black">
+                Brand Concierge & Contact Coordinates
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+              <div>
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-neutral-700 mb-1 flex items-center gap-1">
+                  <Mail className="w-3.5 h-3.5 text-neutral-500" />
+                  <span>Support Email</span>
+                </label>
+                <input
+                  type="email"
+                  required
+                  value={settings.supportEmail}
+                  onChange={(e) => setSettings({ ...settings, supportEmail: e.target.value })}
+                  className="w-full border border-black/20 p-2.5 font-mono focus:border-black focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-neutral-700 mb-1 flex items-center gap-1">
+                  <Phone className="w-3.5 h-3.5 text-neutral-500" />
+                  <span>Customer Care Phone</span>
+                </label>
+                <input
+                  type="tel"
+                  value={settings.supportPhone}
+                  onChange={(e) => setSettings({ ...settings, supportPhone: e.target.value })}
+                  className="w-full border border-black/20 p-2.5 font-mono focus:border-black focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-neutral-700 mb-1 flex items-center gap-1">
+                  <Globe className="w-3.5 h-3.5 text-neutral-500" />
+                  <span>Instagram Handle</span>
+                </label>
+                <div className="flex">
+                  <span className="bg-neutral-100 border border-r-0 border-black/20 px-2.5 py-2.5 font-mono text-neutral-500">@</span>
+                  <input
+                    type="text"
+                    value={settings.instagramHandle.replace('@', '')}
+                    onChange={(e) => setSettings({ ...settings, instagramHandle: e.target.value })}
+                    className="w-full border border-black/20 p-2.5 font-mono focus:border-black focus:outline-none"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Section 4: Shipping Rules */}
+          <div className="bg-white p-6 border border-black/10 shadow-sm space-y-4">
+            <div className="flex items-center space-x-2 border-b border-black/10 pb-3">
+              <Truck className="w-4 h-4 text-[#FF5400]" />
+              <h3 className="font-display font-black text-lg uppercase tracking-tight text-black">
+                Shipping & Cart Rules
+              </h3>
+            </div>
+
+            <div className="max-w-xs text-xs">
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-neutral-700 mb-1">
+                Free Domestic Shipping Threshold (INR)
+              </label>
+              <div className="flex">
+                <span className="bg-neutral-100 border border-r-0 border-black/20 px-3 py-2.5 font-mono font-bold text-neutral-700">RS.</span>
+                <input
+                  type="number"
+                  min="0"
+                  step="100"
+                  value={settings.freeShippingThreshold}
+                  onChange={(e) => setSettings({ ...settings, freeShippingThreshold: parseFloat(e.target.value) || 0 })}
+                  className="w-full border border-black/20 p-2.5 font-mono font-bold focus:border-black focus:outline-none"
+                />
+              </div>
+              <p className="text-[10px] text-neutral-500 mt-1">
+                Carts equal or greater than this value receive free courier delivery.
+              </p>
+            </div>
+          </div>
+
+          {/* Bottom Save Bar */}
+          <div className="flex items-center justify-end space-x-4 pt-4 border-t border-black/10">
+            <button
+              type="submit"
+              disabled={saving}
+              className="px-8 py-3 bg-black hover:bg-neutral-800 text-white text-xs font-bold uppercase tracking-widest flex items-center gap-2 shadow-md transition-all"
+            >
+              <Save className="w-4 h-4 text-[#FF5400]" />
+              <span>{saving ? 'Publishing Changes...' : 'Save All Settings'}</span>
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  );
+};
