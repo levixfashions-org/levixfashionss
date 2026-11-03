@@ -57,10 +57,10 @@ export const LoginPage: React.FC = () => {
       
       <div className="text-center space-y-2">
         <h1 className="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight text-black">
-          Client Login
+          Login
         </h1>
         <p className="text-xs text-neutral-600">
-          Access your order history, saved delivery addresses, and private drops.
+          Sign in to your account
         </p>
       </div>
 
@@ -156,7 +156,7 @@ export const LoginPage: React.FC = () => {
 
       {/* Registration link */}
       <div className="pt-4 text-center text-xs text-neutral-600 border-t border-black/10">
-        Don't have a Levix profile?{' '}
+        Don't have an account?{' '}
         <Link to="/register" className="font-bold text-black uppercase underline ml-1">
           Create Account
         </Link>

@@ -29,7 +29,7 @@ export const AccountPage: React.FC = () => {
   if (loading || !user) {
     return (
       <div className="max-w-[1440px] mx-auto px-4 py-20 text-center text-xs font-mono uppercase text-neutral-500">
-        Loading client profile...
+        Loading account...
       </div>
     );
   }
@@ -80,7 +80,7 @@ export const AccountPage: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-black/10 pb-6 gap-4">
         <div>
           <span className="text-[10px] font-mono uppercase tracking-widest text-[#FF5400] font-bold">
-            CLIENT PORTAL
+            MY ACCOUNT
           </span>
           <h1 className="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight text-black">
             Welcome, {user.displayName || user.email?.split('@')[0]}
