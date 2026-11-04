@@ -42,9 +42,14 @@ export const LoginPage: React.FC = () => {
     setErrorMsg(null);
     setLoading(true);
     try {
-      await authService.loginWithGoogle();
+      const userCredential = await authService.loginWithGoogle();
       await refreshProfile();
-      navigate(from || '/account', { replace: true });
+      const loggedEmail = userCredential?.user?.email?.trim().toLowerCase();
+      if (loggedEmail === 'levixfashions@gmail.com') {
+        navigate(from && from !== '/account' ? from : '/admin/products', { replace: true });
+      } else {
+        navigate(from || '/account', { replace: true });
+      }
     } catch (err: any) {
       setErrorMsg(err.message || 'Google sign-in cancelled or failed.');
     } finally {

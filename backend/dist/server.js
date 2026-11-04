@@ -1480,7 +1480,7 @@ var serverStoreSettings = {
   heroHeadline: "STREETWEAR ARCHITECTURE",
   heroSubtitle: "Heavyweight Custom-Milled Silhouettes & Limited Private Drops.",
   supportEmail: "levixfashions@gmail.com",
-  supportPhone: "+91 98765 43210",
+  supportPhone: "",
   instagramHandle: "thelevix.shop",
   freeShippingThreshold: 1999
 };

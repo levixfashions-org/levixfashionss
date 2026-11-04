@@ -175,12 +175,11 @@ export const AccountPage: React.FC = () => {
 
           <div className="p-5 bg-white border border-black/10 space-y-3 shadow-sm">
             <h4 className="font-bold text-xs uppercase tracking-wider text-black">
-              Account Security
+              Account Profile
             </h4>
-            <div className="text-xs text-neutral-600 space-y-1">
-              <p>Authentication: <span className="font-bold text-black">Firebase Protected</span></p>
-              <p>Email Verified: <span className="font-bold text-black">{user.emailVerified ? 'Yes' : 'Pending'}</span></p>
-              <p>User Role: <span className="font-bold text-black uppercase">{profile?.role || 'CUSTOMER'}</span></p>
+            <div className="text-xs text-neutral-600 space-y-1.5">
+              <p>Email: <span className="font-medium text-black">{user.email}</span></p>
+              <p>Status: <span className="font-bold text-[#FF5400] uppercase">Active Member</span></p>
             </div>
           </div>
         </div>

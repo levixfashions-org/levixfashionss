@@ -1,6 +1,6 @@
-# BLUORNG | Luxury Streetwear Recreation & VPS Production Deployment
+# LEVIX | Luxury Streetwear Platform & Production Deployment
 
-High-fidelity, production-ready full-stack recreation of [BLUORNG](https://bluorng.com/) built with React 19, TypeScript, Vite, Tailwind CSS, Node.js, Express, Prisma ORM, PostgreSQL, Firebase Authentication, and Razorpay Payments, optimized for deployment on a Hostinger VPS.
+High-fidelity, production-ready full-stack luxury streetwear e-commerce platform for [thelevix.shop](https://thelevix.shop) built with React 19, TypeScript, Vite, Tailwind CSS, Node.js, Express, Prisma ORM, PostgreSQL, Firebase Authentication, and Razorpay Payments.
 
 ---
 

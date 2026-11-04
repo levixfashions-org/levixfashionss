@@ -27,13 +27,13 @@ export const AdminDashboardPage: React.FC = () => {
           throw new Error('Invalid metrics response format');
         }
       } catch (err) {
-        console.warn('Admin metrics error, providing fallback executive data:', err);
+        console.warn('Admin metrics error, providing clean initial metrics:', err);
         setData({
           metrics: {
-            totalRevenue: 1245000,
-            totalOrders: 38,
-            totalCustomers: 94,
-            totalProducts: 16
+            totalRevenue: 0,
+            totalOrders: 0,
+            totalCustomers: 0,
+            totalProducts: 0
           },
           recentOrders: [],
           lowStockVariants: []

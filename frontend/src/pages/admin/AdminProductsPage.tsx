@@ -16,7 +16,8 @@ import {
   Copy, 
   Search, 
   RotateCcw, 
-  Filter 
+  Filter,
+  Package
 } from 'lucide-react';
 
 export const AdminProductsPage: React.FC = () => {
@@ -338,14 +339,33 @@ export const AdminProductsPage: React.FC = () => {
             Loading catalog items...
           </div>
         ) : filteredProducts.length === 0 ? (
-          <div className="bg-white border border-black/10 p-12 text-center space-y-3">
-            <p className="text-xs font-mono uppercase text-neutral-500">No products match your filter criteria.</p>
-            <button
-              onClick={() => { setSearchTerm(''); setCategoryFilter('ALL'); }}
-              className="text-xs font-bold uppercase text-[#FF5400] underline"
-            >
-              Clear filters
-            </button>
+          <div className="bg-white border border-black/10 p-16 text-center space-y-4">
+            <Package className="w-10 h-10 text-neutral-300 mx-auto" />
+            <h3 className="font-display font-black text-xl uppercase tracking-tight text-black">
+              {products.length === 0 ? 'Your Catalog is Ready for Drops' : 'No products match your filter criteria'}
+            </h3>
+            <p className="text-xs text-neutral-500 max-w-md mx-auto">
+              {products.length === 0
+                ? 'Your store is completely fresh with zero fake products. Click "+ New Drop" above to publish your first authentic piece.'
+                : 'Try adjusting your search query or category filter.'}
+            </p>
+            {products.length === 0 ? (
+              <div className="flex items-center justify-center gap-3 pt-2">
+                <button
+                  onClick={openAddModal}
+                  className="px-6 py-2.5 bg-[#FF5400] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#e04a00] transition-all shadow-sm cursor-pointer"
+                >
+                  + Add First Product
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => { setSearchTerm(''); setCategoryFilter('ALL'); }}
+                className="text-xs font-bold uppercase text-[#FF5400] underline cursor-pointer"
+              >
+                Clear filters
+              </button>
+            )}
           </div>
         ) : (
           <div className="bg-white border border-black/10 shadow-sm overflow-x-auto">

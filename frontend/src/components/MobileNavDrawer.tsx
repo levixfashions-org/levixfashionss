@@ -88,11 +88,11 @@ export const MobileNavDrawer: React.FC = () => {
               </button>
 
               <button
-                onClick={() => handleNav('/collections/levix-x-godzilla')}
-                className="w-full flex items-center justify-between text-left py-1 text-[#FF5400] font-bold"
+                onClick={() => handleNav('/collections/t-shirts')}
+                className="w-full flex items-center justify-between text-left py-1 hover:text-neutral-600 transition-colors"
               >
-                <span>Levix X Godzilla</span>
-                <span className="text-[9px] bg-black text-white px-1.5 py-0.2 font-mono">EXCLUSIVE</span>
+                <span>T-Shirts & Tops</span>
+                <ChevronRight className="w-4 h-4 text-neutral-400" />
               </button>
 
               <button
@@ -203,9 +203,8 @@ export const MobileNavDrawer: React.FC = () => {
               {isAccOpen && (
                 <div className="pl-2 pt-1 space-y-2 text-neutral-700 text-xs font-normal">
                   {[
-                    { label: 'Bags', slug: 'bags' },
-                    { label: 'Caps', slug: 'caps' },
-                    { label: 'Cases', slug: 'iphone-case' }
+                    { label: 'Bags & Totes', slug: 'bags' },
+                    { label: 'Caps & Beanies', slug: 'caps' }
                   ].map((acc) => (
                     <button
                       key={acc.label}

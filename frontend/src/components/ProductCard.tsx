@@ -58,13 +58,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           )}
         </Link>
 
-        {/* Badge (Godzilla collab / Best seller / Sale) */}
-        {product.slug.includes('godzilla') && (
+        {/* Badge (Featured / Sale) */}
+        {product.isFeatured && (
           <div className="absolute top-2.5 left-2.5 z-10 bg-black text-[#FF5400] text-[9px] font-mono uppercase font-bold tracking-wider px-2 py-0.5">
-            GODZILLA
+            FEATURED
           </div>
         )}
-        {product.comparePrice && !product.slug.includes('godzilla') && (
+        {product.comparePrice && !product.isFeatured && (
           <div className="absolute top-2.5 left-2.5 z-10 bg-black text-white text-[9px] font-mono uppercase font-bold tracking-wider px-2 py-0.5">
             SALE
           </div>

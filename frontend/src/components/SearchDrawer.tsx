@@ -68,7 +68,7 @@ export const SearchDrawer: React.FC = () => {
                 autoFocus
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="SEARCH TEES, HOODIES, CARGOS, GODZILLA..."
+                placeholder="SEARCH TEES, HOODIES, CARGOS, JACKETS..."
                 className="w-full bg-transparent text-base sm:text-xl font-display uppercase tracking-tight placeholder:text-neutral-400 focus:outline-none text-black"
               />
             </form>
@@ -84,7 +84,7 @@ export const SearchDrawer: React.FC = () => {
           {/* Quick Categories Bar */}
           <div className="py-4 flex flex-wrap items-center gap-2 text-xs font-semibold">
             <span className="text-neutral-500 uppercase tracking-widest text-[10px] mr-2">Quick Searches:</span>
-            {['Godzilla', 'Hoodies', 'Polo', 'Cargos', 'T-Shirts'].map((term) => (
+            {['T-Shirts', 'Hoodies', 'Polo', 'Cargos', 'Jackets'].map((term) => (
               <button
                 key={term}
                 onClick={() => setQuery(term)}

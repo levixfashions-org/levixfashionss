@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronDown, ChevronUp, MapPin, Phone, ExternalLink } from 'lucide-react';
+import { ArrowRight, ChevronDown, ChevronUp, Sparkles, Shield, Layers } from 'lucide-react';
 import { ProductCard } from '../components/ProductCard';
 import { apiClient } from '../services/api';
 import { Product } from '../types';
+import { useAuth } from '../context/AuthContext';
 
 export const HomePage: React.FC = () => {
+  const { isAdmin } = useAuth();
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeCollectionTab, setActiveCollectionTab] = useState(0);
@@ -14,7 +16,7 @@ export const HomePage: React.FC = () => {
   useEffect(() => {
     async function loadFeatured() {
       try {
-        const res = await apiClient.get('/products', { limit: 8, sort: 'featured' });
+        const res = await apiClient.get('/products', { limit: 12, sort: 'featured' });
         setFeaturedProducts(res.data.products || []);
       } catch (err) {
         console.warn('Could not load featured products:', err);
@@ -23,145 +25,54 @@ export const HomePage: React.FC = () => {
       }
     }
     loadFeatured();
+
+    const handleUpdate = () => loadFeatured();
+    window.addEventListener('levix_products_updated', handleUpdate);
+    return () => window.removeEventListener('levix_products_updated', handleUpdate);
   }, []);
 
   const editorialCollections = [
     {
-      name: 'BAGS',
+      name: 'BAGS & LEATHER',
       title: 'Levix Bags & Leather Goods',
       img: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=1200&q=80',
       handle: 'bags'
     },
     {
-      name: 'CAPS',
+      name: 'HEADWEAR & CAPS',
       title: 'Architectural Headwear',
       img: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=1200&q=80',
       handle: 'caps'
     },
     {
-      name: 'LEVIX POLO CLUB',
+      name: 'POLOS & TOPS',
       title: 'Heritage Heavyweight Pique Polos',
       img: 'https://images.unsplash.com/photo-1625910513413-72210c598007?auto=format&fit=crop&w=1200&q=80',
       handle: 'polos'
     },
     {
-      name: 'WINTER COLLECTION 2025',
+      name: 'WINTER CAPSULE',
       title: '450 GSM Diagonal French Terry Fleece',
       img: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1200&q=80',
       handle: 'winter-collection'
     },
     {
-      name: 'LEVIX RACING CLUB',
+      name: 'RACING HERITAGE',
       title: 'Motorsport Geometry & Tactical Ripstop',
       img: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1200&q=80',
       handle: 'levix-racing-club'
     },
     {
-      name: 'LEVIX BASICS',
+      name: 'DAILY BASICS',
       title: 'Daily Oversized Combed Cotton Staples',
       img: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1200&q=80',
       handle: 'summer-basics'
-    },
-    {
-      name: 'YACHT COLLECTION',
-      title: 'Resort High-Octane Streetwear',
-      img: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1200&q=80',
-      handle: 'yacht-collection'
-    }
-  ];
-
-  const bagsAccessories = [
-    {
-      name: 'Jacquard Card Case',
-      slug: 'cherry-blossom-polo-t-shirt',
-      basePrice: 299000,
-      img: 'https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80',
-      hoverImg: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=600&q=80'
-    },
-    {
-      name: 'Crest Mini Backpack Jacquard',
-      slug: 'black-ragnarok-t-shirt',
-      basePrice: 899000,
-      img: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80',
-      hoverImg: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80'
-    },
-    {
-      name: 'Crest Duffle Leather',
-      slug: 'thunderstruck-hoodie',
-      basePrice: 1499000,
-      img: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80',
-      hoverImg: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80'
-    },
-    {
-      name: 'Crest Carryall Leather',
-      slug: 'mothra-rising-t-shirt',
-      basePrice: 1299000,
-      img: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=600&q=80',
-      hoverImg: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80'
-    }
-  ];
-
-  const winterHoodies = [
-    {
-      name: 'Brown Heavyweight Boxy Hoodie',
-      slug: 'thunderstruck-hoodie',
-      basePrice: 1700000,
-      img: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80',
-      hoverImg: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=600&q=80'
-    },
-    {
-      name: 'Charcoal Drop-Shoulder Hoodie',
-      slug: 'thunderstruck-hoodie',
-      basePrice: 1700000,
-      img: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=600&q=80',
-      hoverImg: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80'
-    },
-    {
-      name: 'Black Embroidered Zip Hoodie',
-      slug: 'thunderstruck-hoodie',
-      basePrice: 1650000,
-      img: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80',
-      hoverImg: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=600&q=80'
-    },
-    {
-      name: 'Levix Racing Club Heavyweight Hoodie',
-      slug: 'thunderstruck-hoodie',
-      basePrice: 1400000,
-      img: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80',
-      hoverImg: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80'
-    }
-  ];
-
-  const phoneCases = [
-    {
-      name: '5 Lakh Case',
-      price: 'RS. 1,490',
-      img: 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=600&q=80',
-      hoverImg: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=600&q=80'
-    },
-    {
-      name: 'Maximum Spend Case',
-      price: 'RS. 1,490',
-      img: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=600&q=80',
-      hoverImg: 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=600&q=80'
-    },
-    {
-      name: 'Levix Favourite Child Case',
-      price: 'RS. 1,490',
-      img: 'https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80',
-      hoverImg: 'https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&fit=crop&w=600&q=80'
-    },
-    {
-      name: 'Red Birds Of Paradise Case',
-      price: 'RS. 1,490',
-      img: 'https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&fit=crop&w=600&q=80',
-      hoverImg: 'https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80'
     }
   ];
 
   const faqs = [
     {
-      title: 'Feel the Luxury of Premium Streetwear with LEVIX - Best Unisex Clothing Brand',
+      title: 'Feel the Luxury of Premium Streetwear with LEVIX - Architectural Streetwear',
       content: 'Levix is an independent luxury streetwear atelier founded on architectural tailoring, heavy custom-milled textiles, and provocative cultural narratives. Every silhouette is patterned with dropped shoulders, structured proportions, and custom-milled 260-450 GSM cottons designed to preserve volume and drape over years of wear.'
     },
     {
@@ -183,15 +94,14 @@ export const HomePage: React.FC = () => {
   ];
 
   const popularSearches = [
-    'Oversized T-shirts', 'Joggers', 'Acid Wash T-shirts', 'Designer Shirts',
-    'Casual Jackets', 'Black Hoodies', 'Printed Sweatshirts', 'Cargo Pants',
-    'Winter Drop', 'Heavyweight Polos', 'Limited Streetwear'
+    'Oversized T-shirts', 'Heavyweight Hoodies', 'Tactical Cargos', 'Drop-Shoulder Tees',
+    'Pique Polos', 'French Terry', 'Acid Wash', 'Streetwear Archive'
   ];
 
   return (
     <div className="space-y-12 sm:space-y-20 pb-16">
       
-      {/* 1. Hero Campaign Section (Full Viewport Height Match to levix.com) */}
+      {/* 1. Hero Campaign Section */}
       <section className="relative w-full overflow-hidden bg-neutral-900">
         <div className="relative w-full h-[100svh] max-h-[950px] min-h-[640px]">
           <picture className="block w-full h-full">
@@ -215,14 +125,19 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. Latest drop (Section 1 on levix.com) */}
+      {/* 2. Latest drop Section (Dynamic from real products) */}
       <section className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
         <div className="flex items-center justify-between border-b border-black/10 pb-3 mb-5 sm:mb-8">
-          <h2 className="text-xs md:text-sm font-semibold uppercase tracking-wider text-black">
-            Latest drop
-          </h2>
+          <div>
+            <span className="text-[10px] font-mono text-[#FF5400] font-bold uppercase tracking-widest block">
+              CATALOG ARCHIVE
+            </span>
+            <h2 className="text-xs md:text-sm font-semibold uppercase tracking-wider text-black">
+              Latest Streetwear Drops
+            </h2>
+          </div>
           <Link
-            to="/collections/new-in"
+            to="/collections/all-products"
             className="px-3.5 py-1 bg-black text-white text-[11px] font-medium rounded-full hover:bg-neutral-800 transition-colors flex items-center gap-1 group"
           >
             <span>Discover more</span>
@@ -236,64 +151,39 @@ export const HomePage: React.FC = () => {
               <div key={n} className="aspect-[3/4] bg-neutral-200" />
             ))}
           </div>
-        ) : (
+        ) : featuredProducts.length > 0 ? (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-            {featuredProducts.slice(0, 4).map((product) => (
+            {featuredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
+          </div>
+        ) : (
+          <div className="py-20 px-6 text-center border border-black/10 bg-white/70 backdrop-blur-sm space-y-4 shadow-sm">
+            <span className="text-[10px] font-mono text-[#FF5400] font-bold uppercase tracking-widest">
+              COLLECTION 01 • IN PRODUCTION
+            </span>
+            <h3 className="font-display font-black text-2xl sm:text-4xl uppercase tracking-tight text-black">
+              New Drops Coming Soon
+            </h3>
+            <p className="text-xs text-neutral-600 max-w-lg mx-auto leading-relaxed">
+              Our inaugural custom-milled drop capsule is currently in production. Follow <span className="font-bold text-black font-mono">@thelevix.shop</span> on Instagram to unlock private release invitations and early drop access.
+            </p>
+            {isAdmin && (
+              <div className="pt-3">
+                <Link
+                  to="/admin/products"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#FF5400] hover:bg-[#e04a00] text-white text-xs font-bold uppercase tracking-widest shadow-md transition-all"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  <span>+ Add Your First Drop (Admin)</span>
+                </Link>
+              </div>
+            )}
           </div>
         )}
       </section>
 
-      {/* 3. Levix Bags & Leather Goods (Section 2 on levix.com) */}
-      <section className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
-        <div className="flex items-center justify-between border-b border-black/10 pb-3 mb-5 sm:mb-8">
-          <h2 className="text-xs md:text-sm font-semibold uppercase tracking-wider text-black">
-            Levix Bags
-          </h2>
-          <Link
-            to="/collections/bags"
-            className="px-3.5 py-1 bg-black text-white text-[11px] font-medium rounded-full hover:bg-neutral-800 transition-colors flex items-center gap-1 group"
-          >
-            <span>Discover more</span>
-            <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-6">
-          {bagsAccessories.map((bag, i) => (
-            <div key={i} className="group flex flex-col">
-              <Link to={`/products/${bag.slug}`} className="relative aspect-[3/4] overflow-hidden rounded-[10px] bg-neutral-200 block">
-                <img
-                  src={bag.img}
-                  alt={bag.name}
-                  className="absolute inset-0 w-full h-full object-cover product-card-img-primary"
-                  loading="lazy"
-                />
-                <img
-                  src={bag.hoverImg}
-                  alt={bag.name}
-                  className="absolute inset-0 w-full h-full object-cover product-card-img-secondary"
-                  loading="lazy"
-                />
-              </Link>
-              <div className="pt-2 sm:pt-3 pb-1 flex flex-col space-y-0.5 sm:space-y-1">
-                <Link
-                  to={`/products/${bag.slug}`}
-                  className="text-xs sm:text-[13px] font-medium text-black line-clamp-1 hover:text-neutral-600 transition-colors"
-                >
-                  {bag.name}
-                </Link>
-                <span className="text-[11px] sm:text-xs font-semibold text-neutral-900 font-mono">
-                  RS. {(bag.basePrice / 100).toLocaleString('en-IN')}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 4. Editorial "Discover Collection" Gallery (Section 5 & 6) */}
+      {/* 3. Editorial "Discover Collection" Lookbook */}
       <section className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
         <div className="border border-black/10 overflow-hidden bg-black text-white grid grid-cols-1 lg:grid-cols-12 shadow-2xl">
           
@@ -353,103 +243,48 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. Winter Collection 2025 Featured Drop (Exact Match to Section 4 on levix.com) */}
-      <section className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
-        <div className="flex items-center justify-between border-b border-black/10 pb-3 mb-5 sm:mb-8">
-          <h2 className="text-xs md:text-sm font-semibold uppercase tracking-wider text-black">
-            Winter Collection 2025
-          </h2>
-          <Link
-            to="/collections/winter-collection"
-            className="px-3.5 py-1 bg-black text-white text-[11px] font-medium rounded-full hover:bg-neutral-800 transition-colors flex items-center gap-1 group"
-          >
-            <span>Discover more</span>
-            <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-          </Link>
-        </div>
+      {/* 4. Atelier Values Banner */}
+      <section className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-white p-6 border border-black/10 shadow-sm space-y-2">
+            <span className="text-[10px] font-mono text-[#FF5400] font-bold uppercase tracking-widest">
+              01 • PROPRIETARY FABRIC
+            </span>
+            <h4 className="font-display font-black text-lg uppercase text-black">
+              260–450 GSM Heavyweights
+            </h4>
+            <p className="text-xs text-neutral-600 leading-relaxed">
+              Custom-milled combed cottons and diagonal loopback French terry engineered to maintain architectural boxy drape.
+            </p>
+          </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-6">
-          {winterHoodies.map((hoodie, i) => (
-            <div key={i} className="group flex flex-col">
-              <Link to={`/products/${hoodie.slug}`} className="relative aspect-[3/4] overflow-hidden rounded-[10px] bg-neutral-200 block">
-                <img
-                  src={hoodie.img}
-                  alt={hoodie.name}
-                  className="absolute inset-0 w-full h-full object-cover product-card-img-primary"
-                  loading="lazy"
-                />
-                <img
-                  src={hoodie.hoverImg}
-                  alt={hoodie.name}
-                  className="absolute inset-0 w-full h-full object-cover product-card-img-secondary"
-                  loading="lazy"
-                />
-              </Link>
-              <div className="pt-2 sm:pt-3 pb-1 flex flex-col space-y-0.5 sm:space-y-1">
-                <Link
-                  to={`/products/${hoodie.slug}`}
-                  className="text-xs sm:text-[13px] font-medium text-black line-clamp-1 hover:text-neutral-600 transition-colors"
-                >
-                  {hoodie.name}
-                </Link>
-                <span className="text-[11px] sm:text-xs font-semibold text-neutral-900 font-mono">
-                  RS. {(hoodie.basePrice / 100).toLocaleString('en-IN')}
-                </span>
-              </div>
-            </div>
-          ))}
+          <div className="bg-white p-6 border border-black/10 shadow-sm space-y-2">
+            <span className="text-[10px] font-mono text-[#FF5400] font-bold uppercase tracking-widest">
+              02 • DISPATCH COURIER
+            </span>
+            <h4 className="font-display font-black text-lg uppercase text-black">
+              Express Pan-India Air
+            </h4>
+            <p className="text-xs text-neutral-600 leading-relaxed">
+              All prepaid orders dispatch via Blue Dart & Delhivery Express in sealed tamper-evident luxury dustbags.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 border border-black/10 shadow-sm space-y-2">
+            <span className="text-[10px] font-mono text-[#FF5400] font-bold uppercase tracking-widest">
+              03 • CLIENT CONCIERGE
+            </span>
+            <h4 className="font-display font-black text-lg uppercase text-black">
+              7-Day Doorstep Exchanges
+            </h4>
+            <p className="text-xs text-neutral-600 leading-relaxed">
+              Complimentary size alterations and seamless doorstep pickups for complete peace of mind.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* 6. iPhone Cases Drop (Section 5 on levix.com) */}
-      <section className="max-w-[1440px] mx-auto px-3.5 sm:px-6 md:px-8 xl:px-12">
-        <div className="flex items-center justify-between border-b border-black/10 pb-3 mb-5 sm:mb-8">
-          <h2 className="text-xs md:text-sm font-semibold uppercase tracking-wider text-black">
-            iPhone Case
-          </h2>
-          <Link
-            to="/collections/iphone-case"
-            className="px-3.5 py-1 bg-black text-white text-[11px] font-medium rounded-full hover:bg-neutral-800 transition-colors flex items-center gap-1 group"
-          >
-            <span>Discover more</span>
-            <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-6">
-          {phoneCases.map((item, i) => (
-            <div key={i} className="group flex flex-col">
-              <Link to="/products/cherry-blossom-polo-t-shirt" className="relative aspect-[3/4] overflow-hidden rounded-[10px] bg-neutral-200 block">
-                <img
-                  src={item.img}
-                  alt={item.name}
-                  className="absolute inset-0 w-full h-full object-cover product-card-img-primary"
-                  loading="lazy"
-                />
-                <img
-                  src={item.hoverImg}
-                  alt={item.name}
-                  className="absolute inset-0 w-full h-full object-cover product-card-img-secondary"
-                  loading="lazy"
-                />
-              </Link>
-              <div className="pt-2 sm:pt-3 pb-1 flex flex-col space-y-0.5 sm:space-y-1">
-                <Link
-                  to="/products/cherry-blossom-polo-t-shirt"
-                  className="text-xs sm:text-[13px] font-medium text-black line-clamp-1 hover:text-neutral-600 transition-colors"
-                >
-                  {item.name}
-                </Link>
-                <span className="text-[11px] sm:text-xs font-semibold text-neutral-900 font-mono">
-                  {item.price}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 7. Brand Story & SEO Accordions */}
+      {/* 5. Brand Story & Accordions */}
       <section className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12 border-t border-black/10 pt-12 pb-8">
         <div className="max-w-4xl mx-auto space-y-4">
           <span className="text-[11px] font-mono text-[#FF5400] font-bold uppercase tracking-widest block text-center mb-6">

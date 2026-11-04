@@ -50,7 +50,7 @@ async function main() {
   ]);
 
   // 2. Collections
-  const godzillaCollection = await prisma.collection.upsert({
+  const atelierCollection = await prisma.collection.upsert({
     where: { slug: 'levix-atelier-capsule' },
     update: {},
     create: {
@@ -99,7 +99,7 @@ async function main() {
       comparePrice: 599000,
       isFeatured: true,
       categoryId: categories[1].id,
-      collectionId: godzillaCollection.id,
+      collectionId: atelierCollection.id,
       images: [
         { url: 'https://images.unsplash.com/photo-1625910513413-72210c598007?auto=format&fit=crop&w=1000&q=80', isCover: true, sortOrder: 0 },
         { url: 'https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?auto=format&fit=crop&w=1000&q=80', isCover: false, sortOrder: 1 }
@@ -117,7 +117,7 @@ async function main() {
       comparePrice: 450000,
       isFeatured: true,
       categoryId: categories[0].id,
-      collectionId: godzillaCollection.id,
+      collectionId: atelierCollection.id,
       images: [
         { url: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1000&q=80', isCover: true, sortOrder: 0 },
         { url: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=80', isCover: false, sortOrder: 1 }
@@ -143,8 +143,8 @@ async function main() {
       sizes: ['M', 'L', 'XL', 'XXL']
     },
     {
-      name: 'Levix Mothra Botanical T-Shirt',
-      slug: 'mothra-rising-t-shirt',
+      name: 'Levix Botanical Embroidery T-Shirt',
+      slug: 'levix-botanical-embroidery-tshirt',
       description: 'Vintage-white heavyweight tee showcasing intricate botanical illustrations with soft puff-print textural dimensions.',
       details: '260 GSM single jersey cotton, bio-washed and pre-shrunk.',
       fabricCare: '100% Combed Cotton. Hand or delicate cycle wash cold.',
@@ -153,7 +153,7 @@ async function main() {
       comparePrice: null,
       isFeatured: true,
       categoryId: categories[0].id,
-      collectionId: godzillaCollection.id,
+      collectionId: atelierCollection.id,
       images: [
         { url: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=1000&q=80', isCover: true, sortOrder: 0 }
       ],

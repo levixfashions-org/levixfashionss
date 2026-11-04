@@ -134,15 +134,11 @@ export const Header: React.FC = () => {
               )}
             </div>
 
-            <Link
-              to="/collections/levix-x-godzilla"
-              className="text-[#FF5400] font-bold hover:opacity-80 transition-opacity flex items-center gap-1"
-            >
-              <span>Godzilla</span>
-              <span className="text-[9px] bg-black text-white px-1.5 py-0.2 rounded-none font-mono">NEW</span>
+            <Link to="/collections/t-shirts" className="text-black hover:text-[#FF5400] transition-colors">
+              T-Shirts
             </Link>
-            <Link to="/collections/levix-racing-club" className="text-black hover:text-neutral-600 transition-colors">
-              Racing Club
+            <Link to="/collections/hoodies" className="text-black hover:text-[#FF5400] transition-colors">
+              Hoodies
             </Link>
           </nav>
         </div>

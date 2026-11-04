@@ -51,7 +51,7 @@ export const SearchPage: React.FC = () => {
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search keywords (e.g. Godzilla, Polo, Cargo)..."
+            placeholder="Search drops, tees, hoodies, cargos..."
             className="flex-1 p-3.5 text-xs sm:text-sm font-semibold uppercase tracking-wider focus:outline-none"
           />
           <button

@@ -232,7 +232,7 @@ export const CheckoutPage: React.FC = () => {
                   required
                   value={line1}
                   onChange={(e) => setLine1(e.target.value)}
-                  placeholder="402, High Street Residencies"
+                  placeholder="House / Flat No., Street, Area"
                   className="w-full bg-white border border-black/20 p-3 text-xs focus:border-black focus:outline-none"
                 />
               </div>
@@ -245,7 +245,7 @@ export const CheckoutPage: React.FC = () => {
                   type="text"
                   value={line2}
                   onChange={(e) => setLine2(e.target.value)}
-                  placeholder="Near Ambience Mall"
+                  placeholder="Apartment, suite, landmark (optional)"
                   className="w-full bg-white border border-black/20 p-3 text-xs focus:border-black focus:outline-none"
                 />
               </div>
@@ -260,7 +260,7 @@ export const CheckoutPage: React.FC = () => {
                     required
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    placeholder="New Delhi"
+                    placeholder="City"
                     className="w-full bg-white border border-black/20 p-3 text-xs focus:border-black focus:outline-none"
                   />
                 </div>

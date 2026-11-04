@@ -127,10 +127,10 @@ export const ProductDetailPage: React.FC = () => {
               ))}
             </div>
 
-            {/* Godzilla Badge on Mobile */}
-            {product.slug.includes('godzilla') && (
+            {/* Featured Badge on Mobile */}
+            {product.isFeatured && (
               <div className="absolute top-3 left-3 bg-black text-[#FF5400] text-[9px] font-mono uppercase font-bold tracking-widest px-2.5 py-1 z-10">
-                GODZILLA
+                FEATURED
               </div>
             )}
 
@@ -150,9 +150,9 @@ export const ProductDetailPage: React.FC = () => {
                 alt={product.name}
                 className="w-full h-full object-cover object-center"
               />
-              {product.slug.includes('godzilla') && (
+              {product.isFeatured && (
                 <div className="absolute top-4 left-4 bg-black text-[#FF5400] text-[10px] font-mono uppercase font-bold tracking-widest px-3 py-1">
-                  OFFICIAL GODZILLA COLLABORATION
+                  EXCLUSIVE DROP
                 </div>
               )}
             </div>

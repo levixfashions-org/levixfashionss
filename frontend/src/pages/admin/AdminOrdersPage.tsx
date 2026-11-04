@@ -114,17 +114,17 @@ export const AdminOrdersPage: React.FC = () => {
   const handleCreateTestOrder = async () => {
     try {
       await apiClient.post('/admin/orders', {
-        customerName: 'Karan Singhania',
-        customerEmail: 'karan@singhania.in',
-        customerPhone: '+91 98200 77112',
-        shippingAddress: 'Flat 1204, Lodha Bellissimo, Mahalaxmi, Mumbai 400011',
+        customerName: 'Test Client',
+        customerEmail: 'client@thelevix.shop',
+        customerPhone: '',
+        shippingAddress: 'Client Delivery Address, India',
         status: 'PROCESSING',
         paymentStatus: 'PAID',
-        totalPaise: 499000,
+        totalPaise: 299900,
         courier: 'Blue Dart Air Express',
         trackingNumber: 'BD' + Math.floor(10000000 + Math.random() * 90000000) + 'IN',
         items: [
-          { productName: 'Levix Cherry Blossom Polo T-Shirt', size: 'L', quantity: 1, unitPricePaise: 499000 }
+          { productName: 'Levix Heavyweight Streetwear Drop', size: 'L', quantity: 1, unitPricePaise: 299900 }
         ]
       });
       setActionMsg('✓ New client test order created!');
