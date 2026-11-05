@@ -84,7 +84,7 @@ export const SearchDrawer: React.FC = () => {
           {/* Quick Categories Bar */}
           <div className="py-4 flex flex-wrap items-center gap-2 text-xs font-semibold">
             <span className="text-neutral-500 uppercase tracking-widest text-[10px] mr-2">Quick Searches:</span>
-            {['T-Shirts', 'Hoodies', 'Polo', 'Cargos', 'Jackets'].map((term) => (
+            {['Overlength', 'Waffle Boxy', 'Acid Wash', 'T-Shirts', 'Hoodies', 'Cargos'].map((term) => (
               <button
                 key={term}
                 onClick={() => setQuery(term)}

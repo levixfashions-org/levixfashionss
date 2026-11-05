@@ -94,8 +94,8 @@ export const HomePage: React.FC = () => {
   ];
 
   const popularSearches = [
-    'Oversized T-shirts', 'Heavyweight Hoodies', 'Tactical Cargos', 'Drop-Shoulder Tees',
-    'Pique Polos', 'French Terry', 'Acid Wash', 'Streetwear Archive'
+    'Overlength T-Shirts', 'Waffle Boxy Full Sleeves', 'Acid Wash T-Shirts',
+    'Heavyweight Hoodies', 'Tactical Cargos', 'Heritage Polos'
   ];
 
   return (

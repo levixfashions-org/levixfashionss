@@ -24,34 +24,34 @@ export const Header: React.FC = () => {
 
   const megaMenuCollections = [
     {
-      title: 'Bags & Leather',
+      title: 'Overlength T-Shirts',
+      handle: 'overlength-t-shirts',
+      img: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80'
+    },
+    {
+      title: 'Waffle Boxy Full Sleeves',
+      handle: 'waffle-boxy-fit-full-sleeves',
+      img: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=600&q=80'
+    },
+    {
+      title: 'Acid Wash T-Shirts',
+      handle: 'acid-wash-t-shirts',
+      img: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80'
+    },
+    {
+      title: 'Heavyweight Hoodies',
+      handle: 'hoodies',
+      img: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80'
+    },
+    {
+      title: 'Utility Cargos',
+      handle: 'cargos',
+      img: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80'
+    },
+    {
+      title: 'Bags & Leather Goods',
       handle: 'bags',
-      img: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=400&q=80'
-    },
-    {
-      title: 'Headwear & Caps',
-      handle: 'caps',
-      img: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=400&q=80'
-    },
-    {
-      title: 'Winter Collection 2025',
-      handle: 'winter-collection',
-      img: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=400&q=80'
-    },
-    {
-      title: 'Levix Racing Club',
-      handle: 'levix-racing-club',
-      img: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80'
-    },
-    {
-      title: 'Levix Basics',
-      handle: 'summer-basics',
-      img: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=400&q=80'
-    },
-    {
-      title: 'Yacht Collection',
-      handle: 'yacht-collection',
-      img: 'https://images.unsplash.com/photo-1625910513413-72210c598007?auto=format&fit=crop&w=400&q=80'
+      img: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80'
     }
   ];
 
@@ -134,11 +134,14 @@ export const Header: React.FC = () => {
               )}
             </div>
 
-            <Link to="/collections/t-shirts" className="text-black hover:text-[#FF5400] transition-colors">
-              T-Shirts
+            <Link to="/collections/overlength-t-shirts" className="text-black hover:text-[#FF5400] transition-colors">
+              Overlength
             </Link>
-            <Link to="/collections/hoodies" className="text-black hover:text-[#FF5400] transition-colors">
-              Hoodies
+            <Link to="/collections/waffle-boxy-fit-full-sleeves" className="text-black hover:text-[#FF5400] transition-colors">
+              Waffle Sleeves
+            </Link>
+            <Link to="/collections/acid-wash-t-shirts" className="text-black hover:text-[#FF5400] transition-colors">
+              Acid Wash
             </Link>
           </nav>
         </div>

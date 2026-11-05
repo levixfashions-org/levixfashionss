@@ -17,8 +17,120 @@ import {
   Search, 
   RotateCcw, 
   Filter,
-  Package
+  Package,
+  Sparkles
 } from 'lucide-react';
+
+export const PRODUCT_CATEGORIES = [
+  { 
+    name: 'Overlength T-Shirts', 
+    slug: 'overlength-t-shirts',
+    sampleName: 'Levix Signature Overlength Heavyweight Tee',
+    samplePrice: '3290',
+    sampleCompare: '3990',
+    defaultDesc: 'Signature elongated streetwear silhouette cut from custom-milled 280 GSM combed cotton jersey. Tailored with dropped shoulders and architectural drape extending past the hip line.',
+    defaultFabric: '100% Combed Single Jersey Cotton (280 GSM). Cold gentle wash inside out.',
+    defaultFit: 'Overlength dropped-shoulder drape. Designed to stack naturally over cargos and denim.',
+    defaultImage1: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=80',
+    defaultImage2: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=1000&q=80'
+  },
+  { 
+    name: 'Waffle Boxy Fit Full Sleeves', 
+    slug: 'waffle-boxy-fit-full-sleeves',
+    sampleName: 'Levix Thermal Waffle Boxy Full Sleeve',
+    samplePrice: '3990',
+    sampleCompare: '4690',
+    defaultDesc: 'Engineered from ultra-heavy 340 GSM thermal honeycomb waffle weave. Features wide dropped shoulders, dense 2x2 ribbed storm cuffs, and an exaggerated relaxed boxy torso.',
+    defaultFabric: '100% Heavyweight Thermal Waffle Cotton (340 GSM). Machine wash cold, dry flat.',
+    defaultFit: 'Generous boxy cut with substantial sleeve volume and structured silhouette.',
+    defaultImage1: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=1000&q=80',
+    defaultImage2: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=1000&q=80'
+  },
+  { 
+    name: 'Acid Wash T-Shirts', 
+    slug: 'acid-wash-t-shirts',
+    sampleName: 'Levix Mineral Acid Wash Distressed Tee',
+    samplePrice: '3490',
+    sampleCompare: '4290',
+    defaultDesc: 'Custom hand-treated mineral acid wash yielding unique cloudy charcoal patterns on heavy 280 GSM combed cotton. High-density typographic branding with subtle raw hem distress.',
+    defaultFabric: '100% Mineral Washed Combed Cotton (280 GSM). Wash separately in cold water.',
+    defaultFit: 'Vintage boxy oversized drape. Pre-shrunk to preserve architectural proportions.',
+    defaultImage1: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1000&q=80',
+    defaultImage2: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=80'
+  },
+  { 
+    name: 'T-Shirts', 
+    slug: 't-shirts',
+    sampleName: 'Levix Heavyweight Boxy T-Shirt',
+    samplePrice: '2999',
+    sampleCompare: '3499',
+    defaultDesc: 'Heavyweight 280 GSM combed cotton with architectural boxy drape and reinforced ribbed collar.',
+    defaultFabric: '100% Combed Cotton. Machine wash cold inside out. Dry in shade.',
+    defaultFit: 'Intentionally oversized boxy silhouette. Take your normal size for streetwear drape.',
+    defaultImage1: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=80',
+    defaultImage2: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=1000&q=80'
+  },
+  { 
+    name: 'Hoodies', 
+    slug: 'hoodies',
+    sampleName: 'Levix Heavyweight Boxy Hoodie',
+    samplePrice: '4990',
+    sampleCompare: '5990',
+    defaultDesc: 'Ultra-heavy 450 GSM diagonal fleece hoodie engineered for winter drape with double-layered hood.',
+    defaultFabric: '100% Organic Heavyweight Cotton Fleece (450 GSM). Machine wash cold.',
+    defaultFit: 'Boxy streetwear drape with dropped shoulder seams.',
+    defaultImage1: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1000&q=80',
+    defaultImage2: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=1000&q=80'
+  },
+  { 
+    name: 'Polos', 
+    slug: 'polos',
+    sampleName: 'Levix Heavyweight Pique Polo',
+    samplePrice: '3490',
+    sampleCompare: '4190',
+    defaultDesc: 'Crafted from heavyweight custom-milled 260 GSM pique cotton with mother-of-pearl buttons.',
+    defaultFabric: '100% Combed Pique Cotton. Cold machine wash inside out.',
+    defaultFit: 'Oversized streetwear drape with structured ribbed collar.',
+    defaultImage1: 'https://images.unsplash.com/photo-1625910513413-72210c598007?auto=format&fit=crop&w=1000&q=80',
+    defaultImage2: 'https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?auto=format&fit=crop&w=1000&q=80'
+  },
+  { 
+    name: 'Bottoms', 
+    slug: 'bottoms',
+    sampleName: 'Levix Tactical Ripstop Cargos',
+    samplePrice: '4490',
+    sampleCompare: '5290',
+    defaultDesc: 'Engineered utility trousers crafted from cross-woven tear-resistant ripstop cotton with 6 3D cargo pockets.',
+    defaultFabric: '100% Cotton Ripstop. Machine wash cold inside out.',
+    defaultFit: 'Relaxed straight leg with taper toggle options at the ankle.',
+    defaultImage1: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=1000&q=80',
+    defaultImage2: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1000&q=80'
+  },
+  { 
+    name: 'Bags & Accessories', 
+    slug: 'bags',
+    sampleName: 'Levix Jacquard Monogram Card Case',
+    samplePrice: '1990',
+    sampleCompare: '2490',
+    defaultDesc: 'Custom woven jacquard monogram card wallet with top grain leather edging.',
+    defaultFabric: 'Custom milled jacquard, hand-burnished edges.',
+    defaultFit: 'One Size Slim Profile.',
+    defaultImage1: 'https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=1000&q=80',
+    defaultImage2: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=1000&q=80'
+  },
+  { 
+    name: 'Caps', 
+    slug: 'caps',
+    sampleName: 'Levix 6-Panel Architectural Cap',
+    samplePrice: '1490',
+    sampleCompare: '1890',
+    defaultDesc: 'Structured 6-panel streetwear cap with high-density 3D embroidery and antique brass buckle closure.',
+    defaultFabric: '100% Heavy Cotton Twill.',
+    defaultFit: 'One Size Adjustable Strapback.',
+    defaultImage1: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=1000&q=80',
+    defaultImage2: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=1000&q=80'
+  }
+];
 
 export const AdminProductsPage: React.FC = () => {
   const { user, isAdmin, loading: authLoading } = useAuth();
@@ -75,18 +187,19 @@ export const AdminProductsPage: React.FC = () => {
     }
   }, [user, isAdmin, authLoading, navigate]);
 
-  const openAddModal = () => {
+  const applyPreset = (catName: string) => {
+    const found = PRODUCT_CATEGORIES.find(c => c.name === catName) || PRODUCT_CATEGORIES[0];
     setEditingProduct(null);
-    setName('');
-    setSlug('');
-    setCategoryName('T-Shirts');
-    setPriceINR('2999');
-    setComparePriceINR('3499');
-    setDescription('Heavyweight 280 GSM combed cotton with architectural boxy drape and reinforced ribbed collar.');
-    setFabricCare('100% Combed Cotton. Machine wash cold inside out. Dry in shade.');
-    setFitGuide('Intentionally oversized boxy silhouette. Take your normal size for streetwear drape.');
-    setImageUrl1('https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=80');
-    setImageUrl2('https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=1000&q=80');
+    setName(found.sampleName);
+    setSlug(found.sampleName.toLowerCase().replace(/[^a-z0-9]+/g, '-'));
+    setCategoryName(found.name);
+    setPriceINR(found.samplePrice);
+    setComparePriceINR(found.sampleCompare);
+    setDescription(found.defaultDesc);
+    setFabricCare(found.defaultFabric);
+    setFitGuide(found.defaultFit);
+    setImageUrl1(found.defaultImage1);
+    setImageUrl2(found.defaultImage2);
     setIsFeatured(true);
     setStockS('15');
     setStockM('20');
@@ -94,6 +207,10 @@ export const AdminProductsPage: React.FC = () => {
     setStockXL('10');
     setStockXXL('5');
     setShowModal(true);
+  };
+
+  const openAddModal = () => {
+    applyPreset('Overlength T-Shirts');
   };
 
   const openEditModal = (p: Product) => {
@@ -190,6 +307,11 @@ export const AdminProductsPage: React.FC = () => {
         { size: 'XXL', sku: `${finalSlug.toUpperCase().slice(0, 8)}-XXL`, stockQuantity: parseInt(stockXXL, 10) || 0, priceDelta: 0 }
       ];
 
+      const matchedCat = PRODUCT_CATEGORIES.find(c => c.name.toLowerCase() === categoryName.toLowerCase() || c.slug === categoryName.toLowerCase()) || {
+        name: categoryName,
+        slug: categoryName.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+      };
+
       const payload = {
         name: name.trim(),
         slug: finalSlug,
@@ -199,7 +321,9 @@ export const AdminProductsPage: React.FC = () => {
         basePrice: basePaise,
         comparePrice: comparePaise,
         isFeatured,
-        categoryId: categoryName.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+        categoryId: matchedCat.slug,
+        categoryName: matchedCat.name,
+        category: { id: matchedCat.slug, name: matchedCat.name, slug: matchedCat.slug },
         images,
         variants
       };
@@ -317,17 +441,27 @@ export const AdminProductsPage: React.FC = () => {
 
           {/* Category Filter Pills */}
           <div className="flex flex-wrap items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider">
-            {['ALL', 'FEATURED', 't-shirts', 'hoodies', 'cargos', 'bags'].map((cat) => (
+            {[
+              { label: 'ALL', value: 'ALL' },
+              { label: 'FEATURED', value: 'FEATURED' },
+              { label: 'OVERLENGTH TEES', value: 'overlength-t-shirts' },
+              { label: 'WAFFLE FULL SLEEVES', value: 'waffle-boxy-fit-full-sleeves' },
+              { label: 'ACID WASH TEES', value: 'acid-wash-t-shirts' },
+              { label: 'HOODIES', value: 'hoodies' },
+              { label: 'POLOS', value: 'polos' },
+              { label: 'CARGOS', value: 'cargos' },
+              { label: 'BAGS', value: 'bags' }
+            ].map((cat) => (
               <button
-                key={cat}
-                onClick={() => setCategoryFilter(cat)}
+                key={cat.value}
+                onClick={() => setCategoryFilter(cat.value)}
                 className={`px-3 py-1.5 rounded-xs transition-all ${
-                  categoryFilter === cat
+                  categoryFilter === cat.value
                     ? 'bg-black text-white'
                     : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
                 }`}
               >
-                {cat}
+                {cat.label}
               </button>
             ))}
           </div>
@@ -350,12 +484,24 @@ export const AdminProductsPage: React.FC = () => {
                 : 'Try adjusting your search query or category filter.'}
             </p>
             {products.length === 0 ? (
-              <div className="flex items-center justify-center gap-3 pt-2">
+              <div className="flex flex-wrap items-center justify-center gap-2.5 pt-3">
                 <button
-                  onClick={openAddModal}
-                  className="px-6 py-2.5 bg-[#FF5400] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#e04a00] transition-all shadow-sm cursor-pointer"
+                  onClick={() => applyPreset('Overlength T-Shirts')}
+                  className="px-4 py-2.5 bg-[#FF5400] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#e04a00] transition-all shadow-sm cursor-pointer"
                 >
-                  + Add First Product
+                  + Add Overlength Tee
+                </button>
+                <button
+                  onClick={() => applyPreset('Waffle Boxy Fit Full Sleeves')}
+                  className="px-4 py-2.5 bg-black text-white text-xs font-bold uppercase tracking-wider hover:bg-neutral-800 transition-all shadow-sm cursor-pointer"
+                >
+                  + Add Waffle Full Sleeve
+                </button>
+                <button
+                  onClick={() => applyPreset('Acid Wash T-Shirts')}
+                  className="px-4 py-2.5 bg-black text-white text-xs font-bold uppercase tracking-wider hover:bg-neutral-800 transition-all shadow-sm cursor-pointer"
+                >
+                  + Add Acid Wash Tee
                 </button>
               </div>
             ) : (
@@ -504,6 +650,31 @@ export const AdminProductsPage: React.FC = () => {
               </button>
             </div>
 
+            {!editingProduct && (
+              <div className="bg-neutral-50 p-3.5 border border-black/10 space-y-2">
+                <div className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider text-[#FF5400] font-bold">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>Quick Category Presets (1-Click Specifications):</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {PRODUCT_CATEGORIES.map((cat) => (
+                    <button
+                      key={cat.slug}
+                      type="button"
+                      onClick={() => applyPreset(cat.name)}
+                      className={`px-2.5 py-1 text-[10px] font-bold uppercase border transition-all cursor-pointer ${
+                        categoryName === cat.name
+                          ? 'bg-black text-white border-black'
+                          : 'bg-white text-neutral-700 border-neutral-300 hover:border-black'
+                      }`}
+                    >
+                      + {cat.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <form onSubmit={handleSave} className="space-y-5 text-xs">
               
               {/* Product Name & Slug */}
@@ -544,15 +715,27 @@ export const AdminProductsPage: React.FC = () => {
                   </label>
                   <select
                     value={categoryName}
-                    onChange={(e) => setCategoryName(e.target.value)}
+                    onChange={(e) => {
+                      const newCat = e.target.value;
+                      setCategoryName(newCat);
+                      const catObj = PRODUCT_CATEGORIES.find(c => c.name === newCat);
+                      if (catObj && !editingProduct) {
+                        setDescription(catObj.defaultDesc);
+                        setFabricCare(catObj.defaultFabric);
+                        setFitGuide(catObj.defaultFit);
+                        setPriceINR(catObj.samplePrice);
+                        setComparePriceINR(catObj.sampleCompare);
+                        setImageUrl1(catObj.defaultImage1);
+                        setImageUrl2(catObj.defaultImage2);
+                      }
+                    }}
                     className="w-full border border-black/20 p-2.5 bg-white font-medium focus:border-black focus:outline-none uppercase"
                   >
-                    <option value="T-Shirts">T-Shirts</option>
-                    <option value="Hoodies">Hoodies & Fleece</option>
-                    <option value="Polos">Polos</option>
-                    <option value="Bottoms">Bottoms & Cargos</option>
-                    <option value="Bags & Accessories">Bags & Leather</option>
-                    <option value="Caps">Caps & Headwear</option>
+                    {PRODUCT_CATEGORIES.map((c) => (
+                      <option key={c.slug} value={c.name}>
+                        {c.name}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div>

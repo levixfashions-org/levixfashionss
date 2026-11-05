@@ -46,6 +46,36 @@ async function main() {
         description: 'Military ripstop and technical utility cargos',
         imageUrl: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=800&q=80'
       }
+    }),
+    prisma.category.upsert({
+      where: { slug: 'overlength-t-shirts' },
+      update: {},
+      create: {
+        name: 'Overlength T-Shirts',
+        slug: 'overlength-t-shirts',
+        description: 'Elongated architectural drape and dropped-shoulder streetwear tees',
+        imageUrl: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80'
+      }
+    }),
+    prisma.category.upsert({
+      where: { slug: 'waffle-boxy-fit-full-sleeves' },
+      update: {},
+      create: {
+        name: 'Waffle Boxy Fit Full Sleeves',
+        slug: 'waffle-boxy-fit-full-sleeves',
+        description: 'Heavyweight thermal waffle knit long sleeves with boxy streetwear proportions',
+        imageUrl: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80'
+      }
+    }),
+    prisma.category.upsert({
+      where: { slug: 'acid-wash-t-shirts' },
+      update: {},
+      create: {
+        name: 'Acid Wash T-Shirts',
+        slug: 'acid-wash-t-shirts',
+        description: 'Vintage hand-treated mineral and acid wash heavyweight tees',
+        imageUrl: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80'
+      }
     })
   ]);
 

@@ -57,7 +57,18 @@ export const CollectionDetailPage: React.FC = () => {
 
   const filteredProducts = activeCategory === 'all'
     ? products
-    : products.filter(p => p.category?.slug === activeCategory);
+    : products.filter(p => {
+        const catSlug = p.category?.slug?.toLowerCase() || '';
+        const catName = p.category?.name?.toLowerCase() || '';
+        const target = activeCategory.toLowerCase();
+        return (
+          catSlug === target ||
+          catName === target ||
+          catSlug.includes(target) ||
+          catName.includes(target) ||
+          (target === 'cargos' && (catSlug === 'bottoms' || catSlug === 'cargos'))
+        );
+      });
 
   return (
     <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12 py-8 space-y-8">
@@ -85,13 +96,16 @@ export const CollectionDetailPage: React.FC = () => {
       <div className="flex flex-wrap items-center justify-between gap-4 py-3 border-b border-black/10 text-xs">
         
         {/* Category Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
           {[
             { label: 'All Pieces', slug: 'all' },
+            { label: 'Overlength Tees', slug: 'overlength-t-shirts' },
+            { label: 'Waffle Full Sleeves', slug: 'waffle-boxy-fit-full-sleeves' },
+            { label: 'Acid Wash Tees', slug: 'acid-wash-t-shirts' },
             { label: 'T-Shirts', slug: 't-shirts' },
             { label: 'Hoodies', slug: 'hoodies' },
             { label: 'Polos', slug: 'polos' },
-            { label: 'Cargos', slug: 'bottoms' }
+            { label: 'Cargos', slug: 'cargos' }
           ].map((cat) => (
             <button
               key={cat.slug}

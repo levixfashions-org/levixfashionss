@@ -84,38 +84,38 @@ export const MobileNavDrawer: React.FC = () => {
                 className="w-full flex items-center justify-between text-left py-1 hover:text-neutral-600 transition-colors"
               >
                 <span>New Arrivals</span>
-                <span className="text-[9px] bg-black text-white px-1.5 py-0.2 font-mono">2026</span>
+                <span className="text-[9px] bg-[#FF5400] text-white px-1.5 py-0.2 font-mono">2026</span>
               </button>
 
               <button
-                onClick={() => handleNav('/collections/t-shirts')}
-                className="w-full flex items-center justify-between text-left py-1 hover:text-neutral-600 transition-colors"
+                onClick={() => handleNav('/collections/overlength-t-shirts')}
+                className="w-full flex items-center justify-between text-left py-1 hover:text-[#FF5400] transition-colors"
               >
-                <span>T-Shirts & Tops</span>
+                <span>Overlength T-Shirts</span>
                 <ChevronRight className="w-4 h-4 text-neutral-400" />
               </button>
 
               <button
-                onClick={() => handleNav('/collections/winter-collection')}
-                className="w-full flex items-center justify-between text-left py-1 hover:text-neutral-600 transition-colors"
+                onClick={() => handleNav('/collections/waffle-boxy-fit-full-sleeves')}
+                className="w-full flex items-center justify-between text-left py-1 hover:text-[#FF5400] transition-colors"
               >
-                <span>Winter Collection 2025</span>
+                <span>Waffle Boxy Full Sleeves</span>
                 <ChevronRight className="w-4 h-4 text-neutral-400" />
               </button>
 
               <button
-                onClick={() => handleNav('/collections/levix-racing-club')}
-                className="w-full flex items-center justify-between text-left py-1 hover:text-neutral-600 transition-colors"
+                onClick={() => handleNav('/collections/acid-wash-t-shirts')}
+                className="w-full flex items-center justify-between text-left py-1 hover:text-[#FF5400] transition-colors"
               >
-                <span>Levix Racing Club</span>
+                <span>Acid Wash T-Shirts</span>
                 <ChevronRight className="w-4 h-4 text-neutral-400" />
               </button>
 
               <button
-                onClick={() => handleNav('/collections/summer-basics')}
+                onClick={() => handleNav('/collections/hoodies')}
                 className="w-full flex items-center justify-between text-left py-1 hover:text-neutral-600 transition-colors"
               >
-                <span>Basics</span>
+                <span>Hoodies & Outerwear</span>
                 <ChevronRight className="w-4 h-4 text-neutral-400" />
               </button>
 
@@ -123,7 +123,7 @@ export const MobileNavDrawer: React.FC = () => {
                 onClick={() => handleNav('/collections/all-products')}
                 className="w-full flex items-center justify-between text-left py-1 hover:text-neutral-600 transition-colors"
               >
-                <span>Icons Archive</span>
+                <span>Explore Full Archive</span>
                 <ChevronRight className="w-4 h-4 text-neutral-400" />
               </button>
             </div>
@@ -141,12 +141,13 @@ export const MobileNavDrawer: React.FC = () => {
               {isTopOpen && (
                 <div className="pl-2 pt-1 space-y-2 text-neutral-700 text-xs font-normal">
                   {[
-                    { label: 'T-shirts', slug: 't-shirts' },
+                    { label: 'Overlength T-Shirts', slug: 'overlength-t-shirts' },
+                    { label: 'Waffle Boxy Full Sleeves', slug: 'waffle-boxy-fit-full-sleeves' },
+                    { label: 'Acid Wash T-Shirts', slug: 'acid-wash-t-shirts' },
+                    { label: 'Standard T-Shirts', slug: 't-shirts' },
                     { label: 'Polos', slug: 'polos' },
-                    { label: 'Shirts', slug: 't-shirts' },
-                    { label: 'Sweatshirts', slug: 'hoodies' },
-                    { label: 'Hoodies', slug: 'hoodies' },
-                    { label: 'Jackets', slug: 'winter-collection' }
+                    { label: 'Sweatshirts & Fleece', slug: 'hoodies' },
+                    { label: 'Hoodies', slug: 'hoodies' }
                   ].map((cat) => (
                     <button
                       key={cat.label}

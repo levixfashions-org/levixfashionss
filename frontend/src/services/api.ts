@@ -190,6 +190,27 @@ export const saveStoredOrders = (ords: any[]) => {
 
 export const MOCK_COLLECTIONS: Collection[] = [
   {
+    id: 'col_overlength',
+    name: 'Overlength T-Shirts',
+    slug: 'overlength-t-shirts',
+    description: 'Elongated architectural drape and dropped-shoulder streetwear silhouettes.',
+    bannerImageUrl: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1400&q=80'
+  },
+  {
+    id: 'col_waffle',
+    name: 'Waffle Boxy Fit Full Sleeves',
+    slug: 'waffle-boxy-fit-full-sleeves',
+    description: 'Heavyweight thermal waffle weave knit with exaggerated boxy fit.',
+    bannerImageUrl: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=1400&q=80'
+  },
+  {
+    id: 'col_acidwash',
+    name: 'Acid Wash T-Shirts',
+    slug: 'acid-wash-t-shirts',
+    description: 'Vintage hand-treated mineral and acid wash textiles with distressed aesthetics.',
+    bannerImageUrl: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1400&q=80'
+  },
+  {
     id: 'col_1',
     name: 'LEVIX ATELIER CAPSULE',
     slug: 'levix-atelier-capsule',
@@ -321,8 +342,14 @@ export const apiClient = {
       if (search) {
         prods = prods.filter(p => p.name.toLowerCase().includes(search) || p.description.toLowerCase().includes(search));
       }
-      if (cat) {
-        prods = prods.filter(p => p.category?.slug === cat);
+      if (cat && cat !== 'all') {
+        const catClean = cat.toLowerCase();
+        prods = prods.filter(p => 
+          p.category?.slug?.toLowerCase() === catClean ||
+          p.category?.id?.toLowerCase() === catClean ||
+          p.category?.name?.toLowerCase() === catClean ||
+          p.category?.name?.toLowerCase().replace(/[^a-z0-9]+/g, '-') === catClean
+        );
       }
       return { data: { products: prods, pagination: { total: prods.length } } as any, status: 200 };
     }
@@ -346,11 +373,26 @@ export const apiClient = {
       const slug = path.replace('/collections/', '');
       const col = MOCK_COLLECTIONS.find(c => c.slug === slug) || {
         id: slug,
-        name: slug.toUpperCase(),
+        name: slug.replace(/-/g, ' ').toUpperCase(),
         slug: slug,
         description: 'Curated streetwear archive.'
       };
-      return { data: { collection: col, products: MOCK_PRODUCTS } as any, status: 200 };
+
+      let prods = MOCK_PRODUCTS;
+      if (slug !== 'all-products' && slug !== 'new-in') {
+        const catClean = slug.toLowerCase();
+        const matched = MOCK_PRODUCTS.filter(p => 
+          p.category?.slug?.toLowerCase() === catClean ||
+          p.category?.id?.toLowerCase() === catClean ||
+          p.category?.name?.toLowerCase() === catClean ||
+          p.category?.name?.toLowerCase().replace(/[^a-z0-9]+/g, '-') === catClean
+        );
+        if (matched.length > 0) {
+          prods = matched;
+        }
+      }
+
+      return { data: { collection: col, products: prods } as any, status: 200 };
     }
 
     // Cart
@@ -463,7 +505,11 @@ export const apiClient = {
         comparePrice: body.comparePrice || null,
         isFeatured: Boolean(body.isFeatured),
         isActive: true,
-        category: { id: body.categoryId || 'cat_tees', name: 'Streetwear', slug: 'streetwear' },
+        category: body.category || { 
+          id: body.categoryId || 'overlength-t-shirts', 
+          name: body.categoryName || 'Overlength T-Shirts', 
+          slug: body.categoryId || 'overlength-t-shirts' 
+        },
         images: body.images || [{ id: 'img_' + Date.now(), url: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=80', isCover: true, sortOrder: 0 }],
         variants: body.variants || [
           { id: 'var_s_' + Date.now(), productId: 'prod_' + Date.now(), size: 'S', sku: 'LVX-S', stockQuantity: 10, priceDelta: 0 },
@@ -485,6 +531,14 @@ export const apiClient = {
         MOCK_PRODUCTS[pIdx] = {
           ...MOCK_PRODUCTS[pIdx],
           ...body,
+          ...(body.category && { category: body.category }),
+          ...(body.categoryName && { 
+            category: { 
+              id: body.categoryId || body.categoryName.toLowerCase().replace(/[^a-z0-9]+/g, '-'), 
+              name: body.categoryName, 
+              slug: body.categoryId || body.categoryName.toLowerCase().replace(/[^a-z0-9]+/g, '-') 
+            } 
+          }),
           ...(body.images && { images: body.images }),
           ...(body.variants && { variants: body.variants })
         };
