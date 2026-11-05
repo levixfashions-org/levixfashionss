@@ -8,9 +8,6 @@ export const MobileNavDrawer: React.FC = () => {
   const { isMobileNavOpen, closeMobileNav, openCart } = useCartStore();
   const { user, isAdmin, logout } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
-  const [isTopOpen, setIsTopOpen] = useState(false);
-  const [isBottomOpen, setIsBottomOpen] = useState(false);
-  const [isAccOpen, setIsAccOpen] = useState(false);
   const [isColorOpen, setIsColorOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -77,7 +74,7 @@ export const MobileNavDrawer: React.FC = () => {
           {/* Nav List */}
           <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-6 text-xs sm:text-sm font-semibold uppercase tracking-wider text-black">
             
-            {/* Top Featured Drops */}
+            {/* Primary Category Drops */}
             <div className="space-y-3 pb-4 border-b border-black/10">
               <button
                 onClick={() => handleNav('/collections/new-in')}
@@ -112,111 +109,12 @@ export const MobileNavDrawer: React.FC = () => {
               </button>
 
               <button
-                onClick={() => handleNav('/collections/hoodies')}
-                className="w-full flex items-center justify-between text-left py-1 hover:text-neutral-600 transition-colors"
-              >
-                <span>Hoodies & Outerwear</span>
-                <ChevronRight className="w-4 h-4 text-neutral-400" />
-              </button>
-
-              <button
                 onClick={() => handleNav('/collections/all-products')}
                 className="w-full flex items-center justify-between text-left py-1 hover:text-neutral-600 transition-colors"
               >
                 <span>Explore Full Archive</span>
                 <ChevronRight className="w-4 h-4 text-neutral-400" />
               </button>
-            </div>
-
-            {/* 1. Accordion: Top */}
-            <div className="space-y-1.5 pb-3 border-b border-black/10">
-              <button
-                onClick={() => setIsTopOpen(!isTopOpen)}
-                className="w-full flex items-center justify-between text-left py-1 text-black font-semibold text-xs tracking-wider uppercase"
-              >
-                <span>Top</span>
-                {isTopOpen ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4 text-neutral-400" />}
-              </button>
-              
-              {isTopOpen && (
-                <div className="pl-2 pt-1 space-y-2 text-neutral-700 text-xs font-normal">
-                  {[
-                    { label: 'Overlength T-Shirts', slug: 'overlength-t-shirts' },
-                    { label: 'Waffle Boxy Full Sleeves', slug: 'waffle-boxy-fit-full-sleeves' },
-                    { label: 'Acid Wash T-Shirts', slug: 'acid-wash-t-shirts' },
-                    { label: 'Standard T-Shirts', slug: 't-shirts' },
-                    { label: 'Polos', slug: 'polos' },
-                    { label: 'Sweatshirts & Fleece', slug: 'hoodies' },
-                    { label: 'Hoodies', slug: 'hoodies' }
-                  ].map((cat) => (
-                    <button
-                      key={cat.label}
-                      onClick={() => handleNav(`/collections/${cat.slug}`)}
-                      className="block w-full text-left py-0.5 hover:text-black text-[12px]"
-                    >
-                      {cat.label}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* 2. Accordion: Bottom */}
-            <div className="space-y-1.5 pb-3 border-b border-black/10">
-              <button
-                onClick={() => setIsBottomOpen(!isBottomOpen)}
-                className="w-full flex items-center justify-between text-left py-1 text-black font-semibold text-xs tracking-wider uppercase"
-              >
-                <span>Bottom</span>
-                {isBottomOpen ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4 text-neutral-400" />}
-              </button>
-              
-              {isBottomOpen && (
-                <div className="pl-2 pt-1 space-y-2 text-neutral-700 text-xs font-normal">
-                  {[
-                    { label: 'Cargos', slug: 'bottoms' },
-                    { label: 'Jeans', slug: 'bottoms' },
-                    { label: 'Pants', slug: 'bottoms' },
-                    { label: 'Shorts', slug: 'bottoms' }
-                  ].map((cat) => (
-                    <button
-                      key={cat.label}
-                      onClick={() => handleNav(`/collections/${cat.slug}`)}
-                      className="block w-full text-left py-0.5 hover:text-black text-[12px]"
-                    >
-                      {cat.label}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* 3. Accordion: Accessories */}
-            <div className="space-y-1.5 pb-3 border-b border-black/10">
-              <button
-                onClick={() => setIsAccOpen(!isAccOpen)}
-                className="w-full flex items-center justify-between text-left py-1 text-black font-semibold text-xs tracking-wider uppercase"
-              >
-                <span>Accessories</span>
-                {isAccOpen ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4 text-neutral-400" />}
-              </button>
-              
-              {isAccOpen && (
-                <div className="pl-2 pt-1 space-y-2 text-neutral-700 text-xs font-normal">
-                  {[
-                    { label: 'Bags & Totes', slug: 'bags' },
-                    { label: 'Caps & Beanies', slug: 'caps' }
-                  ].map((acc) => (
-                    <button
-                      key={acc.label}
-                      onClick={() => handleNav(`/collections/${acc.slug}`)}
-                      className="block w-full text-left py-0.5 hover:text-black text-[12px]"
-                    >
-                      {acc.label}
-                    </button>
-                  ))}
-                </div>
-              )}
             </div>
 
             {/* 4. Accordion: Shop by color */}

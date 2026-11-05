@@ -65,8 +65,7 @@ export const CollectionDetailPage: React.FC = () => {
           catSlug === target ||
           catName === target ||
           catSlug.includes(target) ||
-          catName.includes(target) ||
-          (target === 'cargos' && (catSlug === 'bottoms' || catSlug === 'cargos'))
+          catName.includes(target)
         );
       });
 
@@ -99,13 +98,9 @@ export const CollectionDetailPage: React.FC = () => {
         <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
           {[
             { label: 'All Pieces', slug: 'all' },
-            { label: 'Overlength Tees', slug: 'overlength-t-shirts' },
-            { label: 'Waffle Full Sleeves', slug: 'waffle-boxy-fit-full-sleeves' },
-            { label: 'Acid Wash Tees', slug: 'acid-wash-t-shirts' },
-            { label: 'T-Shirts', slug: 't-shirts' },
-            { label: 'Hoodies', slug: 'hoodies' },
-            { label: 'Polos', slug: 'polos' },
-            { label: 'Cargos', slug: 'cargos' }
+            { label: 'Overlength T-Shirts', slug: 'overlength-t-shirts' },
+            { label: 'Waffle Boxy Fit Full Sleeves', slug: 'waffle-boxy-fit-full-sleeves' },
+            { label: 'Acid Wash T-Shirts', slug: 'acid-wash-t-shirts' }
           ].map((cat) => (
             <button
               key={cat.slug}

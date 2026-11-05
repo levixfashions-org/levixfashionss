@@ -17,17 +17,17 @@ const DEFAULT_PRODUCTS: Product[] = [];
 
 export const SAMPLE_LEVIX_DROP: Product = {
   id: 'prod_atelier_01',
-  name: 'Levix Heavyweight Boxy T-Shirt',
-  slug: 'levix-heavyweight-boxy-tshirt',
-  description: 'Signature dropped-shoulder heavyweight tee with architectural boxy drape, high-density screen print and vintage mineral wash finish.',
+  name: 'Levix Signature Overlength Heavyweight Tee',
+  slug: 'levix-signature-overlength-tee',
+  description: 'Signature elongated dropped-shoulder heavyweight tee with architectural drape and custom-milled 280 GSM jersey.',
   details: '280 GSM luxury combed single jersey, seamless ribbed neck band, twin-needle hem finishing.',
-  fabricCare: '100% Premium Cotton. Reverse wash cold. Iron on reverse side only.',
-  fitGuide: 'Intentionally oversized boxy silhouette. Size down for a regular fit.',
-  basePrice: 299900,
-  comparePrice: 349900,
+  fabricCare: '100% Combed Single Jersey Cotton (280 GSM). Cold gentle wash inside out.',
+  fitGuide: 'Overlength dropped-shoulder drape. Designed to stack naturally over denim.',
+  basePrice: 329000,
+  comparePrice: 399000,
   isFeatured: true,
   isActive: true,
-  category: { id: 'cat_tees', name: 'T-Shirts', slug: 't-shirts' },
+  category: { id: 'overlength-t-shirts', name: 'Overlength T-Shirts', slug: 'overlength-t-shirts' },
   images: [
     { id: 'img_sample_1', url: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=80', sortOrder: 0, isCover: true },
     { id: 'img_sample_2', url: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=1000&q=80', sortOrder: 1, isCover: false }
@@ -193,14 +193,14 @@ export const MOCK_COLLECTIONS: Collection[] = [
     id: 'col_overlength',
     name: 'Overlength T-Shirts',
     slug: 'overlength-t-shirts',
-    description: 'Elongated architectural drape and dropped-shoulder streetwear silhouettes.',
+    description: 'Elongated architectural drape and dropped-shoulder streetwear silhouettes cut from custom-milled combed cotton.',
     bannerImageUrl: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1400&q=80'
   },
   {
     id: 'col_waffle',
     name: 'Waffle Boxy Fit Full Sleeves',
     slug: 'waffle-boxy-fit-full-sleeves',
-    description: 'Heavyweight thermal waffle weave knit with exaggerated boxy fit.',
+    description: 'Heavyweight thermal waffle weave knit long sleeves with exaggerated boxy fit.',
     bannerImageUrl: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=1400&q=80'
   },
   {
@@ -209,55 +209,6 @@ export const MOCK_COLLECTIONS: Collection[] = [
     slug: 'acid-wash-t-shirts',
     description: 'Vintage hand-treated mineral and acid wash textiles with distressed aesthetics.',
     bannerImageUrl: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1400&q=80'
-  },
-  {
-    id: 'col_1',
-    name: 'LEVIX ATELIER CAPSULE',
-    slug: 'levix-atelier-capsule',
-    description: 'Exclusive limited-edition drops featuring signature architectural silhouettes.',
-    bannerImageUrl: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1400&q=80'
-  },
-  {
-    id: 'col_2',
-    name: 'Levix Racing Club',
-    slug: 'levix-racing-club',
-    description: 'Motorsport heritage cut in signature boxy aesthetics.',
-    bannerImageUrl: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1400&q=80'
-  },
-  {
-    id: 'col_3',
-    name: 'Winter Collection 2025',
-    slug: 'winter-collection',
-    description: 'Thermal heavyweight hoodies, knitwear and cargos.',
-    bannerImageUrl: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1400&q=80'
-  },
-  {
-    id: 'col_4',
-    name: 'Bags & Leather Goods',
-    slug: 'bags',
-    description: 'Custom woven jacquards and pebble grain bovine leather accessories.',
-    bannerImageUrl: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=1400&q=80'
-  },
-  {
-    id: 'col_5',
-    name: 'Architectural Headwear & Caps',
-    slug: 'caps',
-    description: 'Structured 6-panel streetwear caps with high-density 3D embroidery.',
-    bannerImageUrl: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=1400&q=80'
-  },
-  {
-    id: 'col_6',
-    name: 'Yacht Collection',
-    slug: 'yacht-collection',
-    description: 'High-octane coastal streetwear and resort tailoring.',
-    bannerImageUrl: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1400&q=80'
-  },
-  {
-    id: 'col_7',
-    name: 'Levix Basics',
-    slug: 'summer-basics',
-    description: 'Daily custom combed cotton staples with architectural proportions.',
-    bannerImageUrl: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1400&q=80'
   }
 ];
 

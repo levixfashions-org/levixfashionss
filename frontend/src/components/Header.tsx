@@ -37,21 +37,6 @@ export const Header: React.FC = () => {
       title: 'Acid Wash T-Shirts',
       handle: 'acid-wash-t-shirts',
       img: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80'
-    },
-    {
-      title: 'Heavyweight Hoodies',
-      handle: 'hoodies',
-      img: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80'
-    },
-    {
-      title: 'Utility Cargos',
-      handle: 'cargos',
-      img: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80'
-    },
-    {
-      title: 'Bags & Leather Goods',
-      handle: 'bags',
-      img: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80'
     }
   ];
 

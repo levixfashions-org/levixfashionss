@@ -33,59 +33,41 @@ export const HomePage: React.FC = () => {
 
   const editorialCollections = [
     {
-      name: 'BAGS & LEATHER',
-      title: 'Levix Bags & Leather Goods',
-      img: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=1200&q=80',
-      handle: 'bags'
-    },
-    {
-      name: 'HEADWEAR & CAPS',
-      title: 'Architectural Headwear',
-      img: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=1200&q=80',
-      handle: 'caps'
-    },
-    {
-      name: 'POLOS & TOPS',
-      title: 'Heritage Heavyweight Pique Polos',
-      img: 'https://images.unsplash.com/photo-1625910513413-72210c598007?auto=format&fit=crop&w=1200&q=80',
-      handle: 'polos'
-    },
-    {
-      name: 'WINTER CAPSULE',
-      title: '450 GSM Diagonal French Terry Fleece',
-      img: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1200&q=80',
-      handle: 'winter-collection'
-    },
-    {
-      name: 'RACING HERITAGE',
-      title: 'Motorsport Geometry & Tactical Ripstop',
-      img: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1200&q=80',
-      handle: 'levix-racing-club'
-    },
-    {
-      name: 'DAILY BASICS',
-      title: 'Daily Oversized Combed Cotton Staples',
+      name: 'OVERLENGTH TEES',
+      title: 'Levix Signature Overlength Heavyweight T-Shirts',
       img: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1200&q=80',
-      handle: 'summer-basics'
+      handle: 'overlength-t-shirts'
+    },
+    {
+      name: 'WAFFLE FULL SLEEVES',
+      title: 'Levix Heavyweight Thermal Waffle Boxy Full Sleeves',
+      img: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=1200&q=80',
+      handle: 'waffle-boxy-fit-full-sleeves'
+    },
+    {
+      name: 'ACID WASH TEES',
+      title: 'Levix Vintage Hand-Treated Mineral Acid Wash Tees',
+      img: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1200&q=80',
+      handle: 'acid-wash-t-shirts'
     }
   ];
 
   const faqs = [
     {
       title: 'Feel the Luxury of Premium Streetwear with LEVIX - Architectural Streetwear',
-      content: 'Levix is an independent luxury streetwear atelier founded on architectural tailoring, heavy custom-milled textiles, and provocative cultural narratives. Every silhouette is patterned with dropped shoulders, structured proportions, and custom-milled 260-450 GSM cottons designed to preserve volume and drape over years of wear.'
+      content: 'Levix is an independent luxury streetwear atelier founded on architectural tailoring, heavy custom-milled textiles, and provocative cultural narratives. Every silhouette is patterned with dropped shoulders, structured proportions, and custom-milled 280-340 GSM cottons designed to preserve volume and drape over years of wear.'
     },
     {
       title: 'What is Gender Neutral Streetwear Fashion?',
-      content: 'Gender-neutral streetwear prioritizes structure, volume, fabric weight, and silhouette over traditional gender classifications. By adopting generous cuts, dropped armholes, and relaxed straight-leg cargo proportions, Levix garments are universally tailored for all genders.'
+      content: 'Gender-neutral streetwear prioritizes structure, volume, fabric weight, and silhouette over traditional gender classifications. By adopting generous cuts, dropped armholes, and relaxed overlength drape, Levix garments are universally tailored for all genders.'
     },
     {
       title: 'What Makes LEVIX Unique Among Streetwear Brands in India?',
-      content: 'Levix manufactures everything from proprietary custom yarn-dyed textiles, heavy loopback French terry, and tear-resistant tactical ripstop. Every drop is produced in strictly limited quantities, ensuring unmatched individuality, high collectors value, and luxury finish.'
+      content: 'Levix manufactures exclusively with custom-milled 280 GSM combed cotton single jerseys and dense 340 GSM thermal honeycomb waffle weaves. Every drop is produced in strictly limited quantities, ensuring unmatched individuality, high collectors value, and luxury finish.'
     },
     {
-      title: 'Explore a Curated Range of Luxury Streetwear Clothing',
-      content: 'From our 450 GSM French terry hoodies and custom pique polos to modular multi-pocket cargo pants and exclusive streetwear capsules, our atelier continuously redefines high-end contemporary fashion in India.'
+      title: 'Explore Our Signature Streetwear Categories',
+      content: 'Explore our dedicated core categories: Signature Overlength T-Shirts, Heavyweight Waffle Boxy Fit Full Sleeves, and Hand-Treated Mineral Acid Wash Distressed Tees engineered for everyday luxury wear.'
     },
     {
       title: 'FAQS: Shipping, Returns & Authenticity',
@@ -94,8 +76,7 @@ export const HomePage: React.FC = () => {
   ];
 
   const popularSearches = [
-    'Overlength T-Shirts', 'Waffle Boxy Full Sleeves', 'Acid Wash T-Shirts',
-    'Heavyweight Hoodies', 'Tactical Cargos', 'Heritage Polos'
+    'Overlength T-Shirts', 'Waffle Boxy Fit Full Sleeves', 'Acid Wash T-Shirts'
   ];
 
   return (

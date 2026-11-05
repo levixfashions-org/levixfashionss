@@ -5,48 +5,8 @@ const prisma = new PrismaClient();
 async function main() {
   console.log('Seeding Levix production database with authentic catalog...');
 
-  // 1. Categories
+  // 1. Categories - Strictly the 3 Core Brand Categories
   const categories = await Promise.all([
-    prisma.category.upsert({
-      where: { slug: 't-shirts' },
-      update: {},
-      create: {
-        name: 'T-Shirts',
-        slug: 't-shirts',
-        description: 'Heavyweight graphic and essential oversized tees',
-        imageUrl: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80'
-      }
-    }),
-    prisma.category.upsert({
-      where: { slug: 'polos' },
-      update: {},
-      create: {
-        name: 'Polo T-Shirts',
-        slug: 'polos',
-        description: 'Refined knit and pique streetwear polo silhouettes',
-        imageUrl: 'https://images.unsplash.com/photo-1625910513413-72210c598007?auto=format&fit=crop&w=800&q=80'
-      }
-    }),
-    prisma.category.upsert({
-      where: { slug: 'hoodies' },
-      update: {},
-      create: {
-        name: 'Hoodies & Sweatshirts',
-        slug: 'hoodies',
-        description: '450 GSM French terry fleece outerwear',
-        imageUrl: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80'
-      }
-    }),
-    prisma.category.upsert({
-      where: { slug: 'bottoms' },
-      update: {},
-      create: {
-        name: 'Bottoms & Cargos',
-        slug: 'bottoms',
-        description: 'Military ripstop and technical utility cargos',
-        imageUrl: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=800&q=80'
-      }
-    }),
     prisma.category.upsert({
       where: { slug: 'overlength-t-shirts' },
       update: {},
@@ -81,37 +41,37 @@ async function main() {
 
   // 2. Collections
   const atelierCollection = await prisma.collection.upsert({
-    where: { slug: 'levix-atelier-capsule' },
+    where: { slug: 'overlength-t-shirts' },
     update: {},
     create: {
-      name: 'LEVIX ATELIER CAPSULE',
-      slug: 'levix-atelier-capsule',
-      description: 'Exclusive limited-edition drops featuring signature architectural silhouettes.',
-      bannerImageUrl: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1400&q=80',
+      name: 'Overlength T-Shirts',
+      slug: 'overlength-t-shirts',
+      description: 'Elongated architectural drape and dropped-shoulder streetwear silhouettes.',
+      bannerImageUrl: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1400&q=80',
       isActive: true
     }
   });
 
   const racingCollection = await prisma.collection.upsert({
-    where: { slug: 'levix-racing-club' },
+    where: { slug: 'waffle-boxy-fit-full-sleeves' },
     update: {},
     create: {
-      name: 'Levix Racing Club',
-      slug: 'levix-racing-club',
-      description: 'Motorsport heritage cut in signature boxy aesthetics.',
-      bannerImageUrl: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1400&q=80',
+      name: 'Waffle Boxy Fit Full Sleeves',
+      slug: 'waffle-boxy-fit-full-sleeves',
+      description: 'Heavyweight thermal waffle weave knit long sleeves with exaggerated boxy fit.',
+      bannerImageUrl: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=1400&q=80',
       isActive: true
     }
   });
 
   const winterCollection = await prisma.collection.upsert({
-    where: { slug: 'winter-collection' },
+    where: { slug: 'acid-wash-t-shirts' },
     update: {},
     create: {
-      name: 'Winter Collection 2025',
-      slug: 'winter-collection',
-      description: 'Thermal heavyweight hoodies, knitwear and cargos.',
-      bannerImageUrl: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1400&q=80',
+      name: 'Acid Wash T-Shirts',
+      slug: 'acid-wash-t-shirts',
+      description: 'Vintage hand-treated mineral and acid wash textiles with distressed aesthetics.',
+      bannerImageUrl: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1400&q=80',
       isActive: true
     }
   });
@@ -119,92 +79,58 @@ async function main() {
   // 3. Products
   const productsData = [
     {
-      name: 'Levix Cherry Blossom Polo T-Shirt',
-      slug: 'cherry-blossom-polo-t-shirt',
-      description: 'Crafted from heavyweight custom-milled 260 GSM pique cotton with detailed cherry blossom floral embroidery across the chest and Levix typographic branding.',
-      details: 'Tailored oversized fit, ribbed collar, Mother-of-pearl buttons, split hem with reinforced herringbone tape.',
-      fabricCare: '100% Combed Pique Cotton. Cold machine wash inside out. Do not tumble dry. Dry in shade.',
-      fitGuide: 'Oversized Streetwear Fit. Model is 6 ft 1 in wearing size L for a relaxed drape.',
-      basePrice: 499000, // Rs. 4,990
-      comparePrice: 599000,
+      name: 'Levix Signature Overlength Heavyweight Tee',
+      slug: 'levix-signature-overlength-tee',
+      description: 'Signature elongated streetwear silhouette cut from custom-milled 280 GSM combed cotton jersey. Tailored with dropped shoulders and architectural drape extending past the hip line.',
+      details: '280 GSM luxury combed single jersey, seamless ribbed neck band, twin-needle hem finishing.',
+      fabricCare: '100% Combed Single Jersey Cotton (280 GSM). Cold gentle wash inside out.',
+      fitGuide: 'Overlength dropped-shoulder drape. Designed to stack naturally over streetwear trousers and denim.',
+      basePrice: 329000, // Rs. 3,290
+      comparePrice: 399000,
       isFeatured: true,
-      categoryId: categories[1].id,
+      categoryId: categories[0].id,
       collectionId: atelierCollection.id,
       images: [
-        { url: 'https://images.unsplash.com/photo-1625910513413-72210c598007?auto=format&fit=crop&w=1000&q=80', isCover: true, sortOrder: 0 },
-        { url: 'https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?auto=format&fit=crop&w=1000&q=80', isCover: false, sortOrder: 1 }
+        { url: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=80', isCover: true, sortOrder: 0 },
+        { url: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=1000&q=80', isCover: false, sortOrder: 1 }
       ],
       sizes: ['S', 'M', 'L', 'XL', 'XXL']
     },
     {
-      name: 'Levix Black Ragnarok T-Shirt',
-      slug: 'black-ragnarok-t-shirt',
-      description: 'Signature dropped-shoulder heavyweight tee with volcanic distressed runes, high-density screen print and vintage mineral wash finish.',
-      details: '280 GSM luxury combed single jersey, seamless ribbed neck band, twin-needle hem finishing.',
-      fabricCare: '100% Premium Cotton. Reverse wash cold. Iron on reverse side only.',
-      fitGuide: 'Intentionally oversized boxy silhouette. Size down for a regular fit.',
+      name: 'Levix Thermal Waffle Boxy Full Sleeve',
+      slug: 'levix-thermal-waffle-boxy-full-sleeve',
+      description: 'Engineered from ultra-heavy 340 GSM thermal honeycomb waffle weave. Features wide dropped shoulders, dense 2x2 ribbed storm cuffs, and an exaggerated relaxed boxy torso.',
+      details: '340 GSM thermal honeycomb waffle weave knit, structured collar, reinforced storm cuffs.',
+      fabricCare: '100% Heavyweight Thermal Waffle Cotton (340 GSM). Machine wash cold, dry flat.',
+      fitGuide: 'Generous boxy cut with substantial sleeve volume and structured silhouette.',
       basePrice: 399000, // Rs. 3,990
-      comparePrice: 450000,
+      comparePrice: 469000,
       isFeatured: true,
-      categoryId: categories[0].id,
-      collectionId: atelierCollection.id,
+      categoryId: categories[1].id,
+      collectionId: racingCollection.id,
+      images: [
+        { url: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=1000&q=80', isCover: true, sortOrder: 0 },
+        { url: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=1000&q=80', isCover: false, sortOrder: 1 }
+      ],
+      sizes: ['S', 'M', 'L', 'XL', 'XXL']
+    },
+    {
+      name: 'Levix Mineral Acid Wash Distressed Tee',
+      slug: 'levix-mineral-acid-wash-tee',
+      description: 'Custom hand-treated mineral acid wash yielding unique cloudy charcoal patterns on heavy 280 GSM combed cotton. High-density typographic branding with subtle raw hem distress.',
+      details: '280 GSM mineral washed combed cotton, artisanal cloud-wash treatment, reinforced collar.',
+      fabricCare: '100% Mineral Washed Combed Cotton (280 GSM). Wash separately in cold water.',
+      fitGuide: 'Vintage boxy oversized drape. Pre-shrunk to preserve architectural proportions.',
+      basePrice: 349000, // Rs. 3,490
+      comparePrice: 429000,
+      isFeatured: true,
+      categoryId: categories[2].id,
+      collectionId: winterCollection.id,
       images: [
         { url: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1000&q=80', isCover: true, sortOrder: 0 },
         { url: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=80', isCover: false, sortOrder: 1 }
       ],
       sizes: ['S', 'M', 'L', 'XL', 'XXL']
-    },
-    {
-      name: 'Levix Thunderstruck Heavyweight Hoodie',
-      slug: 'thunderstruck-hoodie',
-      description: 'Ultra-heavy 450 GSM diagonal fleece hoodie engineered for winter drape. High-definition screen print with electric atmospheric artwork.',
-      details: 'Double-layered substantial hood without drawstrings for clean minimalist aesthetic. Concealed kangaroo pocket seams, heavyweight 2x2 ribbed cuffs.',
-      fabricCare: '100% Organic Heavyweight Cotton Fleece. Machine wash cold with like colors.',
-      fitGuide: 'Boxy streetwear drape with dropped shoulder seams.',
-      basePrice: 699000, // Rs. 6,990
-      comparePrice: 799000,
-      isFeatured: true,
-      categoryId: categories[2].id,
-      collectionId: winterCollection.id,
-      images: [
-        { url: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1000&q=80', isCover: true, sortOrder: 0 },
-        { url: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=1000&q=80', isCover: false, sortOrder: 1 }
-      ],
-      sizes: ['M', 'L', 'XL', 'XXL']
-    },
-    {
-      name: 'Levix Botanical Embroidery T-Shirt',
-      slug: 'levix-botanical-embroidery-tshirt',
-      description: 'Vintage-white heavyweight tee showcasing intricate botanical illustrations with soft puff-print textural dimensions.',
-      details: '260 GSM single jersey cotton, bio-washed and pre-shrunk.',
-      fabricCare: '100% Combed Cotton. Hand or delicate cycle wash cold.',
-      fitGuide: 'Relaxed true-to-size oversized drape.',
-      basePrice: 449000, // Rs. 4,490
-      comparePrice: null,
-      isFeatured: true,
-      categoryId: categories[0].id,
-      collectionId: atelierCollection.id,
-      images: [
-        { url: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=1000&q=80', isCover: true, sortOrder: 0 }
-      ],
-      sizes: ['S', 'M', 'L', 'XL']
-    },
-    {
-      name: 'Black Ripstop Tactical Cargos',
-      slug: 'black-ripstop-cargos',
-      description: 'Engineered utility trousers crafted from cross-woven tear-resistant ripstop cotton. Equipped with 6 3D bellow cargo compartments.',
-      details: 'Articulated knee darts, bungee-cord adjustable cuffs with metal cord-locks, reinforced seat panel.',
-      fabricCare: '100% Cotton Ripstop. Machine wash cold inside out.',
-      fitGuide: 'Relaxed straight leg with taper toggle options at the ankle.',
-      basePrice: 599000, // Rs. 5,990
-      comparePrice: 699000,
-      isFeatured: true,
-      categoryId: categories[3].id,
-      collectionId: racingCollection.id,
-      images: [
-        { url: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=1000&q=80', isCover: true, sortOrder: 0 }
-      ],
-      sizes: ['30', '32', '34', '36']
     }
   ];
 

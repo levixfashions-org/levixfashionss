@@ -30,7 +30,7 @@ export const PRODUCT_CATEGORIES = [
     sampleCompare: '3990',
     defaultDesc: 'Signature elongated streetwear silhouette cut from custom-milled 280 GSM combed cotton jersey. Tailored with dropped shoulders and architectural drape extending past the hip line.',
     defaultFabric: '100% Combed Single Jersey Cotton (280 GSM). Cold gentle wash inside out.',
-    defaultFit: 'Overlength dropped-shoulder drape. Designed to stack naturally over cargos and denim.',
+    defaultFit: 'Overlength dropped-shoulder drape. Designed to stack naturally over streetwear trousers and denim.',
     defaultImage1: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=80',
     defaultImage2: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=1000&q=80'
   },
@@ -57,78 +57,6 @@ export const PRODUCT_CATEGORIES = [
     defaultFit: 'Vintage boxy oversized drape. Pre-shrunk to preserve architectural proportions.',
     defaultImage1: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1000&q=80',
     defaultImage2: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=80'
-  },
-  { 
-    name: 'T-Shirts', 
-    slug: 't-shirts',
-    sampleName: 'Levix Heavyweight Boxy T-Shirt',
-    samplePrice: '2999',
-    sampleCompare: '3499',
-    defaultDesc: 'Heavyweight 280 GSM combed cotton with architectural boxy drape and reinforced ribbed collar.',
-    defaultFabric: '100% Combed Cotton. Machine wash cold inside out. Dry in shade.',
-    defaultFit: 'Intentionally oversized boxy silhouette. Take your normal size for streetwear drape.',
-    defaultImage1: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=80',
-    defaultImage2: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=1000&q=80'
-  },
-  { 
-    name: 'Hoodies', 
-    slug: 'hoodies',
-    sampleName: 'Levix Heavyweight Boxy Hoodie',
-    samplePrice: '4990',
-    sampleCompare: '5990',
-    defaultDesc: 'Ultra-heavy 450 GSM diagonal fleece hoodie engineered for winter drape with double-layered hood.',
-    defaultFabric: '100% Organic Heavyweight Cotton Fleece (450 GSM). Machine wash cold.',
-    defaultFit: 'Boxy streetwear drape with dropped shoulder seams.',
-    defaultImage1: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1000&q=80',
-    defaultImage2: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=1000&q=80'
-  },
-  { 
-    name: 'Polos', 
-    slug: 'polos',
-    sampleName: 'Levix Heavyweight Pique Polo',
-    samplePrice: '3490',
-    sampleCompare: '4190',
-    defaultDesc: 'Crafted from heavyweight custom-milled 260 GSM pique cotton with mother-of-pearl buttons.',
-    defaultFabric: '100% Combed Pique Cotton. Cold machine wash inside out.',
-    defaultFit: 'Oversized streetwear drape with structured ribbed collar.',
-    defaultImage1: 'https://images.unsplash.com/photo-1625910513413-72210c598007?auto=format&fit=crop&w=1000&q=80',
-    defaultImage2: 'https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?auto=format&fit=crop&w=1000&q=80'
-  },
-  { 
-    name: 'Bottoms', 
-    slug: 'bottoms',
-    sampleName: 'Levix Tactical Ripstop Cargos',
-    samplePrice: '4490',
-    sampleCompare: '5290',
-    defaultDesc: 'Engineered utility trousers crafted from cross-woven tear-resistant ripstop cotton with 6 3D cargo pockets.',
-    defaultFabric: '100% Cotton Ripstop. Machine wash cold inside out.',
-    defaultFit: 'Relaxed straight leg with taper toggle options at the ankle.',
-    defaultImage1: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=1000&q=80',
-    defaultImage2: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1000&q=80'
-  },
-  { 
-    name: 'Bags & Accessories', 
-    slug: 'bags',
-    sampleName: 'Levix Jacquard Monogram Card Case',
-    samplePrice: '1990',
-    sampleCompare: '2490',
-    defaultDesc: 'Custom woven jacquard monogram card wallet with top grain leather edging.',
-    defaultFabric: 'Custom milled jacquard, hand-burnished edges.',
-    defaultFit: 'One Size Slim Profile.',
-    defaultImage1: 'https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=1000&q=80',
-    defaultImage2: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=1000&q=80'
-  },
-  { 
-    name: 'Caps', 
-    slug: 'caps',
-    sampleName: 'Levix 6-Panel Architectural Cap',
-    samplePrice: '1490',
-    sampleCompare: '1890',
-    defaultDesc: 'Structured 6-panel streetwear cap with high-density 3D embroidery and antique brass buckle closure.',
-    defaultFabric: '100% Heavy Cotton Twill.',
-    defaultFit: 'One Size Adjustable Strapback.',
-    defaultImage1: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=1000&q=80',
-    defaultImage2: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=1000&q=80'
   }
 ];
 
@@ -217,7 +145,7 @@ export const AdminProductsPage: React.FC = () => {
     setEditingProduct(p);
     setName(p.name);
     setSlug(p.slug);
-    setCategoryName(p.category?.name || 'T-Shirts');
+    setCategoryName(p.category?.name || 'Overlength T-Shirts');
     setPriceINR(String(Math.round(p.basePrice / 100)));
     setComparePriceINR(p.comparePrice ? String(Math.round(p.comparePrice / 100)) : '');
     setDescription(p.description || '');
@@ -245,7 +173,7 @@ export const AdminProductsPage: React.FC = () => {
     setEditingProduct(null);
     setName(`${p.name} (Copy)`);
     setSlug(`${p.slug}-copy-${Date.now().toString().slice(-4)}`);
-    setCategoryName(p.category?.name || 'T-Shirts');
+    setCategoryName(p.category?.name || 'Overlength T-Shirts');
     setPriceINR(String(Math.round(p.basePrice / 100)));
     setComparePriceINR(p.comparePrice ? String(Math.round(p.comparePrice / 100)) : '');
     setDescription(p.description || '');
@@ -446,11 +374,7 @@ export const AdminProductsPage: React.FC = () => {
               { label: 'FEATURED', value: 'FEATURED' },
               { label: 'OVERLENGTH TEES', value: 'overlength-t-shirts' },
               { label: 'WAFFLE FULL SLEEVES', value: 'waffle-boxy-fit-full-sleeves' },
-              { label: 'ACID WASH TEES', value: 'acid-wash-t-shirts' },
-              { label: 'HOODIES', value: 'hoodies' },
-              { label: 'POLOS', value: 'polos' },
-              { label: 'CARGOS', value: 'cargos' },
-              { label: 'BAGS', value: 'bags' }
+              { label: 'ACID WASH TEES', value: 'acid-wash-t-shirts' }
             ].map((cat) => (
               <button
                 key={cat.value}
