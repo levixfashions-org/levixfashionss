@@ -75,7 +75,7 @@ export const AdminProductsPage: React.FC = () => {
   // Form fields
   const [name, setName] = useState('');
   const [slug, setSlug] = useState('');
-  const [categoryName, setCategoryName] = useState('T-Shirts');
+  const [categoryName, setCategoryName] = useState('Overlength T-Shirts');
   const [priceINR, setPriceINR] = useState('2999');
   const [comparePriceINR, setComparePriceINR] = useState('3499');
   const [description, setDescription] = useState('');
