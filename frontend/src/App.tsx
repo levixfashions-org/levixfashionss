@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { PwaProvider } from './context/PwaContext';
 import { AnnouncementBar } from './components/AnnouncementBar';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -9,6 +10,7 @@ import { SearchDrawer } from './components/SearchDrawer';
 import { MobileNavDrawer } from './components/MobileNavDrawer';
 import { SizeGuideModal } from './components/SizeGuideModal';
 import { MobileBottomNav } from './components/MobileBottomNav';
+import { GlassyPwaNotification } from './components/GlassyPwaNotification';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -47,19 +49,21 @@ function ScrollToTop() {
 export const App: React.FC = () => {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <ScrollToTop />
-        <div className="flex flex-col min-h-screen bg-[#EFEFEF] text-black">
-          <AnnouncementBar />
-          <Header />
-          
-          {/* Global Overlays and Modals */}
-          <CartDrawer />
-          <SearchDrawer />
-          <MobileNavDrawer />
-          <SizeGuideModal />
+      <PwaProvider>
+        <BrowserRouter>
+          <ScrollToTop />
+          <div className="flex flex-col min-h-screen bg-[#EFEFEF] text-black">
+            <AnnouncementBar />
+            <Header />
+            
+            {/* Global Overlays and Modals */}
+            <CartDrawer />
+            <SearchDrawer />
+            <MobileNavDrawer />
+            <SizeGuideModal />
+            <GlassyPwaNotification />
 
-          {/* Main Content Area */}
+            {/* Main Content Area */}
           <main className="flex-1">
             <Routes>
               <Route path="/" element={<HomePage />} />
@@ -106,6 +110,7 @@ export const App: React.FC = () => {
           <MobileBottomNav />
         </div>
       </BrowserRouter>
-    </AuthProvider>
+    </PwaProvider>
+  </AuthProvider>
   );
 };

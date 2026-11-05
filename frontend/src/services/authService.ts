@@ -32,13 +32,13 @@ export const authService = {
 
   // Sign in with Google
   async loginWithGoogle(emailToUse?: string): Promise<MockUser> {
-    const cleanEmail = (emailToUse || 'customer@thelevix.shop').trim();
+    const cleanEmail = (emailToUse || 'customer@gmail.com').trim();
     const isOwner = cleanEmail.toLowerCase() === 'levixfashions@gmail.com';
     const uid = 'google_' + Math.random().toString(36).substring(2, 9);
     const user: MockUser = {
       uid,
       email: cleanEmail,
-      displayName: isOwner ? 'Levix Owner' : (cleanEmail.split('@')[0] || 'Member'),
+      displayName: isOwner ? 'Levix Owner' : (cleanEmail.split('@')[0] || 'Customer'),
       emailVerified: true,
       getIdToken: async () => `dev-mock-token-${cleanEmail}-${uid}`
     };

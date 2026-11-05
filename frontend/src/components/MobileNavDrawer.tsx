@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { X, ChevronRight, ChevronDown, User, MapPin, Shield, Search } from 'lucide-react';
+import { X, ChevronRight, ChevronDown, User, MapPin, Shield, Search, Download } from 'lucide-react';
 import { useCartStore } from '../store/cartStore';
 import { useAuth } from '../context/AuthContext';
+import { usePwa } from '../context/PwaContext';
 
 export const MobileNavDrawer: React.FC = () => {
   const { isMobileNavOpen, closeMobileNav, openCart } = useCartStore();
   const { user, isAdmin, logout } = useAuth();
+  const { promptInstall, isInstalled } = usePwa();
   const [searchQuery, setSearchQuery] = useState('');
   const [isColorOpen, setIsColorOpen] = useState(false);
   const navigate = useNavigate();
@@ -188,6 +190,19 @@ export const MobileNavDrawer: React.FC = () => {
                 >
                   <Shield className="w-3.5 h-3.5" />
                   <span>Admin Dashboard</span>
+                </button>
+              )}
+
+              {!isInstalled && (
+                <button
+                  onClick={async () => {
+                    closeMobileNav();
+                    await promptInstall();
+                  }}
+                  className="w-full flex items-center space-x-2 text-left text-black font-bold pt-2 border-t border-black/10"
+                >
+                  <Download className="w-3.5 h-3.5 text-[#FF5400]" />
+                  <span>Install LEVIX Mobile App</span>
                 </button>
               )}
             </div>

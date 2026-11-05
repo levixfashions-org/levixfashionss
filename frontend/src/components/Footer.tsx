@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight, Check, Smartphone } from 'lucide-react';
+import { usePwa } from '../context/PwaContext';
 
 export const Footer: React.FC = () => {
   const [subscribed, setSubscribed] = useState(false);
   const [email, setEmail] = useState('');
+  const { promptInstall, isInstalled } = usePwa();
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -106,6 +108,17 @@ export const Footer: React.FC = () => {
                   Archive Streetwear
                 </Link>
               </li>
+              {!isInstalled && (
+                <li>
+                  <button
+                    onClick={promptInstall}
+                    className="hover:text-[#FF5400] text-black font-semibold transition-colors flex items-center gap-1.5 cursor-pointer"
+                  >
+                    <Smartphone className="w-3.5 h-3.5 text-[#FF5400]" />
+                    <span>Install Mobile App</span>
+                  </button>
+                </li>
+              )}
               <li>
                 <Link to="/policies/terms-of-service" className="hover:text-black transition-colors">
                   Terms of Service
